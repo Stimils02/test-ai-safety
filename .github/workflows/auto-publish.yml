@@ -65,9 +65,12 @@ jobs:
       run: python parse_publications.py
 
     - name: Commit and push changes
+      env:
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
         git add publications/sample_publications.json
         git commit -m "Auto-update sample publications from uploaded file" || echo "No changes"
-        git push
+        git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
+
