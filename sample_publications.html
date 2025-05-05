@@ -35,7 +35,7 @@
 
             try {
                 // Load manifest of all JSON files
-                const manifestRes = await fetch("content-uploads/manifest.json");
+                const manifestRes = await fetch("manifest.json");
                 const fileList = await manifestRes.json();
 
                 let allPublications = [];
