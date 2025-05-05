@@ -1,76 +1,62 @@
-name: Auto Process Uploaded Publications
-
-permissions:
-  contents: write
-
+name: Auto‑process publications
 on:
   push:
     paths:
       - 'content-uploads/**'
 
+permissions:
+  contents: write     # give GITHUB_TOKEN write
+
 jobs:
-  parse-and-update:
+  parse-and-commit:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-    - name: Install bibtex parser
+    - name: Setup Python deps
       run: pip install bibtexparser
 
-    - name: Create Python script to parse .bib and .json
+    - name: Parse uploads
       run: |
-        cat <<EOF > parse_publications.py
-        import os, json
-        import bibtexparser
+        python <<'PY'
+        import os, json, glob, bibtexparser, pathlib
+        out = []
+        uploads = pathlib.Path('content-uploads')
 
-        output = []
+        # all json
+        for j in uploads.glob('*.json'):
+            out.extend(json.loads(j.read_text()))
 
-        # Parse .json file if it exists
-        json_path = 'content-uploads/uploaded_sample.json'
-        if os.path.exists(json_path):
-            with open(json_path) as f:
-                output = json.load(f)
+        # all bib
+        for b in uploads.glob('*.bib'):
+            db = bibtexparser.load(open(b))
+            for e in db.entries:
+                out.append({
+                    "id": e.get("ID"),
+                    "authors": e.get("author","").split(" and "),
+                    "title": e.get("title",""),
+                    "journal": e.get("journal",""),
+                    "year": int(e.get("year","0") or 0),
+                    "volume": e.get("volume",""),
+                    "number": e.get("number",""),
+                    "pages": e.get("pages",""),
+                    "doi": e.get("doi",""),
+                    "url": e.get("url",""),
+                    "topics": []
+                })
+        pathlib.Path('publications').mkdir(exist_ok=True)
+        pathlib.Path('publications/sample_publications.json').write_text(
+            json.dumps(out, indent=2)
+        )
+        PY
 
-        # Parse .bib file if it exists
-        bib_path = 'content-uploads/uploaded_sample.bib'
-        if os.path.exists(bib_path):
-            with open(bib_path) as bibfile:
-                bibdb = bibtexparser.load(bibfile)
-                for entry in bibdb.entries:
-                    authors = entry.get("author", "").split(" and ")
-                    pub = {
-                        "id": entry.get("ID", ""),
-                        "authors": authors,
-                        "title": entry.get("title", ""),
-                        "journal": entry.get("journal", ""),
-                        "year": int(entry.get("year", 0)),
-                        "volume": entry.get("volume", ""),
-                        "number": entry.get("number", ""),
-                        "pages": entry.get("pages", ""),
-                        "doi": entry.get("doi", ""),
-                        "url": entry.get("url", ""),
-                        "topics": []
-                    }
-                    output.append(pub)
-
-        # Write output to final JSON
-        os.makedirs("publications", exist_ok=True)
-        with open("publications/sample_publications.json", "w") as out:
-            json.dump(output, out, indent=2)
-        EOF
-
-    - name: Run parsing script
-      run: python parse_publications.py
-
-    - name: Commit and push changes
+    - name: Commit & push
       env:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
+        git config --global user.name  "github‑actions"
+        git config --global user.email "github‑actions@github.com"
         git add publications/sample_publications.json
-        git commit -m "Auto-update sample publications from uploaded file" || echo "No changes"
-        git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
-
+        git commit -m "Auto‑update publications 📚" || exit 0
+        git push "https://x-access-token:${GIT_TOKEN}@github.com/${{ github.repository }}.git" \
+                 HEAD:${{ github.ref }}
