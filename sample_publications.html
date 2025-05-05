@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample Publications</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/publications.css" />
+</head>
+
+<body>
+    <div class="hero-banner">
+        <div class="hero-content">
+            <h1>Sample Publications</h1>
+            <p>This page shows dynamically loaded sample publication data</p>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="container publications-container">
+            <section class="all-publications-section">
+                <div class="section-header">
+                    <h2>All Publications</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div id="sample-publications-container" class="publications-list"></div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        async function loadSamplePublications() {
+            const container = document.getElementById("sample-publications-container");
+            try {
+                const response = await fetch("content-uploads/sample_publications.json");
+                const publications = await response.json();
+
+                publications.forEach(pub => {
+                    const div = document.createElement("div");
+                    div.className = "publication-entry";
+                    div.innerHTML = `
+            <p class="publication-citation">
+              <span class="publication-authors">${pub.authors.join('; ')}</span>
+              <span class="publication-title">${pub.title}.</span>
+              <span class="publication-journal">${pub.journal}</span>${pub.volume ? `, <span class="publication-volume">${pub.volume}</span>` : ''}${pub.number ? `(${pub.number})` : ''}:
+              <span class="publication-pages">${pub.pages}</span>.
+              <span class="publication-year">${pub.year}</span>.
+            </p>
+            <div class="publication-links">
+              ${pub.doi ? `<a href="https://doi.org/${pub.doi}" class="publication-link">doi</a>` : ""}
+              ${pub.url ? `<a href="${pub.url}" class="publication-link">link</a>` : ""}
+            </div>
+          `;
+                    container.appendChild(div);
+                });
+            } catch (err) {
+                container.innerHTML = "<p>Error loading publications.</p>";
+            }
+        }
+
+        window.onload = loadSamplePublications;
+    </script>
+</body>
+
+</html>

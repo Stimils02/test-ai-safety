@@ -1,0 +1,70 @@
+name: Auto Process Uploaded Publications
+
+on:
+  push:
+    paths:
+      - 'content-uploads/**'
+
+jobs:
+  parse-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install bibtex parser
+      run: pip install bibtexparser
+
+    - name: Create Python script to parse .bib and .json
+      run: |
+        cat <<EOF > parse_publications.py
+        import os, json
+        import bibtexparser
+
+        output = []
+
+        # Parse .json file if it exists
+        json_path = 'content-uploads/uploaded_sample.json'
+        if os.path.exists(json_path):
+            with open(json_path) as f:
+                output = json.load(f)
+
+        # Parse .bib file if it exists
+        bib_path = 'content-uploads/uploaded_sample.bib'
+        if os.path.exists(bib_path):
+            with open(bib_path) as bibfile:
+                bibdb = bibtexparser.load(bibfile)
+                for entry in bibdb.entries:
+                    authors = entry.get("author", "").split(" and ")
+                    pub = {
+                        "id": entry.get("ID", ""),
+                        "authors": authors,
+                        "title": entry.get("title", ""),
+                        "journal": entry.get("journal", ""),
+                        "year": int(entry.get("year", 0)),
+                        "volume": entry.get("volume", ""),
+                        "number": entry.get("number", ""),
+                        "pages": entry.get("pages", ""),
+                        "doi": entry.get("doi", ""),
+                        "url": entry.get("url", ""),
+                        "topics": []
+                    }
+                    output.append(pub)
+
+        # Write output to final JSON
+        os.makedirs("publications", exist_ok=True)
+        with open("publications/sample_publications.json", "w") as out:
+            json.dump(output, out, indent=2)
+        EOF
+
+    - name: Run parsing script
+      run: python parse_publications.py
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add publications/sample_publications.json
+        git commit -m "Auto-update sample publications from uploaded file" || echo "No changes"
+        git push
