@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's Happening | UMass Amherst AI Safety Initiative</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/whats-happening.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="logo-link">
+            <div class="logo-container">
+                <img src="images/umass-logo.png" alt="UMass Amherst Logo" class="logo">
+                <div class="logo-text">
+                    <h1>UMass Amherst</h1>
+                    <h2>AI Safety Initiative</h2>
+                </div>
+            </div>
+        </a>
+        <nav>
+            <ul class="main-menu">
+                <li class="dropdown">
+                    <a href="whats-happening.html">WHAT'S HAPPENING</a>
+                    <div class="dropdown-content">
+                        <a href="whats-happening.html#news">NEWS</a>
+                        <a href="whats-happening.html#seminars">SEMINARS</a>
+                        <a href="whats-happening.html#events">EVENTS</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="who-we-are.html">WHO WE ARE</a>
+                    <div class="dropdown-content">
+                        <a href="who-we-are.html#community" onclick="activateTab('community'); return true;">OUR
+                            COMMUNITY</a>
+                        <a href="who-we-are.html#funding" onclick="activateTab('funding'); return true;">OUR FUNDING</a>
+                        <a href="who-we-are.html#advisory" onclick="activateTab('advisory'); return true;">ADVISORY
+                            BOARD</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="what-we-do.html">WHAT WE DO</a>
+                    <div class="dropdown-content">
+                        <a href="what-we-do.html#mission" onclick="activateTab('mission'); return true;">MISSION</a>
+                        <a href="what-we-do.html#research" onclick="activateTab('research'); return true;">RESEARCH</a>
+                        <a href="what-we-do.html#education"
+                            onclick="activateTab('education'); return true;">EDUCATION</a>
+                        <a href="what-we-do.html#outreach" onclick="activateTab('outreach'); return true;">OUTREACH</a>
+                        <a href="what-we-do.html#resources"
+                            onclick="activateTab('resources'); return true;">RESOURCES</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="join.html">JOIN US</a>
+                    <div class="dropdown-content wider-dropdown">
+                        <a href="join.html#grad-students" onclick="activateTab('grad-students'); return true;">INFO FOR
+                            GRADUATE STUDENTS</a>
+                        <a href="join.html#undergrad-students"
+                            onclick="activateTab('undergrad-students'); return true;">INFO FOR UNDERGRADUATE
+                            STUDENTS</a>
+                        <a href="join.html#mailing-list" onclick="activateTab('mailing-list'); return true;">MAILING
+                            LIST</a>
+                        <a href="join.html#contact-us" onclick="activateTab('contact-us'); return true;">CONTACT US</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="page-banner">
+        <div class="banner-content">
+            <h1>What's Happening</h1>
+            <p>Stay updated with the latest news, events, and seminars from the AI Safety Initiative</p>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="sidebar">
+            <ul class="sidebar-nav">
+                <li class="sidebar-item active" data-section="news">
+                    <a href="#news">News</a>
+                    <i class="fas fa-arrow-right sidebar-indicator"></i>
+                </li>
+                <li class="sidebar-item" data-section="seminars">
+                    <a href="#seminars">Seminars</a>
+                    <i class="fas fa-arrow-right sidebar-indicator"></i>
+                </li>
+                <li class="sidebar-item" data-section="events">
+                    <a href="#events">Events</a>
+                    <i class="fas fa-arrow-right sidebar-indicator"></i>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <!-- News Section -->
+            <section id="news" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Latest News</h2>
+
+                    <div class="card-grid">
+                        <div class="content-card">
+                            <div class="card-image">
+                                <img src="images/pic_placeholder.jpg" alt="AI Safety Research Grant">
+                                <div class="card-date">
+                                    <span class="month">MAY</span>
+                                    <span class="day">15</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>UMass Amherst Receives $3.5M Grant for AI Safety Research</h3>
+                                <p>The UMass Amherst AI Safety Initiative has been awarded a $3.5 million grant from the
+                                    National Science Foundation to advance research in AI alignment and safety
+                                    protocols.</p>
+                                <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="content-card">
+                            <div class="card-image">
+                                <img src="images/news-2.png" alt="AI Safety Workshop">
+                                <div class="card-date">
+                                    <span class="month">APR</span>
+                                    <span class="day">28</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Successful AI Safety Workshop Draws International Participants</h3>
+                                <p>Over 200 researchers and practitioners gathered for our annual AI Safety Workshop,
+                                    featuring
+                                    keynote speeches and hands-on sessions.</p>
+                                <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="content-card">
+                            <div class="card-image">
+                                <img src="images/news-3.png" alt="New Faculty">
+                                <div class="card-date">
+                                    <span class="month">APR</span>
+                                    <span class="day">10</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Two New Faculty Members Join AI Safety Initiative</h3>
+                                <p>We welcome Dr. Michael Chen and Dr. Sarah Johnson, experts in interpretability and
+                                    robustness, to our growing team.</p>
+                                <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="content-card">
+                            <div class="card-image">
+                                <img src="images/news-4.png" alt="Research Publication">
+                                <div class="card-date">
+                                    <span class="month">MAR</span>
+                                    <span class="day">22</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Groundbreaking Research on AI Alignment Published in Nature</h3>
+                                <p>Our team's work on novel alignment techniques for large language models has been
+                                    published in
+                                    Nature Machine Intelligence.</p>
+                                <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="content-card">
+                            <div class="card-image">
+                                <img src="images/news-5.png" alt="Industry Partnership">
+                                <div class="card-date">
+                                    <span class="month">MAR</span>
+                                    <span class="day">05</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>New Industry Partnership to Advance Responsible AI Development</h3>
+                                <p>UMass Amherst AI Safety Initiative partners with leading tech companies to establish
+                                    best
+                                    practices for AI deployment.</p>
+                                <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="content-card">
+                            <div class="card-image">
+                                <img src="images/news-6.png" alt="Student Award">
+                                <div class="card-date">
+                                    <span class="month">FEB</span>
+                                    <span class="day">18</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Graduate Student Wins Best Paper Award at AI Safety Conference</h3>
+                                <p>PhD candidate Jennifer Lee received the Best Paper Award at the International
+                                    Conference on
+                                    AI Safety for her work on interpretability.</p>
+                                <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="content-card">
+                            <div class="card-image">
+                                <img src="images/news-7.png" alt="Policy Brief">
+                                <div class="card-date">
+                                    <span class="month">FEB</span>
+                                    <span class="day">05</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Initiative Releases Policy Brief on AI Governance Frameworks</h3>
+                                <p>Our team has published a comprehensive policy brief outlining recommendations for
+                                    effective
+                                    AI governance at national and international levels.</p>
+                                <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="content-card">
+                            <div class="card-image">
+                                <img src="images/news-8.png" alt="New Course">
+                                <div class="card-date">
+                                    <span class="month">JAN</span>
+                                    <span class="day">20</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>New Undergraduate Course on AI Safety Fundamentals Launches</h3>
+                                <p>The Computer Science department is offering a new course dedicated to teaching the
+                                    fundamentals of AI safety to undergraduate students.</p>
+                                <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="view-more-container">
+                        <a href="news.html" class="view-more-btn">View All News</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seminars Section -->
+            <section id="seminars" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Upcoming Seminars</h2>
+
+                    <div class="card-grid">
+                        <div class="content-card seminar-card">
+                            <div class="card-image">
+                                <img src="images/pic_placeholder.jpg" alt="AI Alignment Seminar">
+                                <div class="card-date">
+                                    <span class="month">JUN</span>
+                                    <span class="day">15</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>AI Alignment: Current Challenges and Future Directions</h3>
+                                <div class="speaker">
+                                    <i class="fas fa-user"></i> Dr. Sarah Chen, UC Berkeley
+                                </div>
+                                <div class="seminar-time">
+                                    <i class="fas fa-clock"></i> 3:00 PM - 4:30 PM
+                                </div>
+                                <div class="seminar-location">
+                                    <i class="fas fa-map-marker-alt"></i> Computer Science Building, Room 151
+                                </div>
+                                <a href="#" class="register-btn">Register</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card seminar-card">
+                            <div class="card-image">
+                                <img src="images/seminar-2.jpg" alt="Reinforcement Learning">
+                                <div class="card-date">
+                                    <span class="month">JUN</span>
+                                    <span class="day">08</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Robustness in Reinforcement Learning Systems</h3>
+                                <p class="speaker"><i class="fas fa-user"></i> Dr. Robert Chen, MIT</p>
+                                <p class="seminar-time"><i class="far fa-clock"></i> 2:00 PM - 3:30 PM</p>
+                                <p class="seminar-location"><i class="fas fa-map-marker-alt"></i> Engineering Building,
+                                    Room 305
+                                </p>
+                                <a href="#" class="register-btn">Register</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card seminar-card">
+                            <div class="card-image">
+                                <img src="images/seminar-3.jpg" alt="AI Governance">
+                                <div class="card-date">
+                                    <span class="month">JUN</span>
+                                    <span class="day">15</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>AI Governance: Balancing Innovation and Safety</h3>
+                                <p class="speaker"><i class="fas fa-user"></i> Dr. Lisa Wang, Harvard Kennedy School</p>
+                                <p class="seminar-time"><i class="far fa-clock"></i> 4:00 PM - 5:30 PM</p>
+                                <p class="seminar-location"><i class="fas fa-map-marker-alt"></i> Campus Center, Room
+                                    162</p>
+                                <a href="#" class="register-btn">Register</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card seminar-card">
+                            <div class="card-image">
+                                <img src="images/seminar-4.jpg" alt="Value Alignment">
+                                <div class="card-date">
+                                    <span class="month">JUN</span>
+                                    <span class="day">22</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Value Alignment in Multi-Agent Systems</h3>
+                                <p class="speaker"><i class="fas fa-user"></i> Dr. James Wilson, DeepMind</p>
+                                <p class="seminar-time"><i class="far fa-clock"></i> 3:00 PM - 4:30 PM</p>
+                                <p class="seminar-location"><i class="fas fa-map-marker-alt"></i> Virtual Event</p>
+                                <a href="#" class="register-btn">Register</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="section-title">Past Seminars</h2>
+
+                    <div class="card-grid">
+                        <div class="content-card seminar-card past">
+                            <div class="card-image">
+                                <img src="images/seminar-past-1.jpg" alt="AI Governance">
+                                <div class="card-date">
+                                    <span class="month">APR</span>
+                                    <span class="day">14</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>AI Governance and Regulation: Current Challenges and Future Directions</h3>
+                                <p class="speaker"><i class="fas fa-user"></i> Dr. Michael Thompson, Harvard Law School
+                                </p>
+                                <a href="#" class="recording-btn"><i class="fas fa-play-circle"></i> Watch Recording</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card seminar-card past">
+                            <div class="card-image">
+                                <img src="images/seminar-past-2.jpg" alt="Scaling Laws">
+                                <div class="card-date">
+                                    <span class="month">MAR</span>
+                                    <span class="day">30</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Scaling Laws and Safety Implications in Foundation Models</h3>
+                                <p class="speaker"><i class="fas fa-user"></i> Dr. Lisa Chen, UC Berkeley</p>
+                                <a href="#" class="recording-btn"><i class="fas fa-play-circle"></i> Watch Recording</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card seminar-card past">
+                            <div class="card-image">
+                                <img src="images/seminar-past-3.jpg" alt="Adversarial Testing">
+                                <div class="card-date">
+                                    <span class="month">MAR</span>
+                                    <span class="day">16</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Adversarial Testing for Large Language Models</h3>
+                                <p class="speaker"><i class="fas fa-user"></i> Dr. James Wilson, Google DeepMind</p>
+                                <a href="#" class="recording-btn"><i class="fas fa-play-circle"></i> Watch Recording</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card seminar-card past">
+                            <div class="card-image">
+                                <img src="images/seminar-past-4.jpg" alt="Interpretability Methods">
+                                <div class="card-date">
+                                    <span class="month">FEB</span>
+                                    <span class="day">28</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Interpretability Methods for Neural Networks</h3>
+                                <p class="speaker"><i class="fas fa-user"></i> Dr. Sarah Johnson, Stanford University
+                                </p>
+                                <a href="#" class="recording-btn"><i class="fas fa-play-circle"></i> Watch Recording</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="view-more-container">
+                        <a href="seminars.html" class="view-more-btn">View All Past Seminars</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section id="events" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Upcoming Events</h2>
+
+                    <div class="card-grid">
+                        <div class="content-card event-card upcoming">
+                            <div class="card-image">
+                                <img src="images/pic_placeholder.jpg" alt="AI Safety Workshop">
+                                <div class="card-date">
+                                    <span class="month">JUL</span>
+                                    <span class="day">10-12</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Annual AI Safety Workshop 2023</h3>
+                                <div class="event-time">
+                                    <i class="fas fa-clock"></i> 9:00 AM - 5:00 PM
+                                </div>
+                                <div class="event-location">
+                                    <i class="fas fa-map-marker-alt"></i> Campus Center Auditorium
+                                </div>
+                                <p>A three-day workshop featuring keynote speakers, panel discussions, and hands-on
+                                    sessions on
+                                    AI safety.</p>
+                                <a href="#" class="register-btn">Register Now</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card event-card">
+                            <div class="card-image">
+                                <img src="images/event-2.jpg" alt="Workshop">
+                                <div class="card-date">
+                                    <span class="month">MAY</span>
+                                    <span class="day">30</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>AI Safety Workshop for Graduate Students</h3>
+                                <p>A hands-on workshop introducing graduate students to key concepts and methodologies
+                                    in AI
+                                    safety research.</p>
+                                <p class="event-time"><i class="far fa-clock"></i> 1:00 PM - 5:00 PM</p>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Computer Science
+                                    Building, Lab
+                                    142</p>
+                                <a href="#" class="register-btn">Register Now</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card event-card">
+                            <div class="card-image">
+                                <img src="images/event-3.jpg" alt="Roundtable">
+                                <div class="card-date">
+                                    <span class="month">JUN</span>
+                                    <span class="day">10</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Industry-Academia Roundtable on Responsible AI</h3>
+                                <p>A discussion forum bringing together industry leaders and academic researchers to
+                                    share
+                                    perspectives.</p>
+                                <p class="event-time"><i class="far fa-clock"></i> 11:00 AM - 1:00 PM</p>
+                                <p class="event-location"><i class="fas fa-laptop"></i> Virtual Event</p>
+                                <a href="#" class="register-btn">Register Now</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card event-card">
+                            <div class="card-image">
+                                <img src="images/event-4.jpg" alt="Public Lecture">
+                                <div class="card-date">
+                                    <span class="month">JUL</span>
+                                    <span class="day">05</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Public Lecture: AI Safety for Policymakers</h3>
+                                <p>An accessible introduction to AI safety concepts for policymakers, regulators, and
+                                    the
+                                    general public.</p>
+                                <p class="event-time"><i class="far fa-clock"></i> 6:00 PM - 8:00 PM</p>
+                                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Campus Center Auditorium
+                                </p>
+                                <a href="#" class="register-btn">Register Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="section-title">Past Events</h2>
+
+                    <div class="card-grid">
+                        <div class="content-card event-card past">
+                            <div class="card-image">
+                                <img src="images/event-past-1.jpg" alt="Workshop">
+                                <div class="card-date">
+                                    <span class="month">APR</span>
+                                    <span class="day">20</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>AI Alignment Workshop</h3>
+                                <p>A technical workshop focused on current challenges in AI alignment research.</p>
+                                <a href="#" class="recording-btn"><i class="fas fa-images"></i> View Photos</a>
+                                <a href="#" class="materials-btn"><i class="fas fa-file-alt"></i> Download Materials</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card event-card past">
+                            <div class="card-image">
+                                <img src="images/event-past-2.jpg" alt="Panel Discussion">
+                                <div class="card-date">
+                                    <span class="month">MAR</span>
+                                    <span class="day">15</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Panel Discussion: The Future of AI Governance</h3>
+                                <p>Expert panel discussing regulatory frameworks for advanced AI systems.</p>
+                                <a href="#" class="recording-btn"><i class="fas fa-play-circle"></i> Watch Recording</a>
+                                <a href="#" class="materials-btn"><i class="fas fa-file-alt"></i> Download Summary</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card event-card past">
+                            <div class="card-image">
+                                <img src="images/event-past-3.jpg" alt="Hackathon">
+                                <div class="card-date">
+                                    <span class="month">FEB</span>
+                                    <span class="day">10-12</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>AI Safety Hackathon</h3>
+                                <p>A weekend-long hackathon focused on developing tools for AI safety research.</p>
+                                <a href="#" class="recording-btn"><i class="fas fa-images"></i> View Projects</a>
+                                <a href="#" class="materials-btn"><i class="fas fa-trophy"></i> See Winners</a>
+                            </div>
+                        </div>
+
+                        <div class="content-card event-card past">
+                            <div class="card-image">
+                                <img src="images/event-past-4.jpg" alt="Conference">
+                                <div class="card-date">
+                                    <span class="month">JAN</span>
+                                    <span class="day">25</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>AI Safety Research Showcase</h3>
+                                <p>Annual showcase of ongoing AI safety research projects at UMass Amherst.</p>
+                                <a href="#" class="recording-btn"><i class="fas fa-play-circle"></i> Watch
+                                    Highlights</a>
+                                <a href="#" class="materials-btn"><i class="fas fa-file-alt"></i> View Abstracts</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="view-more-container">
+                        <a href="events.html" class="view-more-btn">View All Events</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/umass-logo.png" alt="UMass Amherst Logo" class="footer-logo-img">
+                <div class="footer-logo-text">
+                    <h3>UMass Amherst</h3>
+                    <h4>AI Safety Initiative</h4>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="mission.html">Mission</a></li>
+                        <li><a href="community.html">Our Community</a></li>
+                        <li><a href="funding.html">Funding</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="datasets.html">Datasets</a></li>
+                        <li><a href="software.html">Software</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="mailing-list.html">Join Mailing List</a></li>
+                        <li><a href="donate.html">Support Our Work</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 UMass Amherst AI Safety Initiative. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="accessibility.html">Accessibility</a>
+            </div>
+        </div>
+    </footer>
+    <script src="/javascript/scripts.js"></script>
+</body>
+
+</html>
