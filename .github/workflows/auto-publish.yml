@@ -63,8 +63,8 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
+        git config --global user.name 'Suj'
+        git config --global user.email 'Stimils@purdue.edu'
         git add publications/sample_publications.json
         git commit -m "Auto-update sample publications from uploaded file" || echo "No changes"
         git push
