@@ -114,34 +114,72 @@
 .publications-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2.5rem;
     margin-bottom: 2rem;
 }
 
+.publication-year {
+    margin-bottom: 1.5rem;
+}
+
+.publication-year h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.publication-year ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.publication-item {
+    padding: 0.6rem 0;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+    font-family: "Computer Modern", Georgia, serif;
+}
+
 .publication-entry {
-    padding: 1.8rem;
-    border: 1px solid var(--medium-gray);
+    padding: 1.2rem;
     border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
     background-color: var(--background-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .publication-entry:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.publication-item em {
+    font-style: italic;
+}
+
+.publication-item strong {
+    font-weight: 600;
+    color: var(--accent-color);
 }
 
 .publication-citation {
-    font-family: "Computer Modern", Georgia, serif;
     line-height: 1.6;
-    margin-bottom: 1rem;
     font-size: 1.05rem;
 }
 
 .publication-authors {
-    color: var(--accent-color);
+    color: #444;
     font-weight: 500;
+}
+
+.publication-authors strong {
+    color: var(--accent-color);
+    font-weight: 600;
 }
 
 .publication-title {
@@ -152,21 +190,47 @@
     font-style: italic;
 }
 
-.publication-links {
+.loading-indicator {
     display: flex;
-    gap: 1.2rem;
-    margin-bottom: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.loading-indicator i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.no-publications {
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+    border-radius: 8px;
 }
 
 .publication-link {
     font-size: 0.9rem;
     color: var(--primary-color);
-    text-decoration: underline;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .publication-link:hover {
-    color: var(--accent-color);
+    color: white;
+    background-color: var(--primary-color);
 }
 
 .bibtex-content {
@@ -179,7 +243,10 @@
     white-space: pre-wrap;
     margin-top: 0.8rem;
     overflow-x: auto;
-    border-left: 3px solid var(--primary-color);
+    border-left: 3px solid var(--accent-color);
+    position: relative;
+    line-height: 1.5;
+    color: #333;
 }
 
 /* Responsive styles */

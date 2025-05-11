@@ -601,6 +601,357 @@ document.addEventListener('DOMContentLoaded', function () {
         container.appendChild(advisorContent);
     }
 
+    // Function to parse BibTeX files
+    async function parseBibTeX(bibText) {
+        const entries = [];
+        let currentEntry = null;
+        let currentField = null;
+        let bracketCount = 0;
+        let fieldContent = '';
+
+
+        // Split the file into lines for easier processing
+        const lines = bibText.split('\n');
+
+        for (const line of lines) {
+            // Skip empty lines
+            if (line.trim() === '') continue;
+
+            // Start of a new entry
+            if (line.trim().startsWith('@')) {
+                if (currentEntry) {
+                    // Save the previous entry if it exists
+                    entries.push(currentEntry);
+                }
+
+                // Extract the entry type and key
+                const match = line.match(/@(\w+)\s*{\s*([^,]+),/);
+                if (match) {
+                    currentEntry = {
+                        type: match[1].toLowerCase(),
+                        key: match[2],
+                        fields: {}
+                    };
+                    currentField = null;
+                    fieldContent = '';
+                    bracketCount = 0;
+                }
+                continue;
+            }
+
+            // End of an entry
+            if (line.trim() === '}' && bracketCount === 0) {
+                if (currentField && fieldContent) {
+                    currentEntry.fields[currentField] = fieldContent.trim();
+                }
+                // Save the last entry
+                if (currentEntry) {
+                    entries.push(currentEntry);
+                    currentEntry = null;
+                }
+                continue;
+            }
+
+            // Process field
+            if (currentEntry) {
+                // Check if this line defines a new field
+                const fieldMatch = line.match(/^\s*(\w+)\s*=\s*{(.*)$/);
+                if (fieldMatch && bracketCount === 0) {
+                    // Save the previous field if it exists
+                    if (currentField && fieldContent) {
+                        currentEntry.fields[currentField] = fieldContent.trim();
+                    }
+
+                    // Start a new field
+                    currentField = fieldMatch[1].toLowerCase();
+                    fieldContent = fieldMatch[2];
+
+                    // Count opening brackets
+                    bracketCount = (fieldContent.match(/{/g) || []).length;
+                    bracketCount -= (fieldContent.match(/}/g) || []).length;
+
+                    // Check if the field ends on the same line
+                    if (fieldContent.endsWith('},') || fieldContent.endsWith('}')) {
+                        fieldContent = fieldContent.replace(/},?$/, '');
+                        currentEntry.fields[currentField] = fieldContent.trim();
+                        currentField = null;
+                        fieldContent = '';
+                        bracketCount = 0;
+                    }
+                } else if (currentField) {
+                    // Continue the current field
+                    fieldContent += ' ' + line.trim();
+
+                    // Update bracket count
+                    bracketCount += (line.match(/{/g) || []).length;
+                    bracketCount -= (line.match(/}/g) || []).length;
+
+                    // Check if the field ends on this line
+                    if (line.trim().endsWith('},') || line.trim().endsWith('}')) {
+                        fieldContent = fieldContent.replace(/},?$/, '');
+                        currentEntry.fields[currentField] = fieldContent.trim();
+                        currentField = null;
+                        fieldContent = '';
+                        bracketCount = 0;
+                    }
+                }
+            }
+        }
+
+        // Add the last entry if it wasn't already added
+        if (currentEntry) {
+            if (currentField && fieldContent) {
+                currentEntry.fields[currentField] = fieldContent.trim();
+            }
+            entries.push(currentEntry);
+        }
+
+        return entries;
+    }
+
+    // Function to fetch and parse a BibTeX file
+    async function loadBibTeXFile(personId) {
+        // Map personId to the corresponding BibTeX file name
+        let fileName;
+
+        // Special case for Eugene Bagdasarian
+        if (personId === 'ebagdasarian') {
+            fileName = 'Eugene Bagdasarian.bib';
+        } else {
+            // For others, try to find their BibTeX file based on their ID
+            const peopleData = await loadYamlData('people.yaml');
+            if (peopleData && peopleData.people) {
+                const person = peopleData.people.find(p => p.id === personId);
+                if (person) {
+                    fileName = `${person.name}.bib`;
+                }
+            }
+        }
+
+        if (!fileName) {
+            console.error(`Could not determine BibTeX file name for person ID: ${personId}`);
+            return [];
+        }
+
+        try {
+            const response = await fetch(`content/people/bibs/${encodeURIComponent(fileName)}`);
+            if (!response.ok) {
+                console.error(`Failed to load BibTeX file: ${fileName}`, response.statusText);
+                return [];
+            }
+
+            const bibText = await response.text();
+            return await parseBibTeX(bibText);
+        } catch (e) {
+            console.error(`Error loading or parsing BibTeX file: ${fileName}`, e);
+            return [];
+        }
+    }
+
+    // Function to render publications
+    async function renderPublications(containerId, personId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        // Show loading indicator
+        container.innerHTML = `
+            <div class="loading-indicator">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading publications...</p>
+            </div>
+        `;
+
+        // Load BibTeX entries
+        const entries = await loadBibTeXFile(personId);
+
+        // Clear the container
+        container.innerHTML = '';
+
+        if (entries.length === 0) {
+            container.innerHTML = `<p class="no-publications">No publications found.</p>`;
+            return;
+        }
+
+        // Sort entries by year (newest first)
+        entries.sort((a, b) => {
+            const yearA = parseInt(a.fields.year || '0');
+            const yearB = parseInt(b.fields.year || '0');
+            return yearB - yearA;
+        });
+
+        // Group entries by year
+        const entriesByYear = {};
+        entries.forEach(entry => {
+            const year = entry.fields.year || 'Unknown';
+            if (!entriesByYear[year]) {
+                entriesByYear[year] = [];
+            }
+            entriesByYear[year].push(entry);
+        });
+
+        // Create a publication list
+        const publicationList = document.createElement('div');
+        publicationList.className = 'publications-list';
+
+        // Add publications by year
+        Object.keys(entriesByYear)
+            .sort((a, b) => b.localeCompare(a)) // Sort years in descending order
+            .forEach(year => {
+                const yearSection = document.createElement('div');
+                yearSection.className = 'publication-year';
+
+                const yearHeading = document.createElement('h3');
+                yearHeading.textContent = year;
+                yearSection.appendChild(yearHeading);
+
+                const yearList = document.createElement('ul');
+
+                entriesByYear[year].forEach(entry => {
+                    const item = document.createElement('li');
+                    item.className = 'publication-item';
+
+                    // Set data attributes for filtering
+                    const topics = entry.fields.keywords ? entry.fields.keywords.split(',').map(k => k.trim().toLowerCase()) : [];
+                    if (topics.length > 0) {
+                        item.dataset.topics = topics.join(',');
+                    }
+
+                    // Format the publication based on its type
+                    // Format authors
+                    let authors = entry.fields.author || '';
+                    authors = authors.replace(/\\myname{([^}]+)}/g, 'Bagdasarian, Eugene');
+                    authors = authors.replace(/ and /g, ', ');
+
+                    // Highlight the person's name
+                    const personData = dataCache.people?.people.find(p => p.id === personId);
+                    if (personData) {
+                        const nameParts = personData.name.split(' ');
+                        const lastName = nameParts[nameParts.length - 1];
+                        authors = authors.replace(new RegExp(`${lastName}(,)?\\s*${nameParts[0]}`, 'i'),
+                            `<strong>${lastName}$1 ${nameParts[0]}</strong>`);
+                    }
+
+                    // Common publication info
+                    const title = entry.fields.title || 'Unknown Title';
+                    const venue = entry.fields.booktitle || entry.fields.journal || '';
+                    const publisher = entry.fields.publisher || '';
+                    const pages = entry.fields.pages || '';
+                    const doi = entry.fields.doi || '';
+                    const url = entry.fields.url || '';
+                    const year = entry.fields.year || '';
+
+                    // Create publication entry with more detailed information
+                    const entryHTML = `
+                        <div class="publication-entry">
+                            <div class="publication-citation">
+                                <span class="publication-authors">${authors}</span>.
+                                "<span class="publication-title">${title}</span>".
+                                ${venue ? `<span class="publication-journal">${venue}</span>.` : ''}
+                                ${publisher ? ` ${publisher}.` : ''}
+                                ${pages ? ` Pages ${pages}.` : ''}
+                                ${year ? ` ${year}.` : ''}
+                            </div>
+                            <div class="publication-links">
+                                ${doi ? `<a href="https://doi.org/${doi}" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> DOI</a>` : ''}
+                                ${url ? `<a href="${url}" class="publication-link" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>` : ''}
+                                <a href="javascript:void(0)" class="publication-link show-bibtex" data-key="${entry.key}"><i class="fas fa-code"></i> BibTeX</a>
+                            </div>
+                            <div class="bibtex-content" id="bibtex-${entry.key}">
+@${entry.type}{${entry.key},
+${Object.entries(entry.fields).map(([k, v]) => `  ${k} = {${v}}`).join(',\n')}
+}
+                            </div>
+                        </div>
+                    `;
+
+                    item.innerHTML = entryHTML;
+                    yearList.appendChild(item);
+                });
+
+                yearSection.appendChild(yearList);
+                publicationList.appendChild(yearSection);
+            });
+
+        container.appendChild(publicationList);
+
+        // Add event listeners for showing/hiding BibTeX
+        document.querySelectorAll('.show-bibtex').forEach(button => {
+            button.addEventListener('click', function() {
+                const key = this.getAttribute('data-key');
+                const bibtexElem = document.getElementById(`bibtex-${key}`);
+                if (bibtexElem) {
+                    if (bibtexElem.style.display === 'block') {
+                        bibtexElem.style.display = 'none';
+                        this.innerHTML = '<i class="fas fa-code"></i> BibTeX';
+                    } else {
+                        bibtexElem.style.display = 'block';
+                        this.innerHTML = '<i class="fas fa-times"></i> Hide BibTeX';
+                    }
+                }
+            });
+        });
+    }
+
+    // Function to search publications
+    function searchPublications() {
+        const searchText = document.getElementById('publication-search')?.value.toLowerCase() || '';
+        const yearFilter = document.getElementById('year-filter')?.value || 'all';
+        const topicFilter = document.getElementById('topic-filter')?.value || 'all';
+
+        const publicationItems = document.querySelectorAll('.publication-item');
+        const yearSections = document.querySelectorAll('.publication-year');
+
+        // Apply filters
+        publicationItems.forEach(item => {
+            const itemText = item.textContent.toLowerCase();
+            const itemYear = item.closest('.publication-year')?.querySelector('h3')?.textContent || '';
+            const itemTopics = item.dataset.topics ? item.dataset.topics.split(',') : [];
+
+            // Check if the item matches all filters
+            const matchesSearch = !searchText || itemText.includes(searchText);
+            const matchesYear = yearFilter === 'all' || itemYear === yearFilter;
+            const matchesTopic = topicFilter === 'all' ||
+                                (itemTopics.length > 0 && itemTopics.includes(topicFilter));
+
+            // Show or hide based on filters
+            item.style.display = (matchesSearch && matchesYear && matchesTopic) ? 'block' : 'none';
+        });
+
+        // Hide year sections with no visible items
+        yearSections.forEach(section => {
+            const visibleItems = section.querySelectorAll('.publication-item[style="display: block"]');
+            section.style.display = visibleItems.length > 0 ? 'block' : 'none';
+        });
+    }
+
+    // Export publications as BibTeX
+    async function exportBibTeX() {
+        try {
+            // Fetch the raw BibTeX file
+            const response = await fetch('content/people/bibs/Eugene Bagdasarian.bib');
+            if (!response.ok) {
+                throw new Error(`Failed to load BibTeX file: ${response.statusText}`);
+            }
+
+            const bibtexContent = await response.text();
+
+            // Download as file
+            const blob = new Blob([bibtexContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'publications.bib';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Error exporting BibTeX:', error);
+            alert('Failed to export BibTeX file. Please try again later.');
+        }
+    }
+
     // Function to initialize all dynamic content based on current page
     async function initDynamicContent() {
         // Load YAML data
@@ -683,6 +1034,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (document.getElementById('undergrad-program-coordinator-container')) {
                 renderUndergradProgramCoordinator('undergrad-program-coordinator-container');
+            }
+        }
+        else if (currentPath === 'publications.html') {
+            // Publications page
+            if (document.getElementById('all-publications-container')) {
+                // Load Eugene's publications as default
+                renderPublications('all-publications-container', 'ebagdasarian');
+            }
+
+            if (document.getElementById('featured-publications-container')) {
+                // For featured publications, you could select specific ones or use the most recent
+                // For now, we'll just display the same publications
+                renderPublications('featured-publications-container', 'ebagdasarian');
+            }
+
+            // Set up export button
+            const exportButton = document.getElementById('export-bibtex');
+            if (exportButton) {
+                exportButton.addEventListener('click', exportBibTeX);
             }
         }
     }
