@@ -3,5 +3,6 @@
 README.md
 .github
 uploaded_sample.bib
-
+node_modules
+package-lock.json
 **/.claude/settings.local.json

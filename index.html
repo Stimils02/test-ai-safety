@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/landing.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
 
 <body>
@@ -136,54 +137,12 @@
                 <h2 class="section-title">Latest News & Events</h2>
                 <a href="whats-happening.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
             </div>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="news-image">
-                        <img src="images/news-1.jpg" alt="Research Publication">
-                        <div class="news-date">
-                            <span class="day">15</span>
-                            <span class="month">NOV</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-tag">Research</span>
-                        <h3>New Paper on Neural Network Interpretability</h3>
-                        <p>Our team has published groundbreaking research on making deep neural networks more
-                            interpretable.</p>
-                        <a href="news.html" class="read-more">Read More</a>
-                    </div>
-                </div>
-
-                <div class="news-card">
-                    <div class="news-image">
-                        <img src="images/news-2.jpg" alt="Conference">
-                        <div class="news-date">
-                            <span class="day">03</span>
-                            <span class="month">DEC</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-tag">Event</span>
-                        <h3>Annual AI Safety Conference 2023</h3>
-                        <p>Join us for our annual conference featuring keynote speakers from academia and industry.</p>
-                        <a href="events.html" class="read-more">Read More</a>
-                    </div>
-                </div>
-
-                <div class="news-card">
-                    <div class="news-image">
-                        <img src="images/news-3.jpg" alt="Workshop">
-                        <div class="news-date">
-                            <span class="day">22</span>
-                            <span class="month">NOV</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <span class="news-tag">Workshop</span>
-                        <h3>AI Alignment Workshop for Students</h3>
-                        <p>A hands-on workshop introducing students to key concepts in AI alignment research.</p>
-                        <a href="events.html" class="read-more">Read More</a>
-                    </div>
+            <!-- News items will be dynamically loaded from artifacts.yaml -->
+            <div id="news-grid-container" class="news-grid">
+                <!-- Loading animation -->
+                <div class="loading-indicator">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading news and events...</p>
                 </div>
             </div>
         </div>
@@ -219,48 +178,12 @@
     <section class="featured-researchers">
         <div class="container">
             <h2 class="section-title">Meet Our Researchers</h2>
-            <div class="researchers-grid">
-                <div class="researcher-card">
-                    <div class="researcher-photo">
-                        <img src="images/researcher-1.jpg" alt="Dr. Sarah Chen">
-                    </div>
-                    <h3>Dr. Sarah Chen</h3>
-                    <p class="researcher-title">Director, AI Alignment Lab</p>
-                    <p class="researcher-bio">Leading research on neural network interpretability and alignment
-                        techniques.</p>
-                    <a href="who-we-are.html#community" class="researcher-link">Profile</a>
-                </div>
-
-                <div class="researcher-card">
-                    <div class="researcher-photo">
-                        <img src="images/researcher-2.jpg" alt="Dr. Michael Rodriguez">
-                    </div>
-                    <h3>Dr. Michael Rodriguez</h3>
-                    <p class="researcher-title">Lead, AI Governance Group</p>
-                    <p class="researcher-bio">Focusing on policy frameworks for responsible AI development.</p>
-                    <a href="who-we-are.html#community" class="researcher-link">Profile</a>
-                </div>
-
-                <div class="researcher-card">
-                    <div class="researcher-photo">
-                        <img src="images/researcher-3.jpg" alt="Dr. James Wilson">
-                    </div>
-                    <h3>Dr. James Wilson</h3>
-                    <p class="researcher-title">Principal Investigator, Robustness Team</p>
-                    <p class="researcher-bio">Developing methods to ensure AI systems perform reliably in all
-                        conditions.</p>
-                    <a href="who-we-are.html#community" class="researcher-link">Profile</a>
-                </div>
-
-                <div class="researcher-card">
-                    <div class="researcher-photo">
-                        <img src="images/researcher-4.jpg" alt="Dr. Emily Johnson">
-                    </div>
-                    <h3>Dr. Emily Johnson</h3>
-                    <p class="researcher-title">Head of Education & Outreach</p>
-                    <p class="researcher-bio">Leading initiatives to train the next generation of AI safety researchers.
-                    </p>
-                    <a href="who-we-are.html#community" class="researcher-link">Profile</a>
+            <!-- Researchers will be dynamically loaded from people.yaml -->
+            <div id="researchers-grid-container" class="researchers-grid">
+                <!-- Loading animation -->
+                <div class="loading-indicator">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading researchers...</p>
                 </div>
             </div>
             <div class="view-all-container">

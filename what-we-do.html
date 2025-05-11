@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/what-we-do.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
 
 <body>
@@ -255,12 +256,14 @@
                                     needed
                                     to develop
                                     safe and beneficial AI systems.</p>
-                                <ul class="program-list">
-                                    <li>CS 589: AI Alignment and Safety</li>
-                                    <li>CS 692: Advanced Topics in Machine Learning Robustness</li>
-                                    <li>PHIL 380: Ethics of Artificial Intelligence</li>
-                                    <li>CS 490A: Interpretable Machine Learning</li>
-                                </ul>
+                                <div id="courses-container">
+                                    <!-- Courses will be loaded dynamically from artifacts.yaml -->
+                                    <!-- Loading animation -->
+                                    <div class="loading-indicator">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        <p>Loading courses...</p>
+                                    </div>
+                                </div>
                                 <a href="education.html#courses" class="learn-more">View Course Catalog <i
                                         class="fas fa-arrow-right"></i></a>
                             </div>
