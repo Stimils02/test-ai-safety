@@ -1,7 +1,6 @@
 people:
   # Leadership
   - name: "Dr. Eugene Johnson"
-    id: "sjohnson"
     email: "sjohnson@umass.edu"
     categories:
       - "Leadership"
@@ -15,7 +14,6 @@ people:
     interests: ["Machine Learning Interpretability", "AI Alignment", "AI Safety"]
 
   - name: "Dr. Michael Chen"
-    id: "mchen"
     email: "mchen@umass.edu"
     categories:
       - "Leadership"
@@ -29,7 +27,6 @@ people:
     interests: ["Robustness", "Adversarial Machine Learning", "Deep Learning"]
 
   - name: "Dr. Emily Rodriguez"
-    id: "erodriguez"
     email: "erodriguez@umass.edu"
     categories:
       - "Leadership"
@@ -44,7 +41,6 @@ people:
 
   # Featured Faculty from Landing Page
   - name: "Dr. Sarah Chen"
-    id: "schen"
     email: "schen@umass.edu"
     categories:
       - "Faculty"
@@ -57,7 +53,6 @@ people:
     interests: ["Neural Networks", "Interpretability", "Alignment"]
 
   - name: "Dr. Michael Rodriguez"
-    id: "mrodriguez"
     email: "mrodriguez@umass.edu"
     categories:
       - "Faculty"
@@ -70,7 +65,6 @@ people:
     interests: ["AI Governance", "Policy", "Ethics"]
 
   - name: "Dr. James Wilson"
-    id: "jwilson"
     email: "jwilson@umass.edu"
     categories:
       - "Faculty"
@@ -83,7 +77,6 @@ people:
     interests: ["Robustness", "Reliability", "AI Safety"]
 
   - name: "Dr. Emily Johnson"
-    id: "ejohnson"
     email: "ejohnson@umass.edu"
     categories:
       - "Faculty"
@@ -97,7 +90,6 @@ people:
 
   # Additional Faculty
   - name: "Tomas Ratkus"
-    id: "tratkus"
     email: "tratkus@umass.edu"
     categories:
       - "Faculty"
@@ -110,7 +102,6 @@ people:
     interests: ["AI Theory", "Machine Learning", "Neural Networks"]
 
   - name: "John Scott"
-    id: "jscott"
     email: "jscott@umass.edu"
     categories:
       - "Faculty"
@@ -123,7 +114,6 @@ people:
     interests: ["Decision Systems", "AI Applications", "Machine Learning"]
 
   - name: "Victoria Liu"
-    id: "vliu"
     email: "vliu@umass.edu"
     categories:
       - "Faculty"
@@ -136,7 +126,6 @@ people:
     interests: ["Algorithmic Fairness", "Bias Mitigation", "Ethics"]
 
   - name: "Ashraf Mahgoub"
-    id: "amahgoub"
     email: "amahgoub@umass.edu"
     categories:
       - "Faculty"
@@ -149,7 +138,6 @@ people:
     interests: ["Formal Verification", "Safe AI", "Provable Guarantees"]
 
   - name: "Alexander Ho"
-    id: "aho"
     email: "aho@umass.edu"
     categories:
       - "Faculty"
@@ -162,7 +150,6 @@ people:
     interests: ["Human-AI Interaction", "Interpretable Interfaces", "UX Design"]
 
   - name: "Emily Zhang"
-    id: "ezhang"
     email: "ezhang@umass.edu"
     categories:
       - "Faculty"
@@ -176,7 +163,6 @@ people:
 
   # Research Fellows
   - name: "Dr. Robert Lee"
-    id: "rlee"
     email: "rlee@umass.edu"
     categories:
       - "Research Fellow"
@@ -189,7 +175,6 @@ people:
     interests: ["Adversarial Robustness", "AI Security", "Deep Learning"]
 
   - name: "Dr. Sophia Kim"
-    id: "skim"
     email: "skim@umass.edu"
     categories:
       - "Research Fellow"
@@ -202,7 +187,6 @@ people:
     interests: ["Value Alignment", "Preference Learning", "AI Ethics"]
 
   - name: "Dr. Marcus Johnson"
-    id: "mjohnson"
     email: "mjohnson@umass.edu"
     categories:
       - "Research Fellow"
@@ -216,7 +200,6 @@ people:
 
   # Postdoctoral Researchers
   - name: "Dr. Lisa Chen"
-    id: "lchen"
     email: "lchen@umass.edu"
     categories:
       - "Postdoctoral Researcher"
@@ -229,7 +212,6 @@ people:
     interests: ["LLM Interpretability", "NLP", "AI Safety"]
 
   - name: "Dr. David Kim"
-    id: "dkim"
     email: "dkim@umass.edu"
     categories:
       - "Postdoctoral Researcher"
@@ -242,7 +224,6 @@ people:
     interests: ["Reinforcement Learning", "Robustness", "Safety"]
 
   - name: "Dr. Priya Sharma"
-    id: "psharma"
     email: "psharma@umass.edu"
     categories:
       - "Postdoctoral Researcher"
@@ -255,7 +236,6 @@ people:
     interests: ["AI Ethics", "Fairness", "Machine Learning"]
 
   - name: "Dr. Thomas Wright"
-    id: "twright"
     email: "twright@umass.edu"
     categories:
       - "Postdoctoral Researcher"
@@ -268,7 +248,6 @@ people:
     interests: ["AI Monitoring", "Interpretability", "Behavior Analysis"]
 
   - name: "Dr. Maria Lopez"
-    id: "mlopez"
     email: "mlopez@umass.edu"
     categories:
       - "Postdoctoral Researcher"
@@ -282,7 +261,6 @@ people:
 
   # Graduate Students
   - name: "Alex Johnson"
-    id: "ajohnson"
     email: "ajohnson@umass.edu"
     categories:
       - "Graduate Student"
@@ -295,7 +273,6 @@ people:
     interests: ["Scalable Oversight", "AI Safety", "Alignment"]
 
   - name: "Maya Patel"
-    id: "mpatel"
     email: "mpatel@umass.edu"
     categories:
       - "Graduate Student"
@@ -308,7 +285,6 @@ people:
     interests: ["Explainable AI", "Interpretability", "Human-AI Interaction"]
 
   - name: "Carlos Rodriguez"
-    id: "crodriguez"
     email: "crodriguez@umass.edu"
     categories:
       - "Graduate Student"
@@ -321,7 +297,6 @@ people:
     interests: ["Inverse Reinforcement Learning", "Alignment", "Preference Learning"]
 
   - name: "Sarah Lee"
-    id: "slee"
     email: "slee@umass.edu"
     categories:
       - "Graduate Student"
@@ -334,7 +309,6 @@ people:
     interests: ["Adversarial Testing", "AI Safety", "Robustness"]
 
   - name: "Michael Zhang"
-    id: "mzhang"
     email: "mzhang@umass.edu"
     categories:
       - "Graduate Student"
@@ -347,7 +321,6 @@ people:
     interests: ["Formal Verification", "Neural Networks", "Safety"]
 
   - name: "Emma Wilson"
-    id: "ewilson"
     email: "ewilson@umass.edu"
     categories:
       - "Graduate Student"
@@ -360,7 +333,6 @@ people:
     interests: ["Multi-agent Systems", "Value Alignment", "Cooperation"]
 
   - name: "David Chen"
-    id: "dchen"
     email: "dchen@umass.edu"
     categories:
       - "Graduate Student"
@@ -373,7 +345,6 @@ people:
     interests: ["Robust AI", "Safety-critical Systems", "Reliability"]
 
   - name: "Sophia Martinez"
-    id: "smartinez"
     email: "smartinez@umass.edu"
     categories:
       - "Graduate Student"
@@ -386,7 +357,6 @@ people:
     interests: ["AI Ethics", "Fairness", "Decision-making"]
 
   - name: "James Taylor"
-    id: "jtaylor"
     email: "jtaylor@umass.edu"
     categories:
       - "Graduate Student"
@@ -400,7 +370,6 @@ people:
 
   # Staff
   - name: "Jennifer Adams"
-    id: "jadams"
     email: "jadams@umass.edu"
     categories:
       - "Staff"
@@ -413,7 +382,6 @@ people:
     interests: ["Program Management", "Event Planning", "Community Building"]
 
   - name: "Robert Chen"
-    id: "rchen"
     email: "rchen@umass.edu"
     categories:
       - "Staff"
@@ -426,7 +394,6 @@ people:
     interests: ["Strategic Planning", "Finance", "Administration"]
 
   - name: "Lisa Johnson"
-    id: "ljohnson"
     email: "ljohnson@umass.edu"
     categories:
       - "Staff"
@@ -440,7 +407,6 @@ people:
 
   # Advisory Board
   - name: "Dr. Elizabeth Chen"
-    id: "echen"
     email: "echen@stanford.edu"
     categories:
       - "Advisory Board"
@@ -452,7 +418,6 @@ people:
     interests: ["AI Ethics", "Governance", "Responsible Innovation"]
 
   - name: "Dr. James Wilson (Advisory)"
-    id: "jwilson_advisory"
     email: "jwilson@techcompany.com"
     categories:
       - "Advisory Board"
@@ -464,7 +429,6 @@ people:
     interests: ["Commercial AI Safety", "Large-scale Deployment", "Industry Standards"]
 
   - name: "Dr. Maria Rodriguez"
-    id: "mrodriguez_advisory"
     email: "mrodriguez@aipolicy.org"
     categories:
       - "Advisory Board"
@@ -476,7 +440,6 @@ people:
     interests: ["AI Policy", "Regulation", "Law & Technology"]
 
   - name: "Dr. David Park"
-    id: "dpark"
     email: "dpark@mit.edu"
     categories:
       - "Advisory Board"
@@ -488,7 +451,6 @@ people:
     interests: ["AI Philosophy", "Machine Ethics", "Long-term AI"]
 
   - name: "Dr. Sarah Johnson (Advisory)"
-    id: "sjohnson_advisory"
     email: "sjohnson@gov.org"
     categories:
       - "Advisory Board"
@@ -500,7 +462,6 @@ people:
     interests: ["National Security", "Secure AI", "Government Perspective"]
 
   - name: "Dr. Robert Kim"
-    id: "rkim"
     email: "rkim@nairesearch.gov"
     categories:
       - "Advisory Board"
@@ -513,7 +474,6 @@ people:
 
   # Added Eugene Bagdasarian as the actual real person
   - name: "Eugene Bagdasarian"
-    id: "ebagdasarian"
     email: "eugene@umass.edu"
     categories:
       - "Faculty"

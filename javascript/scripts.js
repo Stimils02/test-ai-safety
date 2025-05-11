@@ -710,28 +710,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to fetch and parse a BibTeX file
-    async function loadBibTeXFile(personId) {
-        // Map personId to the corresponding BibTeX file name
-        let fileName;
-
-        // Special case for Eugene Bagdasarian
-        if (personId === 'ebagdasarian') {
-            fileName = 'Eugene Bagdasarian.bib';
-        } else {
-            // For others, try to find their BibTeX file based on their ID
-            const peopleData = await loadYamlData('people.yaml');
-            if (peopleData && peopleData.people) {
-                const person = peopleData.people.find(p => p.id === personId);
-                if (person) {
-                    fileName = `${person.name}.bib`;
-                }
-            }
-        }
-
-        if (!fileName) {
-            console.error(`Could not determine BibTeX file name for person ID: ${personId}`);
-            return [];
-        }
+    async function loadBibTeXFile(personName) {
+        // The personName is directly used as the filename
+        const fileName = `${personName}.bib`;
 
         try {
             const response = await fetch(`content/people/bibs/${encodeURIComponent(fileName)}`);
@@ -749,7 +730,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to render publications
-    async function renderPublications(containerId, personId) {
+    async function renderPublications(containerId, personName) {
         const container = document.getElementById(containerId);
         if (!container) return;
 
@@ -762,7 +743,7 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         // Load BibTeX entries
-        const entries = await loadBibTeXFile(personId);
+        const entries = await loadBibTeXFile(personName);
 
         // Clear the container
         container.innerHTML = '';
@@ -823,13 +804,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     authors = authors.replace(/ and /g, ', ');
 
                     // Highlight the person's name
-                    const personData = dataCache.people?.people.find(p => p.id === personId);
-                    if (personData) {
-                        const nameParts = personData.name.split(' ');
-                        const lastName = nameParts[nameParts.length - 1];
-                        authors = authors.replace(new RegExp(`${lastName}(,)?\\s*${nameParts[0]}`, 'i'),
-                            `<strong>${lastName}$1 ${nameParts[0]}</strong>`);
-                    }
+                    // Split the name into parts to look for first and last name
+                    const nameParts = personName.split(' ');
+                    const lastName = nameParts[nameParts.length - 1];
+                    const firstName = nameParts[0];
+
+                    // Highlight the author's name in the citation
+                    authors = authors.replace(new RegExp(`${lastName}(,)?\\s*${firstName}`, 'i'),
+                        `<strong>${lastName}$1 ${firstName}</strong>`);
 
                     // Common publication info
                     const title = entry.fields.title || 'Unknown Title';
@@ -1040,13 +1022,13 @@ ${Object.entries(entry.fields).map(([k, v]) => `  ${k} = {${v}}`).join(',\n')}
             // Publications page
             if (document.getElementById('all-publications-container')) {
                 // Load Eugene's publications as default
-                renderPublications('all-publications-container', 'ebagdasarian');
+                renderPublications('all-publications-container', 'Eugene Bagdasarian');
             }
 
             if (document.getElementById('featured-publications-container')) {
                 // For featured publications, you could select specific ones or use the most recent
                 // For now, we'll just display the same publications
-                renderPublications('featured-publications-container', 'ebagdasarian');
+                renderPublications('featured-publications-container', 'Eugene Bagdasarian');
             }
 
             // Set up export button
