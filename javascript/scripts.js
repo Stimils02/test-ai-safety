@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
         container.innerHTML = '';
 
         // Get unique categories and sort them by importance
-        const categoryOrder = ["Leadership", "Faculty", "Research Fellow", "Staff", "Graduate Student", "Undergraduate Student"];
+        const categoryOrder = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student", "Research Fellow", "Staff", "Undergraduate Student"];
         let categories = [];
         
         if (categorySection) {
@@ -609,7 +609,29 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentPath === 'index.html' || currentPath === '') {
             // Landing page
             if (document.getElementById('researchers-grid-container')) {
-                renderPeople('researchers-grid-container', { categories: ['Faculty'] }, 4);
+                // Get a mix of Leadership, Faculty, Postdocs, and PhD Students for featured researchers
+                const peopleData = await loadYamlData('people.yaml');
+                if (peopleData && peopleData.people) {
+                    // Order people according to our priorities
+                    const orderedCategories = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student"];
+                    const orderedPeople = [];
+
+                    // Add people in the specified order of categories
+                    orderedCategories.forEach(category => {
+                        const categoryPeople = peopleData.people.filter(person =>
+                            person.categories && person.categories.includes(category));
+                        orderedPeople.push(...categoryPeople);
+                    });
+
+                    // Replace the people array with our ordered version
+                    peopleData.people = orderedPeople;
+
+                    // Store back in cache to ensure renderPeople uses this ordered data
+                    dataCache.people = peopleData;
+                }
+
+                // Now render the top 4 people from our ordered list
+                renderPeople('researchers-grid-container', {}, 4);
             }
 
             if (document.getElementById('news-grid-container')) {
