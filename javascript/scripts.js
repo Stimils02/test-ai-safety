@@ -202,11 +202,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to process image paths
     function getImagePath(imagePath, defaultImage = 'images/pic_placeholder.jpg') {
         if (!imagePath) return defaultImage;
-        
+
         if (imagePath.startsWith('http')) {
             return imagePath;
         }
-        
+
         // Handle various path formats
         if (imagePath.startsWith('/')) {
             return imagePath.substring(1);
@@ -214,10 +214,17 @@ document.addEventListener('DOMContentLoaded', function () {
             return imagePath;
         } else if (imagePath.startsWith('images/')) {
             return imagePath;
+        } else if (imagePath === 'Eugene Bagdasarian.jpg') {
+            // Special case for Eugene's photo
+            return `content/images/people/${imagePath}`;
+        } else if (imagePath.startsWith('researcher-')) {
+            // For featured faculty images that start with researcher-
+            return `images/${imagePath}`;
         } else if (imagePath.startsWith('artifacts/')) {
             return `content/images/${imagePath}`;
         } else {
-            return `content/images/people/${imagePath}`;
+            // For images that already include the images/ prefix in people.yaml
+            return imagePath;
         }
     }
 

@@ -10,7 +10,7 @@ people:
     ais_title: "Director"
     description: "Dr. Johnson is a Professor of Computer Science specializing in machine learning interpretability and AI alignment. She previously led research teams at DeepMind and has published extensively on AI safety."
     website: "https://people.cs.umass.edu/~sjohnson/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 301"
     interests: ["Machine Learning Interpretability", "AI Alignment", "AI Safety"]
 
@@ -24,7 +24,7 @@ people:
     ais_title: "Associate Director"
     description: "Dr. Chen's research focuses on robustness in deep learning systems and adversarial machine learning. He leads the initiative's technical research program and industry partnerships."
     website: "https://people.cs.umass.edu/~mchen/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 302"
     interests: ["Robustness", "Adversarial Machine Learning", "Deep Learning"]
 
@@ -38,7 +38,7 @@ people:
     ais_title: "Education Director"
     description: "Dr. Rodriguez oversees the initiative's educational programs, curriculum development, and outreach activities. Her research explores AI ethics and responsible innovation."
     website: "https://people.cs.umass.edu/~erodriguez/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 303"
     interests: ["AI Ethics", "Responsible Innovation", "AI Education"]
 
@@ -105,7 +105,7 @@ people:
     ais_title: "Faculty Member"
     description: "Professor Ratkus works on advanced AI systems and their theoretical foundations."
     website: "https://people.cs.umass.edu/~tratkus/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 308"
     interests: ["AI Theory", "Machine Learning", "Neural Networks"]
 
@@ -118,7 +118,7 @@ people:
     ais_title: "Faculty Member"
     description: "Dr. Scott specializes in applications of AI in decision-making systems."
     website: "https://people.cs.umass.edu/~jscott/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 309"
     interests: ["Decision Systems", "AI Applications", "Machine Learning"]
 
@@ -131,7 +131,7 @@ people:
     ais_title: "Faculty Member"
     description: "Professor Liu's research focuses on algorithmic fairness and bias in AI systems."
     website: "https://people.cs.umass.edu/~vliu/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 310"
     interests: ["Algorithmic Fairness", "Bias Mitigation", "Ethics"]
 
@@ -144,7 +144,7 @@ people:
     ais_title: "Faculty Member"
     description: "Dr. Mahgoub researches AI verification and formal methods for safe AI."
     website: "https://people.cs.umass.edu/~amahgoub/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 311"
     interests: ["Formal Verification", "Safe AI", "Provable Guarantees"]
 
@@ -157,7 +157,7 @@ people:
     ais_title: "Faculty Member"
     description: "Professor Ho specializes in human-AI interaction and interpretable interfaces."
     website: "https://people.cs.umass.edu/~aho/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 312"
     interests: ["Human-AI Interaction", "Interpretable Interfaces", "UX Design"]
 
@@ -170,7 +170,7 @@ people:
     ais_title: "Faculty Member"
     description: "Dr. Zhang works on safety-critical AI systems and robustness guarantees."
     website: "https://people.cs.umass.edu/~ezhang/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 313"
     interests: ["Safety-Critical AI", "Robustness", "Formal Methods"]
 
@@ -184,7 +184,7 @@ people:
     ais_title: "Senior Research Fellow"
     description: "Dr. Lee conducts research on adversarial robustness and AI security."
     website: "https://people.cs.umass.edu/~rlee/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 401"
     interests: ["Adversarial Robustness", "AI Security", "Deep Learning"]
 
@@ -197,7 +197,7 @@ people:
     ais_title: "Research Fellow"
     description: "Dr. Kim's research focuses on value alignment and preference learning in AI systems."
     website: "https://people.cs.umass.edu/~skim/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 402"
     interests: ["Value Alignment", "Preference Learning", "AI Ethics"]
 
@@ -210,7 +210,7 @@ people:
     ais_title: "Research Fellow"
     description: "Dr. Johnson specializes in AI governance and policy frameworks for safe innovation."
     website: "https://people.cs.umass.edu/~mjohnson/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 403"
     interests: ["AI Governance", "Policy", "Regulation"]
 
@@ -224,7 +224,7 @@ people:
     ais_title: "Postdoctoral Researcher"
     description: "Dr. Chen works on interpretability methods for large language models."
     website: "https://people.cs.umass.edu/~lchen/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 501"
     interests: ["LLM Interpretability", "NLP", "AI Safety"]
 
@@ -237,7 +237,7 @@ people:
     ais_title: "Postdoctoral Researcher"
     description: "Dr. Kim researches robustness in reinforcement learning systems."
     website: "https://people.cs.umass.edu/~dkim/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 502"
     interests: ["Reinforcement Learning", "Robustness", "Safety"]
 
@@ -250,7 +250,7 @@ people:
     ais_title: "Postdoctoral Researcher"
     description: "Dr. Sharma focuses on AI ethics and fairness in machine learning systems."
     website: "https://people.cs.umass.edu/~psharma/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 503"
     interests: ["AI Ethics", "Fairness", "Machine Learning"]
 
@@ -263,7 +263,7 @@ people:
     ais_title: "Postdoctoral Researcher"
     description: "Dr. Wright develops techniques for monitoring and interpreting AI behavior."
     website: "https://people.cs.umass.edu/~twright/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 504"
     interests: ["AI Monitoring", "Interpretability", "Behavior Analysis"]
 
@@ -276,7 +276,7 @@ people:
     ais_title: "Postdoctoral Researcher"
     description: "Dr. Lopez studies goal alignment in autonomous systems."
     website: "https://people.cs.umass.edu/~mlopez/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 505"
     interests: ["Goal Alignment", "Autonomous Systems", "AI Safety"]
 
@@ -290,7 +290,7 @@ people:
     ais_title: "Graduate Researcher"
     description: "Alex's dissertation focuses on scalable oversight methods for AI systems."
     website: "https://people.cs.umass.edu/~ajohnson/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 601"
     interests: ["Scalable Oversight", "AI Safety", "Alignment"]
 
@@ -303,7 +303,7 @@ people:
     ais_title: "Graduate Researcher"
     description: "Maya researches explainable AI and human-interpretable models."
     website: "https://people.cs.umass.edu/~mpatel/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 602"
     interests: ["Explainable AI", "Interpretability", "Human-AI Interaction"]
 
@@ -316,7 +316,7 @@ people:
     ais_title: "Graduate Researcher"
     description: "Carlos studies AI alignment through inverse reinforcement learning."
     website: "https://people.cs.umass.edu/~crodriguez/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 603"
     interests: ["Inverse Reinforcement Learning", "Alignment", "Preference Learning"]
 
@@ -329,7 +329,7 @@ people:
     ais_title: "Graduate Researcher"
     description: "Sarah works on adversarial testing of AI systems for safety properties."
     website: "https://people.cs.umass.edu/~slee/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 604"
     interests: ["Adversarial Testing", "AI Safety", "Robustness"]
 
@@ -342,7 +342,7 @@ people:
     ais_title: "Graduate Researcher"
     description: "Michael focuses on formal verification methods for neural networks."
     website: "https://people.cs.umass.edu/~mzhang/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 605"
     interests: ["Formal Verification", "Neural Networks", "Safety"]
 
@@ -355,7 +355,7 @@ people:
     ais_title: "Graduate Researcher"
     description: "Emma's research explores value alignment in multi-agent systems."
     website: "https://people.cs.umass.edu/~ewilson/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 606"
     interests: ["Multi-agent Systems", "Value Alignment", "Cooperation"]
 
@@ -368,7 +368,7 @@ people:
     ais_title: "Graduate Researcher"
     description: "David works on robust and reliable AI systems for safety-critical applications."
     website: "https://people.cs.umass.edu/~dchen/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 607"
     interests: ["Robust AI", "Safety-critical Systems", "Reliability"]
 
@@ -381,7 +381,7 @@ people:
     ais_title: "Graduate Researcher"
     description: "Sophia studies AI ethics and fairness in decision-making systems."
     website: "https://people.cs.umass.edu/~smartinez/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 608"
     interests: ["AI Ethics", "Fairness", "Decision-making"]
 
@@ -394,7 +394,7 @@ people:
     ais_title: "Graduate Researcher"
     description: "James investigates interpretability methods for deep reinforcement learning."
     website: "https://people.cs.umass.edu/~jtaylor/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 609"
     interests: ["Reinforcement Learning", "Interpretability", "Safe Exploration"]
 
@@ -408,7 +408,7 @@ people:
     ais_title: "Program Manager"
     description: "Jennifer manages the AI Safety Initiative's day-to-day operations and coordinates programs and events."
     website: ""
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 701"
     interests: ["Program Management", "Event Planning", "Community Building"]
 
@@ -421,7 +421,7 @@ people:
     ais_title: "Administrative Director"
     description: "Robert oversees administrative functions, finance, and strategic planning for the initiative."
     website: ""
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 702"
     interests: ["Strategic Planning", "Finance", "Administration"]
 
@@ -434,7 +434,7 @@ people:
     ais_title: "Communications Specialist"
     description: "Lisa manages communications, public relations, and outreach for the AI Safety Initiative."
     website: ""
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     office: "CS Building, Room 703"
     interests: ["Communications", "Public Relations", "Media Strategy"]
 
@@ -448,7 +448,7 @@ people:
     ais_title: "Advisory Board Member"
     description: "Dr. Chen is a leading researcher in AI ethics and governance. Her work focuses on developing frameworks for responsible AI innovation."
     website: "https://stanford.edu/~echen/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     interests: ["AI Ethics", "Governance", "Responsible Innovation"]
 
   - name: "Dr. James Wilson (Advisory)"
@@ -460,7 +460,7 @@ people:
     ais_title: "Advisory Board Member"
     description: "Dr. Wilson brings industry perspective on implementing AI safety measures in commercial applications and large-scale deployments."
     website: "https://techcompany.com/jwilson/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     interests: ["Commercial AI Safety", "Large-scale Deployment", "Industry Standards"]
 
   - name: "Dr. Maria Rodriguez"
@@ -472,7 +472,7 @@ people:
     ais_title: "Advisory Board Member"
     description: "Dr. Rodriguez specializes in AI policy and regulation, working at the intersection of technology, law, and public policy."
     website: "https://aipolicy.org/team/mrodriguez/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     interests: ["AI Policy", "Regulation", "Law & Technology"]
 
   - name: "Dr. David Park"
@@ -484,7 +484,7 @@ people:
     ais_title: "Advisory Board Member"
     description: "Dr. Park explores philosophical questions related to AI alignment, machine ethics, and the long-term implications of advanced AI systems."
     website: "https://mit.edu/~dpark/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     interests: ["AI Philosophy", "Machine Ethics", "Long-term AI"]
 
   - name: "Dr. Sarah Johnson (Advisory)"
@@ -496,7 +496,7 @@ people:
     ais_title: "Advisory Board Member"
     description: "Dr. Johnson brings expertise in AI safety from a national security perspective, focusing on robust and secure AI systems."
     website: "https://gov.org/sjohnson/"
-    image: "images/pic_placeholder.jpg"
+    image: "content/people/pic_placeholder.jpg"
     interests: ["National Security", "Secure AI", "Government Perspective"]
 
   - name: "Dr. Robert Kim"
@@ -508,7 +508,7 @@ people:
     ais_title: "Advisory Board Member"
     description: "Dr. Kim has led major national initiatives in AI research and development. He specializes in coordinating multi-stakeholder efforts to address AI safety challenges."
     website: "https://nairesearch.gov/team/rkim/"
-    image: "images/pic_placeholder.jpg" 
+    image: "content/people/pic_placeholder.jpg" 
     interests: ["Research Coordination", "Multi-stakeholder Initiatives", "National AI Strategy"]
 
   # Added Eugene Bagdasarian as the actual real person
@@ -522,6 +522,6 @@ people:
     ais_title: "Director"
     description: "Eugene Bagdasarian is an Assistant Professor at UMass Amherst and the Director of the AI Safety Initiative. His research focuses on trustworthy machine learning, with an emphasis on robustness, interpretability, and alignment of AI systems."
     website: "https://people.cs.umass.edu/~eugene/"
-    image: "Eugene Bagdasarian.jpg"
+    image: "content/people/images/Eugene Bagdasarian.jpg"
     office: "CS 3XX"
     interests: ["Trustworthy ML", "AI Alignment", "Robustness", "Interpretability"]
