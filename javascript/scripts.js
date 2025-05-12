@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to process image paths
-    function getImagePath(imagePath, defaultImage = 'images/pic_placeholder.jpg') {
+    function getImagePath(imagePath, defaultImage = 'content/people/images/pic_placeholder.jpg') {
         if (!imagePath) return defaultImage;
 
         if (imagePath.startsWith('http')) {
@@ -214,9 +214,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return imagePath;
         } else if (imagePath.startsWith('images/')) {
             return imagePath;
-        } else if (imagePath === 'Eugene Bagdasarian.jpg') {
-            // Special case for Eugene's photo
-            return `content/images/people/${imagePath}`;
         } else if (imagePath.startsWith('researcher-')) {
             // For featured faculty images that start with researcher-
             return `images/${imagePath}`;
@@ -296,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
         container.innerHTML = '';
 
         // Get unique categories and sort them by importance
-        const categoryOrder = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student", "Research Fellow", "Staff", "Undergraduate Student"];
+        const categoryOrder = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student", "Research Fellow", "Staff", "Undergraduate Student", "Advisory Board"];
         let categories = [];
         
         if (categorySection) {
@@ -429,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function () {
             itemCard.dataset.id = item.id || '';
             itemCard.dataset.category = item.category || '';
 
-            const imagePath = getImagePath(item.image, 'images/pic_placeholder.jpg');
+            const imagePath = getImagePath(item.image, 'content/pic_placeholder.jpg');
             
             // Format date nicely
             let formattedDate = '';
@@ -568,7 +565,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Find Emily Rodriguez or any person with Education Director title
         const coordinator = peopleData.people.find(person =>
-            person.id === 'erodriguez' || person.ais_title === 'Education Director');
+            person.ais_title === 'Education Director');
 
         if (!coordinator) {
             console.error('Undergraduate Program Coordinator not found in people data');
@@ -599,6 +596,61 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         container.appendChild(advisorContent);
+    }
+
+    // Function to render advisory board members
+    async function renderAdvisoryBoard(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        const peopleData = await loadYamlData('people.yaml');
+        if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
+            console.error('People data not found or empty');
+            return;
+        }
+
+        // Filter for advisory board members
+        const advisoryMembers = peopleData.people.filter(person =>
+            person.categories && person.categories.includes('Advisory Board'));
+
+        if (advisoryMembers.length === 0) {
+            console.error('No advisory board members found in people data');
+            return;
+        }
+
+        // Clear existing content
+        container.innerHTML = '';
+
+        // Create the advisors grid
+        const advisorsGrid = document.createElement('div');
+        advisorsGrid.className = 'advisors-grid';
+
+        // Render each advisory board member
+        advisoryMembers.forEach(advisor => {
+            const advisorCard = document.createElement('div');
+            advisorCard.className = 'advisor';
+
+            const imagePath = getImagePath(advisor.image);
+
+            advisorCard.innerHTML = `
+                <div class="advisor-photo">
+                    <img src="${imagePath}" alt="${advisor.name}">
+                </div>
+                <div class="advisor-info">
+                    <h4>${advisor.name}</h4>
+                    <p class="advisor-title">${advisor.position}</p>
+                    <p class="advisor-bio">${advisor.description}</p>
+                    ${advisor.interests && advisor.interests.length > 0 ?
+                        `<div class="advisor-interests">
+                            ${advisor.interests.map(interest => `<span class="interest-tag">${interest}</span>`).join(' ')}
+                        </div>` : ''}
+                </div>
+            `;
+
+            advisorsGrid.appendChild(advisorCard);
+        });
+
+        container.appendChild(advisorsGrid);
     }
 
     // Function to parse BibTeX files
@@ -982,6 +1034,12 @@ ${Object.entries(entry.fields).map(([k, v]) => `  ${k} = {${v}}`).join(',\n')}
             // Who We Are page
             if (document.getElementById('team-container')) {
                 renderTeamMembers('team-container');
+            }
+
+            // Render the advisory board section
+            const advisoryContainer = document.querySelector('#advisory .advisors-grid');
+            if (advisoryContainer) {
+                renderAdvisoryBoard('advisory .advisors-grid');
             }
         }
         else if (currentPath === 'whats-happening.html') {
