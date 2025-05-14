@@ -8,12 +8,13 @@ people:
       - "Faculty"
       - "Leadership"
     position: "Assistant Professor"
-    ais_title: "Director"
+    ais_title: "Lead"
     description: "Eugene Bagdasarian is an Assistant Professor at UMass Amherst and the Director of the AI Safety Initiative. His research focuses on trustworthy machine learning, with an emphasis on robustness, interpretability, and alignment of AI systems."
     website: "https://people.cs.umass.edu/~eugene/"
     image: "content/people/images/Eugene Bagdasarian.jpg"
     office: "CS 3XX"
     interests: ["Trustworthy ML", "AI Alignment", "Robustness", "Interpretability"]
+    
     
   # Fake people: Leadership
   - name: "Dr. Sarah Johnson"

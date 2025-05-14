@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
         container.innerHTML = '';
 
         // Get unique categories and sort them by importance
-        const categoryOrder = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student", "Research Fellow", "Staff", "Undergraduate Student", "Advisory Board"];
+        const categoryOrder = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student", "Research Fellow", "Staff", "Undergraduate Student"]; // "Advisory Board"
         let categories = [];
         
         if (categorySection) {
@@ -682,7 +682,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     currentEntry = {
                         type: match[1].toLowerCase(),
                         key: match[2],
-                        fields: {}
+                        fields: {},
+                        tags: [],
+                        featured: false
                     };
                     currentField = null;
                     fieldContent = '';
@@ -712,6 +714,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Save the previous field if it exists
                     if (currentField && fieldContent) {
                         currentEntry.fields[currentField] = fieldContent.trim();
+                        
+                        // Process keywords field to extract tags
+                        if (currentField === 'keywords') {
+                            const keywordsStr = fieldContent.trim();
+                            const keywords = keywordsStr
+                                .split(',')
+                                .map(k => k.trim())
+                                .filter(k => k.length > 0);
+                            currentEntry.tags = keywords;
+                        }
+                        
+                        // Process featured field
+                        if (currentField === 'featured') {
+                            const featuredValue = fieldContent.trim().toLowerCase();
+                            currentEntry.featured = featuredValue === 'true';
+                        }
                     }
 
                     // Start a new field
@@ -726,6 +744,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (fieldContent.endsWith('},') || fieldContent.endsWith('}')) {
                         fieldContent = fieldContent.replace(/},?$/, '');
                         currentEntry.fields[currentField] = fieldContent.trim();
+                        
+                        // Process keywords field to extract tags
+                        if (currentField === 'keywords') {
+                            const keywordsStr = fieldContent.trim();
+                            const keywords = keywordsStr
+                                .split(',')
+                                .map(k => k.trim())
+                                .filter(k => k.length > 0);
+                            currentEntry.tags = keywords;
+                        }
+                        
+                        // Process featured field
+                        if (currentField === 'featured') {
+                            const featuredValue = fieldContent.trim().toLowerCase();
+                            currentEntry.featured = featuredValue === 'true';
+                        }
+                        
                         currentField = null;
                         fieldContent = '';
                         bracketCount = 0;
@@ -742,6 +777,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (line.trim().endsWith('},') || line.trim().endsWith('}')) {
                         fieldContent = fieldContent.replace(/},?$/, '');
                         currentEntry.fields[currentField] = fieldContent.trim();
+                        
+                        // Process keywords field to extract tags
+                        if (currentField === 'keywords') {
+                            const keywordsStr = fieldContent.trim();
+                            const keywords = keywordsStr
+                                .split(',')
+                                .map(k => k.trim())
+                                .filter(k => k.length > 0);
+                            currentEntry.tags = keywords;
+                        }
+                        
+                        // Process featured field
+                        if (currentField === 'featured') {
+                            const featuredValue = fieldContent.trim().toLowerCase();
+                            currentEntry.featured = featuredValue === 'true';
+                        }
+                        
                         currentField = null;
                         fieldContent = '';
                         bracketCount = 0;
@@ -754,6 +806,22 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentEntry) {
             if (currentField && fieldContent) {
                 currentEntry.fields[currentField] = fieldContent.trim();
+                
+                // Process keywords field to extract tags
+                if (currentField === 'keywords') {
+                    const keywordsStr = fieldContent.trim();
+                    const keywords = keywordsStr
+                        .split(',')
+                        .map(k => k.trim())
+                        .filter(k => k.length > 0);
+                    currentEntry.tags = keywords;
+                }
+                
+                // Process featured field
+                if (currentField === 'featured') {
+                    const featuredValue = fieldContent.trim().toLowerCase();
+                    currentEntry.featured = featuredValue === 'true';
+                }
             }
             entries.push(currentEntry);
         }
@@ -782,7 +850,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to render publications
-    async function renderPublications(containerId, personName) {
+    async function renderPublications(containerId, personName, featuredOnly = false) {
         const container = document.getElementById(containerId);
         if (!container) return;
 
@@ -805,8 +873,19 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // Filter for featured publications if requested
+        let filteredEntries = entries;
+        if (featuredOnly) {
+            filteredEntries = entries.filter(entry => entry.featured === true);
+            
+            if (filteredEntries.length === 0) {
+                container.innerHTML = `<p class="no-publications">No featured publications found.</p>`;
+                return;
+            }
+        }
+
         // Sort entries by year (newest first)
-        entries.sort((a, b) => {
+        filteredEntries.sort((a, b) => {
             const yearA = parseInt(a.fields.year || '0');
             const yearB = parseInt(b.fields.year || '0');
             return yearB - yearA;
@@ -814,7 +893,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Group entries by year
         const entriesByYear = {};
-        entries.forEach(entry => {
+        filteredEntries.forEach(entry => {
             const year = entry.fields.year || 'Unknown';
             if (!entriesByYear[year]) {
                 entriesByYear[year] = [];
@@ -843,10 +922,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     const item = document.createElement('li');
                     item.className = 'publication-item';
 
-                    // Set data attributes for filtering
-                    const topics = entry.fields.keywords ? entry.fields.keywords.split(',').map(k => k.trim().toLowerCase()) : [];
-                    if (topics.length > 0) {
-                        item.dataset.topics = topics.join(',');
+                    // Set data attributes for filtering using the parsed tags
+                    if (entry.tags && entry.tags.length > 0) {
+                        item.dataset.topics = entry.tags.join(',');
                     }
 
                     // Format the publication based on its type
@@ -874,9 +952,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     const url = entry.fields.url || '';
                     const year = entry.fields.year || '';
 
+                    // Prepare tags HTML if there are tags
+                    let tagsHTML = '';
+                    if (entry.tags && entry.tags.length > 0) {
+                        tagsHTML = `
+                            <div class="publication-tags">
+                                ${entry.tags.map(tag => `<span class="publication-tag">${tag}</span>`).join(' ')}
+                            </div>
+                        `;
+                    }
+
                     // Create publication entry with more detailed information
                     const entryHTML = `
-                        <div class="publication-entry">
+                        <div class="publication-entry ${entry.featured ? 'featured-publication' : ''}">
                             <div class="publication-citation">
                                 <span class="publication-authors">${authors}</span>.
                                 "<span class="publication-title">${title}</span>".
@@ -885,6 +973,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 ${pages ? ` Pages ${pages}.` : ''}
                                 ${year ? ` ${year}.` : ''}
                             </div>
+                            ${tagsHTML}
                             <div class="publication-links">
                                 ${doi ? `<a href="https://doi.org/${doi}" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> DOI</a>` : ''}
                                 ${url ? `<a href="${url}" class="publication-link" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>` : ''}
@@ -955,6 +1044,37 @@ ${Object.entries(entry.fields).map(([k, v]) => `  ${k} = {${v}}`).join(',\n')}
         yearSections.forEach(section => {
             const visibleItems = section.querySelectorAll('.publication-item[style="display: block"]');
             section.style.display = visibleItems.length > 0 ? 'block' : 'none';
+        });
+    }
+    
+    // Function to populate topic filter options from publication tags
+    function populateTopicFilterOptions() {
+        const topicFilter = document.getElementById('topic-filter');
+        if (!topicFilter) return;
+        
+        // Get all unique tags from publications
+        const tags = new Set();
+        document.querySelectorAll('.publication-item').forEach(item => {
+            if (item.dataset.topics) {
+                const itemTopics = item.dataset.topics.split(',');
+                itemTopics.forEach(topic => tags.add(topic.trim()));
+            }
+        });
+        
+        // Sort tags alphabetically
+        const sortedTags = Array.from(tags).sort();
+        
+        // Clear existing options except 'all'
+        while (topicFilter.options.length > 1) {
+            topicFilter.remove(1);
+        }
+        
+        // Add tags as options
+        sortedTags.forEach(tag => {
+            const option = document.createElement('option');
+            option.value = tag;
+            option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1); // Capitalize first letter
+            topicFilter.appendChild(option);
         });
     }
 
@@ -1080,13 +1200,32 @@ ${Object.entries(entry.fields).map(([k, v]) => `  ${k} = {${v}}`).join(',\n')}
             // Publications page
             if (document.getElementById('all-publications-container')) {
                 // Load Eugene's publications as default
-                renderPublications('all-publications-container', 'Eugene Bagdasarian');
+                await renderPublications('all-publications-container', 'Eugene Bagdasarian');
+                
+                // Populate topic filter options after publications are loaded
+                populateTopicFilterOptions();
+                
+                // Set up search functionality
+                const searchInput = document.getElementById('publication-search');
+                const yearFilter = document.getElementById('year-filter');
+                const topicFilter = document.getElementById('topic-filter');
+                
+                if (searchInput) {
+                    searchInput.addEventListener('input', searchPublications);
+                }
+                
+                if (yearFilter) {
+                    yearFilter.addEventListener('change', searchPublications);
+                }
+                
+                if (topicFilter) {
+                    topicFilter.addEventListener('change', searchPublications);
+                }
             }
 
             if (document.getElementById('featured-publications-container')) {
-                // For featured publications, you could select specific ones or use the most recent
-                // For now, we'll just display the same publications
-                renderPublications('featured-publications-container', 'Eugene Bagdasarian');
+                // For featured publications section, only display those marked with featured=true
+                renderPublications('featured-publications-container', 'Eugene Bagdasarian', true);
             }
 
             // Set up export button
