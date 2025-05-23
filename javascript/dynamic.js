@@ -117,7 +117,8 @@ async function renderTeamMembers(containerId, categorySection) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const peopleData = await loadYamlData('people.yaml');
+    // const peopleData = await loadYamlData('people.yaml');
+    const peopleData = await loadYamlData('who-we-are.yaml');
     if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
         console.error('People data not found or empty');
         return;

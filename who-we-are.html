@@ -35,9 +35,11 @@
                 <li class="dropdown">
                     <a href="who-we-are.html">WHO WE ARE</a>
                     <div class="dropdown-content">
-                        <a href="#community">OUR COMMUNITY</a>
-                        <a href="#funding">OUR FUNDING</a>
-                        <!-- <a href="#advisory">ADVISORY BOARD</a> -->
+                        <a href="who-we-are.html#community" onclick="activateTab('community'); return true;">OUR
+                            COMMUNITY</a>
+                        <a href="who-we-are.html#funding" onclick="activateTab('funding'); return true;">OUR FUNDING</a>
+                        <a href="who-we-are.html#advisory" onclick="activateTab('advisory'); return true;">ADVISORY
+                            BOARD</a>
                     </div>
                 </li>
                 <li class="dropdown">
@@ -87,10 +89,10 @@
                     <a href="#funding">Our Funding</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
                 </li>
-                <!-- <li class="sidebar-item" data-section="advisory">
+                <li class="sidebar-item" data-section="advisory">
                     <a href="#advisory">Advisory Board</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
-                </li> -->
+                </li>
             </ul>
         </div>
 
@@ -108,13 +110,9 @@
                             deployed safely, ethically, and for the benefit of humanity.</p>
                     </div>
 
-                    <!-- Team Members will be dynamically loaded from people.yaml -->
+                    <!-- Team Members will be dynamically loaded from who-we-are.yaml -->
                     <div id="team-container" class="team-container">
-                        <!-- Loading animation -->
-                        <div class="loading-indicator">
-                            <i class="fas fa-spinner fa-spin"></i>
-                            <p>Loading team members...</p>
-                        </div>
+                        <!-- Loading animation will be inserted by JS -->
                     </div>
                 </div>
             </section>
@@ -135,100 +133,19 @@
                     <h3 class="funding-category">Major Grants</h3>
 
                     <div class="grants-list">
-                        <div class="grant">
-                            <div class="grant-logo">
-                                <img src="content/artifacts/images/aisec_generic.svg" alt="National Science Foundation">
-                            </div>
-                            <div class="grant-info">
-                                <h4>National Science Foundation</h4>
-                                <p class="grant-title">Robust and Interpretable AI Systems</p>
-                                <p class="grant-amount">$3.5 Million | 2022-2025</p>
-                                <p class="grant-desc">This grant supports research on developing interpretable AI
-                                    systems that
-                                    maintain robust performance across diverse and challenging environments.</p>
-                            </div>
-                        </div>
-
-                        <div class="grant">
-                            <div class="grant-logo">
-                                <img src="content/artifacts/images/aisec_generic.svg" alt="Department of Energy">
-                            </div>
-                            <div class="grant-info">
-                                <h4>Department of Energy</h4>
-                                <p class="grant-title">AI Safety for Critical Infrastructure</p>
-                                <p class="grant-amount">$2.8 Million | 2023-2026</p>
-                                <p class="grant-desc">This project focuses on ensuring the safety and security of AI
-                                    systems
-                                    deployed in critical energy infrastructure applications.</p>
-                            </div>
-                        </div>
-
-                        <div class="grant">
-                            <div class="grant-logo">
-                                <img src="content/artifacts/images/aisec_generic.svg" alt="DARPA">
-                            </div>
-                            <div class="grant-info">
-                                <h4>DARPA</h4>
-                                <p class="grant-title">Assured Autonomy Program</p>
-                                <p class="grant-amount">$1.9 Million | 2021-2024</p>
-                                <p class="grant-desc">This grant supports research on formal verification methods for
-                                    autonomous
-                                    AI systems to ensure they operate safely within specified parameters.</p>
-                            </div>
-                        </div>
+                        <!-- Major grants will be dynamically loaded from who-we-are.yaml -->
                     </div>
 
                     <h3 class="funding-category">Industry Partners</h3>
 
                     <div class="partners-grid three-column">
-                        <div class="partner">
-                            <img src="content/artifacts/images/aisec_generic.svg" alt="Tech Company 1">
-                            <h4>Tech Company 1</h4>
-                        </div>
-
-                        <div class="partner">
-                            <img src="content/artifacts/images/aisec_generic.svg" alt="Tech Company 2">
-                            <h4>Tech Company 2</h4>
-                        </div>
-
-                        <div class="partner">
-                            <img src="content/artifacts/images/aisec_generic.svg" alt="Tech Company 3">
-                            <h4>Tech Company 3</h4>
-                        </div>
-
-                        <div class="partner">
-                            <img src="content/artifacts/images/aisec_generic.svg" alt="Tech Company 4">
-                            <h4>Tech Company 4</h4>
-                        </div>
-
-                        <div class="partner">
-                            <img src="content/artifacts/images/aisec_generic.svg" alt="Tech Company 5">
-                            <h4>Tech Company 5</h4>
-                        </div>
-
-                        <div class="partner">
-                            <img src="content/artifacts/images/aisec_generic.svg" alt="Tech Company 6">
-                            <h4>Tech Company 6</h4>
-                        </div>
+                        <!-- Industry partners will be dynamically loaded from who-we-are.yaml -->
                     </div>
 
                     <h3 class="funding-category">Philanthropic Foundations</h3>
 
                     <div class="foundations-list three-column">
-                        <div class="foundation">
-                            <img src="content/artifacts/images/aisec_generic.svg" alt="Foundation 1">
-                            <h4>Foundation 1</h4>
-                        </div>
-
-                        <div class="foundation">
-                            <img src="content/artifacts/images/aisec_generic.svg" alt="Foundation 2">
-                            <h4>Foundation 2</h4>
-                        </div>
-
-                        <div class="foundation">
-                            <img src="content/artifacts/images/aisec_generic.svg" alt="Foundation 3">
-                            <h4>Foundation 3</h4>
-                        </div>
+                        <!-- Foundations will be dynamically loaded from who-we-are.yaml -->
                     </div>
 
                     <div class="support-cta">
@@ -242,7 +159,7 @@
             </section>
 
             <!-- Advisory Board Section -->
-            <!-- <section id="advisory" class="content-section">
+            <section id="advisory" class="content-section">
                 <div class="container">
                     <h2>Advisory Board</h2>
 
@@ -253,16 +170,11 @@
                             research
                             agenda, educational programs, and outreach activities.</p>
                     </div>
-
                     <div class="advisors-grid">
-                        
-                        <div class="loading-indicator">
-                            <i class="fas fa-spinner fa-spin"></i>
-                            <p>Loading advisory board members...</p>
-                        </div>
+                        <!-- Advisory board members will be dynamically loaded from who-we-are.yaml -->
                     </div>
                 </div>
-            </section> -->
+            </section> 
         </div>
     </div>
 
@@ -319,6 +231,8 @@
     </footer>
 
     <script src="javascript/scripts.js"></script>
+    <script src="javascript/dynamic.js"></script>
+    <script src="javascript/who-we-are.js"></script>
 </body>
 
 </html>
