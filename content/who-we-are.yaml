@@ -1,4 +1,17 @@
 people:
+
+  # Advisory Board
+  - name: "Dr. Elizabeth Chen"
+    email: "echen@stanford.edu"
+    categories:
+      - "Advisory Board"
+    position: "Professor of Computer Science, Stanford University"
+    ais_title: "Advisory Board Member"
+    description: "Dr. Chen is a leading researcher in AI ethics and governance. Her work focuses on developing frameworks for responsible AI innovation."
+    website: "https://stanford.edu/~echen/"
+    image: "content/people/images/pic_placeholder.jpg"
+    interests: ["AI Ethics", "Governance", "Responsible Innovation"]
+    
   # Added Eugene Bagdasarian as the actual real person
   - name: "Eugene Bagdasarian"
     email: "eugene@umass.edu"
@@ -89,18 +102,6 @@ people:
     image: "content/people/images/pic_placeholder.jpg"
     office: "CS Building, Room 602"
     interests: ["Explainable AI", "Interpretability", "Human-AI Interaction"]
-
-  # Advisory Board
-  - name: "Dr. Elizabeth Chen"
-    email: "echen@stanford.edu"
-    categories:
-      - "Advisory Board"
-    position: "Professor of Computer Science, Stanford University"
-    ais_title: "Advisory Board Member"
-    description: "Dr. Chen is a leading researcher in AI ethics and governance. Her work focuses on developing frameworks for responsible AI innovation."
-    website: "https://stanford.edu/~echen/"
-    image: "content/people/images/pic_placeholder.jpg"
-    interests: ["AI Ethics", "Governance", "Responsible Innovation"]
 
 # Funding information
 major_grants:

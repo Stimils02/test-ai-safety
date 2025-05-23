@@ -14,6 +14,7 @@ async function renderTeamMembers() {
     try {
         // Load the YAML data from the who-we-are.yaml file
         const data = await loadYamlData('who-we-are.yaml');
+        console.log(data);
         if (!data || !data.people || data.people.length === 0) {
             container.innerHTML = '<p>No team members available at this time.</p>';
             return;
@@ -23,16 +24,17 @@ async function renderTeamMembers() {
         container.innerHTML = '';
 
         // Get unique categories and sort them by importance
-        const categoryOrder = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student", "Research Fellow", "Staff", "Undergraduate Student"];
+        const categoryOrder = ["Advisory Board", "Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student", "Research Fellow", "Staff", "Undergraduate Student"];
         let categories = [];
+        console.log(categories);
         
         // Build all categories from the people data
         data.people.forEach(person => {
             if (person.categories) {
                 person.categories.forEach(cat => {
-                    if (!categories.includes(cat)) {
-                        categories.push(cat);
-                    }
+                if (!categories.includes(cat)) {
+                    categories.push(cat);
+                }
                 });
             }
         });
@@ -41,6 +43,8 @@ async function renderTeamMembers() {
         categories.sort((a, b) => {
             return categoryOrder.indexOf(a) - categoryOrder.indexOf(b);
         });
+
+        console.log(categories);
 
         // Render each category section
         categories.forEach(category => {
@@ -95,69 +99,6 @@ async function renderTeamMembers() {
     } catch (error) {
         console.error('Error rendering team members:', error);
         container.innerHTML = '<p>Failed to load team members. Please try again later.</p>';
-    }
-}
-
-// Function to render advisory board members
-async function renderAdvisoryBoard() {
-    const container = document.querySelector('.advisors-grid');
-    if (!container) return;
-
-    // Show loading indicator
-    container.innerHTML = `
-        <div class="loading-indicator">
-            <i class="fas fa-spinner fa-spin"></i>
-            <p>Loading advisory board members...</p>
-        </div>
-    `;
-
-    try {
-        // Load the YAML data
-        const data = await loadYamlData('who-we-are.yaml');
-        if (!data || !data.people || data.people.length === 0) {
-            container.innerHTML = '<p>No advisory board members available at this time.</p>';
-            return;
-        }
-
-        // Filter for advisory board members
-        const advisoryMembers = data.people.filter(person =>
-            person.categories && person.categories.includes('Advisory Board'));
-
-        if (advisoryMembers.length === 0) {
-            container.innerHTML = '<p>No advisory board members available at this time.</p>';
-            return;
-        }
-
-        // Clear loading indicator
-        container.innerHTML = '';
-
-        // Render each advisory board member
-        advisoryMembers.forEach(advisor => {
-            const advisorCard = document.createElement('div');
-            advisorCard.className = 'advisor';
-
-            const imagePath = advisor.image || 'content/people/images/pic_placeholder.jpg';
-
-            advisorCard.innerHTML = `
-                <div class="advisor-photo">
-                    <img src="${imagePath}" alt="${advisor.name}">
-                </div>
-                <div class="advisor-info">
-                    <h4>${advisor.name}</h4>
-                    <p class="advisor-title">${advisor.position}</p>
-                    <p class="advisor-bio">${advisor.description}</p>
-                    ${advisor.interests && advisor.interests.length > 0 ?
-                        `<div class="advisor-interests">
-                            ${advisor.interests.map(interest => `<span class="interest-tag">${interest}</span>`).join(' ')}
-                        </div>` : ''}
-                </div>
-            `;
-
-            container.appendChild(advisorCard);
-        });
-    } catch (error) {
-        console.error('Error rendering advisory board:', error);
-        container.innerHTML = '<p>Failed to load advisory board members. Please try again later.</p>';
     }
 }
 
@@ -288,12 +229,6 @@ function initWhoWeArePage() {
     // Load all content sections
     renderTeamMembers();
     renderFundingInfo();
-    
-    // If the advisory board section is present, render it
-    const advisorySection = document.getElementById('advisory');
-    if (advisorySection) {
-        renderAdvisoryBoard();
-    }
 
     // Set up sidebar item click handlers
     const sidebarItems = document.querySelectorAll('.sidebar-item');
