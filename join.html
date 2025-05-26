@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/join.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
 
 <body>
@@ -67,32 +68,20 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Join Our Mission</h1>
-            <p>Help us shape the future of AI safety and ensure that advanced AI systems benefit humanity</p>
-            <div class="hero-buttons">
-                <a href="#grad-students" class="primary-button">FOR STUDENTS</a>
-                <a href="#mailing-list" class="secondary-button">JOIN MAILING LIST</a>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="hero-image">
-                <img src="images/cics-people.jpg" alt="AI Safety Research Team">
-            </div>
-            <div class="hero-pattern"></div>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero" id="hero-content">
+        <!-- Hero content will be dynamically loaded from join.yaml -->
     </section>
 
     <div class="page-container">
         <div class="sidebar">
             <ul class="sidebar-nav">
                 <li class="sidebar-item active" data-section="grad-students">
-                    <a href="#grad-students">Info for Graduate Students</a>
+                    <a href="#grad-students">Graduate Students</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
                 </li>
                 <li class="sidebar-item" data-section="undergrad-students">
-                    <a href="#undergrad-students">Info for Undergraduate Students</a>
+                    <a href="#undergrad-students">Undergraduate Students</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
                 </li>
                 <li class="sidebar-item" data-section="mailing-list">
@@ -107,573 +96,54 @@
         </div>
 
         <div class="main-content">
+            <!-- Graduate Students Section -->
             <section id="grad-students" class="content-section">
                 <div class="container">
                     <div class="section-header">
-                        <h2>For Graduate Students</h2>
+                        <h2>Graduate Students</h2>
                         <div class="section-line"></div>
                     </div>
-
-                    <div class="grad-intro">
-                        <p>Join our vibrant community of graduate researchers working on the cutting edge of AI safety.
-                            We offer
-                            various opportunities for Master's and PhD students interested in technical AI safety
-                            research, AI
-                            governance, and interdisciplinary approaches.</p>
-                    </div>
-
-                    <h3 class="section-subheader">Current Opportunities</h3>
-
-                    <div class="opportunities-grid">
-                        <div class="opportunity-card">
-                            <div class="opportunity-level">PhD</div>
-                            <div class="opportunity-content">
-                                <h4>AI Alignment Research Fellowship</h4>
-                                <p>Fully funded position to work on technical AI alignment problems with Professor Sarah
-                                    Chen.
-                                </p>
-                                <div class="opportunity-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Deadline: Nov 30, 2023</span>
-                                    <span><i class="fas fa-map-marker-alt"></i> On-campus</span>
-                                </div>
-                                <a href="#" class="apply-button">Apply Now</a>
-                            </div>
-                        </div>
-
-                        <div class="opportunity-card">
-                            <div class="opportunity-level">Master's</div>
-                            <div class="opportunity-content">
-                                <h4>AI Governance Research Assistant</h4>
-                                <p>Work with our policy team on developing governance frameworks for advanced AI
-                                    systems.</p>
-                                <div class="opportunity-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Deadline: Dec 15, 2023</span>
-                                    <span><i class="fas fa-laptop-house"></i> Hybrid</span>
-                                </div>
-                                <a href="#" class="apply-button">Apply Now</a>
-                            </div>
-                        </div>
-
-                        <div class="opportunity-card">
-                            <div class="opportunity-level">PhD/Master's</div>
-                            <div class="opportunity-content">
-                                <h4>Interpretability Lab Position</h4>
-                                <p>Join our interpretability lab working on understanding the internal mechanisms of
-                                    neural
-                                    networks.</p>
-                                <div class="opportunity-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Deadline: Rolling</span>
-                                    <span><i class="fas fa-map-marker-alt"></i> On-campus</span>
-                                </div>
-                                <a href="#" class="apply-button">Apply Now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="section-subheader">Resources for Applicants</h3>
-
-                    <div class="resources-grid">
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <div class="resource-content">
-                                <h4>Application Guide</h4>
-                                <p>Step-by-step instructions for applying to our graduate programs with tips for a
-                                    successful
-                                    application.</p>
-                                <a href="#" class="resource-link">Download Guide <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-question-circle"></i>
-                            </div>
-                            <div class="resource-content">
-                                <h4>FAQ for Graduate Applicants</h4>
-                                <p>Answers to common questions about our graduate programs, funding opportunities, and
-                                    research
-                                    areas.</p>
-                                <a href="#" class="resource-link">View FAQ <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-video"></i>
-                            </div>
-                            <div class="resource-content">
-                                <h4>Virtual Information Sessions</h4>
-                                <p>Recordings of past information sessions and schedule of upcoming virtual events for
-                                    prospective students.</p>
-                                <a href="#" class="resource-link">Watch Sessions <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="section-subheader">Graduate Programs</h3>
-
-                    <div class="programs-grid">
-                        <div class="program-card">
-                            <div class="program-header">
-                                <h4>PhD in Computer Science (AI Safety Focus)</h4>
-                            </div>
-                            <div class="program-content">
-                                <p>Our doctoral program provides rigorous training in AI safety research with
-                                    world-class
-                                    faculty mentorship.</p>
-                                <ul class="program-features">
-                                    <li>Full funding guaranteed for 5 years</li>
-                                    <li>Research rotations in first year</li>
-                                    <li>Interdisciplinary collaboration opportunities</li>
-                                    <li>Teaching experience options</li>
-                                </ul>
-                                <div class="program-details">
-                                    <div class="detail-item">
-                                        <span class="detail-label">Duration:</span>
-                                        <span class="detail-value">4-5 years</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">Application Deadline:</span>
-                                        <span class="detail-value">December 15</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">Start Date:</span>
-                                        <span class="detail-value">Fall Semester</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="program-link">Program Details</a>
-                            </div>
-                        </div>
-
-                        <div class="program-card">
-                            <div class="program-header">
-                                <h4>Master's in Computer Science (AI Safety Track)</h4>
-                            </div>
-                            <div class="program-content">
-                                <p>Develop specialized skills in AI safety through our structured Master's program with
-                                    research
-                                    and coursework options.</p>
-                                <ul class="program-features">
-                                    <li>Thesis and non-thesis options</li>
-                                    <li>Industry-relevant curriculum</li>
-                                    <li>Research assistantships available</li>
-                                    <li>Professional development workshops</li>
-                                </ul>
-                                <div class="program-details">
-                                    <div class="detail-item">
-                                        <span class="detail-label">Duration:</span>
-                                        <span class="detail-value">1-2 years</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">Application Deadline:</span>
-                                        <span class="detail-value">January 15</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">Start Date:</span>
-                                        <span class="detail-value">Fall or Spring</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="program-link">Program Details</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-advisor">
-                        <!-- Graduate Program Director info will be loaded dynamically from people.yaml -->
-                        <div id="grad-program-director-container">
-                            <!-- Loading animation -->
-                            <div class="loading-indicator">
-                                <i class="fas fa-spinner fa-spin"></i>
-                                <p>Loading contact information...</p>
-                            </div>
-                        </div>
+                    <div id="grad-students-content">
+                        <!-- Graduate students content will be dynamically loaded from join.yaml -->
                     </div>
                 </div>
             </section>
 
+            <!-- Undergraduate Students Section -->
             <section id="undergrad-students" class="content-section">
                 <div class="container">
                     <div class="section-header">
-                        <h2>For Undergraduate Students</h2>
+                        <h2>Undergraduate Students</h2>
                         <div class="section-line"></div>
                     </div>
-
-                    <div class="undergrad-intro">
-                        <p>Undergraduate students play a vital role in our AI safety community. We offer numerous
-                            opportunities
-                            for you to learn about AI safety, gain research experience, and prepare for careers or
-                            graduate
-                            studies in this field.</p>
-                    </div>
-
-                    <h3 class="section-subheader">Research Opportunities</h3>
-
-                    <div class="opportunities-grid">
-                        <div class="opportunity-card">
-                            <div class="opportunity-level">Research</div>
-                            <div class="opportunity-content">
-                                <h4>Undergraduate Research Assistantships</h4>
-                                <p>Work directly with faculty and graduate students on AI safety research projects.</p>
-                                <div class="opportunity-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Applications: Rolling basis</span>
-                                    <span><i class="fas fa-clock"></i> 8-12 hours per week</span>
-                                    <span><i class="fas fa-dollar-sign"></i> Paid positions available</span>
-                                </div>
-                                <a href="#" class="apply-button">Apply Now</a>
-                            </div>
-                        </div>
-
-                        <div class="opportunity-card">
-                            <div class="opportunity-level">Summer</div>
-                            <div class="opportunity-content">
-                                <h4>Summer Research Program</h4>
-                                <p>Intensive 10-week summer program focused on AI safety research with faculty
-                                    mentorship.</p>
-                                <div class="opportunity-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Deadline: February 15</span>
-                                    <span><i class="fas fa-home"></i> Housing provided</span>
-                                    <span><i class="fas fa-dollar-sign"></i> $6,000 stipend</span>
-                                </div>
-                                <a href="#" class="apply-button">Learn More</a>
-                            </div>
-                        </div>
-
-                        <div class="opportunity-card">
-                            <div class="opportunity-level">Senior</div>
-                            <div class="opportunity-content">
-                                <h4>Senior Thesis Projects</h4>
-                                <p>Conduct independent research under faculty supervision for your senior thesis or
-                                    capstone
-                                    project.</p>
-                                <div class="opportunity-meta">
-                                    <span><i class="fas fa-calendar-alt"></i> Proposal deadline: April 15</span>
-                                    <span><i class="fas fa-user-graduate"></i> Academic credit</span>
-                                    <span><i class="fas fa-award"></i> Thesis awards available</span>
-                                </div>
-                                <a href="#" class="apply-button">Explore Topics</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="section-subheader">Educational Programs</h3>
-
-                    <div class="programs-grid">
-                        <div class="program-card">
-                            <div class="program-header">
-                                <h4>AI Safety Courses</h4>
-                            </div>
-                            <div class="program-content">
-                                <p>Undergraduate courses focused on AI safety, alignment, and ethics. Available to
-                                    students from
-                                    all majors.</p>
-                                <ul class="program-features">
-                                    <li>CS 383: Introduction to AI Safety</li>
-                                    <li>CS 486: Ethics in Artificial Intelligence</li>
-                                    <li>CS 490S: Special Topics in AI Alignment</li>
-                                    <li>PHIL 367: Philosophy of AI</li>
-                                </ul>
-                                <div class="program-details">
-                                    <div class="detail-item">
-                                        <span class="detail-label">Prerequisites:</span>
-                                        <span class="detail-value">Vary by course</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">Credits:</span>
-                                        <span class="detail-value">3-4 credits each</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">Offered:</span>
-                                        <span class="detail-value">Fall and Spring semesters</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="program-link">Course Catalog</a>
-                            </div>
-                        </div>
-
-                        <div class="program-card">
-                            <div class="program-header">
-                                <h4>Workshops & Bootcamps</h4>
-                            </div>
-                            <div class="program-content">
-                                <p>Short-term intensive learning experiences to build skills in AI safety research.</p>
-                                <ul class="program-features">
-                                    <li>Weekend workshops throughout the semester</li>
-                                    <li>Winter and spring break bootcamps</li>
-                                    <li>Hands-on technical training</li>
-                                    <li>No prior experience required for introductory workshops</li>
-                                </ul>
-                                <div class="program-details">
-                                    <div class="detail-item">
-                                        <span class="detail-label">Duration:</span>
-                                        <span class="detail-value">1-5 days</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">Cost:</span>
-                                        <span class="detail-value">Free for UMass students</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label">Registration:</span>
-                                        <span class="detail-value">Required, limited spots</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="program-link">Upcoming Workshops</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="section-subheader">Student Community</h3>
-
-                    <div class="resources-grid">
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="resource-content">
-                                <h4>AI Safety Student Club</h4>
-                                <p>Join our student-run organization dedicated to learning about and promoting AI safety
-                                    on
-                                    campus.</p>
-                                <a href="#" class="resource-link">Join the Club <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="resource-content">
-                                <h4>Reading Groups</h4>
-                                <p>Participate in student-led reading groups exploring recent papers and developments in
-                                    AI
-                                    safety.</p>
-                                <a href="#" class="resource-link">Current Reading Groups <i
-                                        class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="resource-content">
-                                <h4>Hackathons & Competitions</h4>
-                                <p>Test your skills in AI safety-focused hackathons and competitions with prizes and
-                                    recognition.</p>
-                                <a href="#" class="resource-link">Upcoming Competitions <i
-                                        class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-advisor">
-                        <!-- Undergraduate Program Coordinator info will be loaded dynamically from people.yaml -->
-                        <div id="undergrad-program-coordinator-container">
-                            <!-- Loading animation -->
-                            <div class="loading-indicator">
-                                <i class="fas fa-spinner fa-spin"></i>
-                                <p>Loading contact information...</p>
-                            </div>
-                        </div>
+                    <div id="undergrad-students-content">
+                        <!-- Undergraduate students content will be dynamically loaded from join.yaml -->
                     </div>
                 </div>
             </section>
 
+            <!-- Mailing List Section -->
             <section id="mailing-list" class="content-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>Join Our Mailing List</h2>
                         <div class="section-line"></div>
                     </div>
-
-                    <div class="mailing-list-content">
-                        <div class="mailing-list-info">
-                            <h3>Stay Connected</h3>
-                            <p>Join our mailing list to receive updates on:</p>
-                            <ul class="mailing-list-benefits">
-                                <li><i class="fas fa-check-circle"></i> Research breakthroughs and publications</li>
-                                <li><i class="fas fa-check-circle"></i> Upcoming events, seminars, and workshops</li>
-                                <li><i class="fas fa-check-circle"></i> Funding and job opportunities</li>
-                                <li><i class="fas fa-check-circle"></i> Educational resources and courses</li>
-                                <li><i class="fas fa-check-circle"></i> Ways to get involved with our initiative</li>
-                            </ul>
-                            <p class="privacy-note">We respect your privacy and will never share your information with
-                                third
-                                parties. You can unsubscribe at any time.</p>
-                        </div>
-
-                        <div class="mailing-list-form">
-                            <form action="#" method="post" id="subscribe-form">
-                                <div class="form-group">
-                                    <label for="name">Full Name</label>
-                                    <input type="text" id="name" name="name" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="affiliation">Affiliation (Optional)</label>
-                                    <input type="text" id="affiliation" name="affiliation">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Interests (Select all that apply)</label>
-                                    <div class="checkbox-group">
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="interests" value="technical-research">
-                                            Technical Research
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="interests" value="governance">
-                                            AI Governance
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="interests" value="education">
-                                            Education & Training
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="interests" value="events">
-                                            Events & Community
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="interests" value="opportunities">
-                                            Job & Funding Opportunities
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="frequency">Email Frequency</label>
-                                    <select id="frequency" name="frequency">
-                                        <option value="weekly">Weekly Updates</option>
-                                        <option value="monthly" selected>Monthly Digest</option>
-                                        <option value="quarterly">Quarterly Newsletter</option>
-                                    </select>
-                                </div>
-
-                                <button type="submit" class="submit-btn">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="newsletter-preview">
-                        <h3>Sample Newsletter</h3>
-                        <div class="newsletter-image">
-                            <img src="images/newsletter-preview.png" alt="Newsletter Preview">
-                        </div>
-                        <p>Our monthly digest includes research highlights, event announcements, and community
-                            spotlights.</p>
+                    <div id="mailing-list-content">
+                        <!-- Mailing list content will be dynamically loaded from join.yaml -->
                     </div>
                 </div>
             </section>
 
+            <!-- Contact Us Section -->
             <section id="contact-us" class="content-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>Contact Us</h2>
                         <div class="section-line"></div>
                     </div>
-
-                    <div class="contact-intro">
-                        <p>Have questions about our initiative or how to get involved? We'd love to hear from you. Reach
-                            out to
-                            us using the contact information below or fill out our contact form.</p>
-                    </div>
-
-                    <div class="contact-content">
-                        <div class="contact-info">
-                            <div class="contact-method">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h3>Email</h3>
-                                    <p>General Inquiries: <a
-                                            href="mailto:aisafety@cs.umass.edu">aisafety@cs.umass.edu</a></p>
-                                    <p>Media Requests: <a
-                                            href="mailto:media-aisafety@cs.umass.edu">media-aisafety@cs.umass.edu</a>
-                                    </p>
-                                    <p>Collaboration Opportunities: <a
-                                            href="mailto:collaborate-aisafety@cs.umass.edu">collaborate-aisafety@cs.umass.edu</a>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="contact-method">
-                                <div class="contact-icon">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h3>Phone</h3>
-                                    <p>Main Office: (413) 545-2744</p>
-                                    <p>Administrative Assistant: (413) 545-3500</p>
-                                </div>
-                            </div>
-
-                            <div class="contact-method">
-                                <div class="contact-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h3>Address</h3>
-                                    <p>UMass Amherst AI Safety Initiative</p>
-                                    <p>Computer Science Building</p>
-                                    <p>140 Governors Drive</p>
-                                    <p>Amherst, MA 01003</p>
-                                </div>
-                            </div>
-
-                            <div class="contact-method">
-                                <div class="contact-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h3>Office Hours</h3>
-                                    <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
-                                    <p>Closed on weekends and university holidays</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="contact-form">
-                            <h3>Send Us a Message</h3>
-                            <form action="#" method="post" id="contact-form">
-                                <div class="form-group">
-                                    <label for="contact-name">Full Name</label>
-                                    <input type="text" id="contact-name" name="name" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="contact-email">Email Address</label>
-                                    <input type="email" id="contact-email" name="email" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="contact-subject">Subject</label>
-                                    <input type="text" id="contact-subject" name="subject" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="contact-message">Message</label>
-                                    <textarea id="contact-message" name="message" rows="5" required></textarea>
-                                </div>
-
-                                <button type="submit" class="submit-btn">Send Message</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="location-map">
-                        <h3>Find Us</h3>
-                        <div class="map-container">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2955.0372320729426!2d-72.53126548455186!3d42.395726779183945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e6d27a5350e48d%3A0x8c1152619e35e20!2sComputer%20Science%20Building%2C%20140%20Governors%20Dr%2C%20Amherst%2C%20MA%2001003!5e0!3m2!1sen!2sus!4v1623252356746!5m2!1sen!2sus"
-                                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                        </div>
+                    <div id="contact-us-content">
+                        <!-- Contact us content will be dynamically loaded from join.yaml -->
                     </div>
                 </div>
             </section>
@@ -733,6 +203,8 @@
     </footer>
 
     <script src="javascript/scripts.js"></script>
+    <script src="javascript/dynamic.js"></script>
+    <script src="javascript/join.js"></script>
 </body>
 
 </html>

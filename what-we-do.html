@@ -47,8 +47,8 @@
                     <div class="dropdown-content">
                         <a href="what-we-do.html#mission" onclick="activateTab('mission'); return true;">MISSION</a>
                         <a href="what-we-do.html#research" onclick="activateTab('research'); return true;">RESEARCH</a>
-                        <a href="what-we-do.html#education"
-                            onclick="activateTab('education'); return true;">EDUCATION</a>
+                        <a href="what-we-do.html#publications"
+                            onclick="activateTab('publications'); return true;">FEATURED PUBLICATIONS</a>
                         <a href="what-we-do.html#outreach" onclick="activateTab('outreach'); return true;">OUTREACH</a>
                         <a href="what-we-do.html#resources"
                             onclick="activateTab('resources'); return true;">RESOURCES</a>
@@ -74,7 +74,7 @@
     <div class="page-banner">
         <div class="banner-content">
             <h1>What We Do</h1>
-            <p>Explore our mission, research, education, and outreach activities</p>
+            <p>Explore our mission, research, and outreach activities</p>
         </div>
     </div>
 
@@ -89,8 +89,8 @@
                     <a href="#research">Research</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
                 </li>
-                <li class="sidebar-item" data-section="education">
-                    <a href="#education">Education</a>
+                <li class="sidebar-item" data-section="publications">
+                    <a href="#publications">Featured Publications</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
                 </li>
                 <li class="sidebar-item" data-section="outreach">
@@ -105,400 +105,72 @@
         </div>
 
         <div class="main-content">
+            <!-- Mission Section -->
             <section id="mission" class="content-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>Mission</h2>
                         <div class="section-line"></div>
                     </div>
-                    <div class="mission-content">
-                        <div class="mission-text">
-                            <p class="mission-statement">Our mission is to ensure that advanced AI systems are developed
-                                safely,
-                                aligned with human values, and deployed for the benefit of humanity.</p>
-
-                            <p>The UMass Amherst AI Safety Initiative is dedicated to addressing the technical, ethical,
-                                and
-                                governance challenges associated with increasingly powerful artificial intelligence
-                                systems.
-                                We bring together researchers from computer science, mathematics, philosophy, social
-                                sciences,
-                                and policy to tackle the multifaceted challenges of AI safety.</p>
-
-                            <p>Through our interdisciplinary approach, we aim to:</p>
-
-                            <ul class="mission-goals">
-                                <li>
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Develop technical approaches to ensure AI systems remain safe, robust, and
-                                        aligned
-                                        with human values</span>
-                                </li>
-                                <li>
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Train the next generation of researchers and practitioners in AI safety</span>
-                                </li>
-                                <li>
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Collaborate with industry, government, and civil society to develop
-                                        responsible AI
-                                        governance frameworks</span>
-                                </li>
-                                <li>
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Advance public understanding of AI safety challenges and solutions</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="mission-image">
-                            <img src="images/mission-illustration.png" alt="AI Safety Mission Illustration">
-                        </div>
+                    <div id="mission-content">
+                        <!-- Mission content will be dynamically loaded from what-we-do.yaml -->
                     </div>
                 </div>
             </section>
 
+            <!-- Research Section -->
             <section id="research" class="content-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>Research</h2>
                         <div class="section-line"></div>
                     </div>
-                    <div class="research-intro">
-                        <p>Our research program focuses on developing the technical foundations and governance
-                            frameworks
-                            needed to ensure that advanced AI systems remain safe, aligned with human values, and
-                            beneficial.
-                        </p>
-                    </div>
-
-                    <div class="research-areas">
-                        <div class="research-area">
-                            <div class="research-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <h3>AI Alignment</h3>
-                            <p>Developing methods to ensure AI systems understand and act according to human values and
-                                intentions,
-                                even as they become more capable and autonomous.</p>
-                            <a href="research.html#alignment" class="learn-more">Learn More <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="research-area">
-                            <div class="research-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <h3>Robustness & Safety</h3>
-                            <p>Creating AI systems that perform reliably under distribution shifts, adversarial attacks,
-                                and in novel environments without unexpected failures.</p>
-                            <a href="research.html#robustness" class="learn-more">Learn More <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="research-area">
-                            <div class="research-icon">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <h3>Interpretability</h3>
-                            <p>Building tools and techniques to understand the internal workings of complex AI systems,
-                                enabling better oversight and alignment verification.</p>
-                            <a href="research.html#interpretability" class="learn-more">Learn More <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="research-area">
-                            <div class="research-icon">
-                                <i class="fas fa-balance-scale"></i>
-                            </div>
-                            <h3>Governance & Policy</h3>
-                            <p>Developing frameworks for responsible AI development, deployment, and regulation to
-                                ensure beneficial outcomes for society.</p>
-                            <a href="research.html#governance" class="learn-more">Learn More <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="featured-publications">
-                        <h3>Featured Publications</h3>
-                        <div id="featured-publications-container" class="publications-list">
-                            <!-- Publications will be rendered here by JavaScript -->
-                        </div>
-                        <div class="view-all-container">
-                            <a href="publications.html" class="view-all-button">View All Publications</a>
-                        </div>
+                    <div id="research-content">
+                        <!-- Research content will be dynamically loaded from what-we-do.yaml -->
                     </div>
                 </div>
             </section>
 
-            <section id="education" class="content-section">
+            <!-- Publications Section -->
+            <section id="publications" class="content-section">
                 <div class="container">
                     <div class="section-header">
-                        <h2>Education</h2>
+                        <h2>Featured Publications</h2>
                         <div class="section-line"></div>
                     </div>
-                    <div class="education-intro">
-                        <p>We are committed to training the next generation of researchers and practitioners in AI
-                            safety.
-                            Our educational programs span undergraduate, graduate, and professional levels.</p>
-                    </div>
-
-                    <div class="education-programs">
-                        <div class="program">
-                            <div class="program-image">
-                                <img src="images/courses-image.png" alt="AI Safety Courses">
-                            </div>
-                            <div class="program-content">
-                                <h3>Courses</h3>
-                                <p>We offer specialized courses on AI safety, alignment, and ethics at both
-                                    undergraduate and
-                                    graduate levels.
-                                    These courses provide students with the technical foundations and ethical frameworks
-                                    needed
-                                    to develop
-                                    safe and beneficial AI systems.</p>
-                                <div id="courses-container">
-                                    <!-- Courses will be loaded dynamically from artifacts.yaml -->
-                                    <!-- Loading animation -->
-                                    <div class="loading-indicator">
-                                        <i class="fas fa-spinner fa-spin"></i>
-                                        <p>Loading courses...</p>
-                                    </div>
-                                </div>
-                                <a href="education.html#courses" class="learn-more">View Course Catalog <i
-                                        class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="program alt-layout">
-                            <div class="program-content">
-                                <h3>Workshops & Summer Schools</h3>
-                                <p>We organize intensive workshops and summer schools focused on AI safety topics.
-                                    These programs bring together students, researchers, and practitioners for immersive
-                                    learning experiences
-                                    led by experts in the field.</p>
-                                <div class="upcoming-workshop">
-                                    <h4>Upcoming: Summer School on AI Alignment</h4>
-                                    <p class="workshop-date">June 15-30, 2024</p>
-                                    <p>A two-week intensive program covering the technical foundations of AI alignment,
-                                        interpretability, and robustness.</p>
-                                    <a href="summer-school.html" class="apply-btn">Apply Now</a>
-                                </div>
-                            </div>
-                            <div class="program-image">
-                                <img src="images/workshop-image.png" alt="AI Safety Workshop">
-                            </div>
-                        </div>
-
-                        <div class="program">
-                            <div class="program-image">
-                                <img src="images/fellowship-image.png" alt="AI Safety Fellowship">
-                            </div>
-                            <div class="program-content">
-                                <h3>Fellowships & Research Opportunities</h3>
-                                <p>We provide fellowships and research opportunities for students at all levels to work
-                                    on AI
-                                    safety projects.
-                                    These programs offer mentorship, funding, and a collaborative environment to pursue
-                                    cutting-edge research.</p>
-                                <div class="fellowship-types">
-                                    <div class="fellowship">
-                                        <h4>Undergraduate Research Program</h4>
-                                        <p>10-week summer research experiences for undergraduates</p>
-                                    </div>
-                                    <div class="fellowship">
-                                        <h4>Graduate Fellowships</h4>
-                                        <p>Full funding for PhD students focused on AI safety research</p>
-                                    </div>
-                                    <div class="fellowship">
-                                        <h4>Postdoctoral Fellowships</h4>
-                                        <p>2-year positions for early-career researchers</p>
-                                    </div>
-                                </div>
-                                <a href="fellowships.html" class="learn-more">Explore Opportunities <i
-                                        class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
+                    <div id="publications-content">
+                        <!-- Publications content will be dynamically loaded from what-we-do.yaml -->
                     </div>
                 </div>
             </section>
 
+            <!-- Outreach Section -->
             <section id="outreach" class="content-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>Outreach</h2>
                         <div class="section-line"></div>
                     </div>
-                    <div class="outreach-intro">
-                        <p>We engage with the broader community through various outreach activities designed to increase
-                            awareness and understanding of AI safety challenges and solutions.</p>
-                    </div>
-
-                    <div class="outreach-activities">
-                        <div class="outreach-activity">
-                            <div class="activity-icon">
-                                <i class="fas fa-microphone-alt"></i>
-                            </div>
-                            <h3>Public Lectures</h3>
-                            <p>We host regular public lectures featuring leading experts in AI safety and ethics.
-                                These events are open to the public and designed to make complex technical topics
-                                accessible
-                                to broader audiences.</p>
-                            <a href="lectures.html" class="learn-more">Upcoming Lectures <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="outreach-activity">
-                            <div class="activity-icon">
-                                <i class="fas fa-podcast"></i>
-                            </div>
-                            <h3>Podcast & Media</h3>
-                            <p>Our "AI Safety Dialogues" podcast features conversations with researchers, industry
-                                leaders,
-                                and policymakers about the challenges and opportunities in ensuring safe and beneficial
-                                AI.</p>
-                            <a href="podcast.html" class="learn-more">Listen to Episodes <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="outreach-activity">
-                            <div class="activity-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3>Community Workshops</h3>
-                            <p>We organize workshops for K-12 students, educators, and community organizations to build
-                                AI literacy and awareness of safety considerations in artificial intelligence.</p>
-                            <a href="community-workshops.html" class="learn-more">Workshop Calendar <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="outreach-activity">
-                            <div class="activity-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <h3>Industry Partnerships</h3>
-                            <p>We collaborate with industry partners to translate research into practice and develop
-                                responsible AI deployment frameworks for real-world applications.</p>
-                            <a href="partnerships.html" class="learn-more">Our Partners <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="impact-metrics">
-                        <div class="metric">
-                            <span class="metric-number">50+</span>
-                            <span class="metric-label">Public Events</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-number">5,000+</span>
-                            <span class="metric-label">Workshop Participants</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-number">25+</span>
-                            <span class="metric-label">Industry Partners</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-number">100K+</span>
-                            <span class="metric-label">Podcast Downloads</span>
-                        </div>
+                    <div id="outreach-content">
+                        <!-- Outreach content will be dynamically loaded from what-we-do.yaml -->
                     </div>
                 </div>
             </section>
 
+            <!-- Resources Section -->
             <section id="resources" class="content-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>Resources</h2>
                         <div class="section-line"></div>
                     </div>
-                    <div class="resources-intro">
-                        <p>We develop and curate resources to support research, education, and practice in AI safety.
-                        </p>
-                    </div>
-
-                    <div class="resources-grid">
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <h3>Datasets & Benchmarks</h3>
-                            <p>Standardized datasets and benchmarks for evaluating AI safety properties,
-                                including robustness, alignment, and interpretability.</p>
-                            <a href="datasets.html" class="resource-link">Access Datasets <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3>Open-Source Software</h3>
-                            <p>Tools and libraries for AI safety research, including interpretability frameworks,
-                                robustness testing suites, and alignment evaluation methods.</p>
-                            <a href="software.html" class="resource-link">Browse Software <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <h3>Educational Materials</h3>
-                            <p>Lecture notes, tutorials, and course materials on AI safety topics,
-                                freely available for educators and self-learners.</p>
-                            <a href="educational-materials.html" class="resource-link">View Materials <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <h3>Policy Briefs</h3>
-                            <p>Accessible summaries of AI safety research and its policy implications,
-                                designed for policymakers and the general public.</p>
-                            <a href="policy-briefs.html" class="resource-link">Read Briefs <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-video"></i>
-                            </div>
-                            <h3>Video Lectures</h3>
-                            <p>Recorded lectures, talks, and tutorials on AI safety topics from our events
-                                and educational programs.</p>
-                            <a href="videos.html" class="resource-link">Watch Videos <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-newspaper"></i>
-                            </div>
-                            <h3>Newsletter</h3>
-                            <p>Monthly updates on AI safety research, events, and opportunities from our initiative
-                                and the broader community.</p>
-                            <a href="newsletter.html" class="resource-link">Subscribe <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
+                    <div id="resources-content">
+                        <!-- Resources content will be dynamically loaded from what-we-do.yaml -->
                     </div>
                 </div>
             </section>
         </div>
     </div>
-
-    <section class="get-involved">
-        <div class="container">
-            <h2>Get Involved</h2>
-            <p>Join us in our mission to ensure that advanced AI systems are developed safely and for the benefit of
-                humanity.</p>
-            <div class="involvement-options">
-                <a href="join.html" class="involvement-btn">Join Our Team</a>
-                <a href="collaborate.html" class="involvement-btn">Collaborate</a>
-                <a href="donate.html" class="involvement-btn">Support Our Work</a>
-            </div>
-        </div>
-    </section>
 
     <footer>
         <div class="footer-content">
@@ -553,6 +225,8 @@
     </footer>
 
     <script src="javascript/scripts.js"></script>
+    <script src="javascript/dynamic.js"></script>
+    <script src="javascript/what-we-do.js"></script>
 </body>
 
 </html>

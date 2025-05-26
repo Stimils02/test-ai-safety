@@ -12,42 +12,40 @@ async function renderLatestNews() {
     `;
 
     try {
-        // Load the YAML data from the whats-happening.yaml file
+        // Load the YAML data
         const data = await loadYamlData('whats-happening.yaml');
-        if (!data || !data.latest_news || data.latest_news.length === 0) {
-            container.innerHTML = '<p>No news articles available at this time.</p>';
+        if (!data || !data.latest_news) {
+            container.innerHTML = '<p>No news available at this time.</p>';
             return;
         }
 
         // Clear loading indicator
         container.innerHTML = '';
 
-        // Render each news item
-        data.latest_news.forEach(news => {
+        // Render news items
+        data.latest_news.forEach(newsItem => {
             const newsCard = document.createElement('div');
             newsCard.className = 'content-card';
-            
-            // Format the date nicely
-            const newsDate = new Date(news.date);
-            const formattedDate = newsDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+
+            const date = new Date(newsItem.date);
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
             });
 
-            // Create the card HTML
             newsCard.innerHTML = `
                 <div class="card-image">
-                    <img src="${news.image || 'content/pic_placeholder.jpg'}" alt="${news.title}">
+                    <img src="${newsItem.image}" alt="${newsItem.title}">
                     <div class="card-date">
-                        <span class="month">${newsDate.toLocaleDateString('en-US', {month: 'short'})}</span>
-                        <span class="day">${newsDate.getDate()}</span>
+                        <span class="month">${date.toLocaleDateString('en-US', { month: 'short' })}</span>
+                        <span class="day">${date.getDate()}</span>
                     </div>
                 </div>
                 <div class="card-content">
-                    <h3>${news.title}</h3>
-                    <p>${news.description}</p>
-                    <a href="${news.link || '#'}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <h3>${newsItem.title}</h3>
+                    <p>${newsItem.description}</p>
+                    <a href="${newsItem.link}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             `;
 
@@ -55,7 +53,7 @@ async function renderLatestNews() {
         });
     } catch (error) {
         console.error('Error rendering news:', error);
-        container.innerHTML = '<p>Failed to load news articles. Please try again later.</p>';
+        container.innerHTML = '<p>Failed to load news. Please try again later.</p>';
     }
 }
 
@@ -75,49 +73,45 @@ async function renderUpcomingSeminars() {
     try {
         // Load the YAML data
         const data = await loadYamlData('whats-happening.yaml');
-        if (!data || !data.upcoming_seminars || data.upcoming_seminars.length === 0) {
-            container.innerHTML = '<p>No upcoming seminars available at this time.</p>';
+        if (!data || !data.upcoming_seminars) {
+            container.innerHTML = '<p>No seminars available at this time.</p>';
             return;
         }
 
         // Clear loading indicator
         container.innerHTML = '';
 
-        // Render each seminar
+        // Render seminar items
         data.upcoming_seminars.forEach(seminar => {
             const seminarCard = document.createElement('div');
             seminarCard.className = 'content-card seminar-card';
-            
-            // Format the date
-            const seminarDate = new Date(seminar.date);
-            const formattedDate = seminarDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
 
-            // Create the card HTML
+            const date = new Date(seminar.date);
+
             seminarCard.innerHTML = `
                 <div class="card-image">
-                    <img src="${seminar.image || 'content/pic_placeholder.jpg'}" alt="${seminar.title}">
+                    <img src="${seminar.image}" alt="${seminar.title}">
                     <div class="card-date">
-                        <span class="month">${seminarDate.toLocaleDateString('en-US', {month: 'short'})}</span>
-                        <span class="day">${seminarDate.getDate()}</span>
+                        <span class="month">${date.toLocaleDateString('en-US', { month: 'short' })}</span>
+                        <span class="day">${date.getDate()}</span>
                     </div>
                 </div>
                 <div class="card-content">
                     <h3>${seminar.title}</h3>
-                    <p>${seminar.description}</p>
                     <div class="speaker">
-                        <i class="fas fa-user"></i> ${seminar.speaker}
+                        <i class="fas fa-user"></i>
+                        ${seminar.speaker}
                     </div>
                     <div class="seminar-time">
-                        <i class="fas fa-clock"></i> ${formattedDate}, ${seminar.time}
+                        <i class="fas fa-clock"></i>
+                        ${seminar.time}
                     </div>
                     <div class="seminar-location">
-                        <i class="fas fa-map-marker-alt"></i> ${seminar.location}
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${seminar.location}
                     </div>
-                    <a href="${seminar.link || '#'}" class="register-btn">Register</a>
+                    <p>${seminar.description}</p>
+                    <a href="${seminar.link}" class="register-btn">Register</a>
                 </div>
             `;
 
@@ -145,61 +139,41 @@ async function renderUpcomingEvents() {
     try {
         // Load the YAML data
         const data = await loadYamlData('whats-happening.yaml');
-        if (!data || !data.upcoming_events || data.upcoming_events.length === 0) {
-            container.innerHTML = '<p>No upcoming events available at this time.</p>';
+        if (!data || !data.upcoming_events) {
+            container.innerHTML = '<p>No events available at this time.</p>';
             return;
         }
 
         // Clear loading indicator
         container.innerHTML = '';
 
-        // Render each event
+        // Render event items
         data.upcoming_events.forEach(event => {
             const eventCard = document.createElement('div');
-            eventCard.className = 'content-card event-card upcoming';
-            
-            // Format the date
-            const eventDate = new Date(event.date);
-            const formattedDate = eventDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+            eventCard.className = 'content-card event-card';
 
-            // Create multi-day event text if applicable
-            let dateText = formattedDate;
-            if (event.end_date) {
-                const endDate = new Date(event.end_date);
-                const formattedEndDate = endDate.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                dateText = `${formattedDate} - ${formattedEndDate}`;
-            }
+            const date = new Date(event.date);
 
-            // Create the card HTML
             eventCard.innerHTML = `
                 <div class="card-image">
-                    <img src="${event.image || 'content/pic_placeholder.jpg'}" alt="${event.title}">
+                    <img src="${event.image}" alt="${event.title}">
                     <div class="card-date">
-                        <span class="month">${eventDate.toLocaleDateString('en-US', {month: 'short'})}</span>
-                        <span class="day">${eventDate.getDate()}</span>
+                        <span class="month">${date.toLocaleDateString('en-US', { month: 'short' })}</span>
+                        <span class="day">${date.getDate()}</span>
                     </div>
                 </div>
                 <div class="card-content">
                     <h3>${event.title}</h3>
-                    <p>${event.description}</p>
                     <div class="event-time">
-                        <i class="fas fa-calendar"></i> ${dateText}
-                    </div>
-                    <div class="event-time">
-                        <i class="fas fa-clock"></i> ${event.time}
+                        <i class="fas fa-clock"></i>
+                        ${event.time}
                     </div>
                     <div class="event-location">
-                        <i class="fas fa-map-marker-alt"></i> ${event.location}
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${event.location}
                     </div>
-                    <a href="${event.link || '#'}" class="register-btn">Learn More</a>
+                    <p>${event.description}</p>
+                    <a href="${event.link}" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             `;
 
