@@ -429,44 +429,10 @@ async function renderContactUs() {
                     <h4>Directions</h4>
                     <p>${contactData.office_info.directions}</p>
                 </div>
-                <div class="contact-form">
-                    <h4>${contactData.form.title}</h4>
-                    <form id="contact-form">
-                        ${contactData.form.fields.map(field => {
-                            if (field.type === 'select') {
-                                return `
-                                    <div class="form-group">
-                                        <label for="${field.name}">${field.label}${field.required ? ' *' : ''}</label>
-                                        <select id="${field.name}" name="${field.name}" ${field.required ? 'required' : ''}>
-                                            <option value="">Select an option</option>
-                                            ${field.options.map(option => `<option value="${option}">${option}</option>`).join('')}
-                                        </select>
-                                    </div>
-                                `;
-                            } else if (field.type === 'textarea') {
-                                return `
-                                    <div class="form-group">
-                                        <label for="${field.name}">${field.label}${field.required ? ' *' : ''}</label>
-                                        <textarea id="${field.name}" name="${field.name}" rows="5" ${field.required ? 'required' : ''}></textarea>
-                                    </div>
-                                `;
-                            } else {
-                                return `
-                                    <div class="form-group">
-                                        <label for="${field.name}">${field.label}${field.required ? ' *' : ''}</label>
-                                        <input type="${field.type}" id="${field.name}" name="${field.name}" ${field.required ? 'required' : ''}>
-                                    </div>
-                                `;
-                            }
-                        }).join('')}
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
             </div>
         `;
 
         // Add form submission handler
-        document.getElementById('contact-form').addEventListener('submit', handleContactFormSubmission);
     } catch (error) {
         console.error('Error rendering contact us section:', error);
         container.innerHTML = '<p>Failed to load contact information.</p>';
@@ -474,68 +440,68 @@ async function renderContactUs() {
 }
 
 // Function to handle mailing list form submission
-function handleMailingListSubmission(event) {
-    event.preventDefault();
+// function handleMailingListSubmission(event) {
+//     event.preventDefault();
     
-    // Get form data
-    const formData = new FormData(event.target);
-    const data = {};
+//     // Get form data
+//     const formData = new FormData(event.target);
+//     const data = {};
     
-    // Process regular fields
-    for (let [key, value] of formData.entries()) {
-        if (data[key]) {
-            // Handle multiple values (like checkboxes)
-            if (Array.isArray(data[key])) {
-                data[key].push(value);
-            } else {
-                data[key] = [data[key], value];
-            }
-        } else {
-            data[key] = value;
-        }
-    }
+//     // Process regular fields
+//     for (let [key, value] of formData.entries()) {
+//         if (data[key]) {
+//             // Handle multiple values (like checkboxes)
+//             if (Array.isArray(data[key])) {
+//                 data[key].push(value);
+//             } else {
+//                 data[key] = [data[key], value];
+//             }
+//         } else {
+//             data[key] = value;
+//         }
+//     }
     
-    // Process checkboxes specifically
-    const checkboxes = document.querySelectorAll('input[name="interests"]:checked');
-    data.interests = Array.from(checkboxes).map(cb => cb.value);
+//     // Process checkboxes specifically
+//     const checkboxes = document.querySelectorAll('input[name="interests"]:checked');
+//     data.interests = Array.from(checkboxes).map(cb => cb.value);
     
-    console.log('Mailing list subscription data:', data);
+//     console.log('Mailing list subscription data:', data);
     
-    // Show success message
-    const submitBtn = event.target.querySelector('.submit-btn');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Subscribed!';
-    submitBtn.disabled = true;
+//     // Show success message
+//     const submitBtn = event.target.querySelector('.submit-btn');
+//     const originalText = submitBtn.textContent;
+//     submitBtn.textContent = 'Subscribed!';
+//     submitBtn.disabled = true;
     
-    setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        event.target.reset();
-    }, 2000);
-}
+//     setTimeout(() => {
+//         submitBtn.textContent = originalText;
+//         submitBtn.disabled = false;
+//         event.target.reset();
+//     }, 2000);
+// }
 
 // Function to handle contact form submission
-function handleContactFormSubmission(event) {
-    event.preventDefault();
+// function handleContactFormSubmission(event) {
+//     event.preventDefault();
     
-    // Get form data
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
+//     // Get form data
+//     const formData = new FormData(event.target);
+//     const data = Object.fromEntries(formData);
     
-    console.log('Contact form data:', data);
+//     console.log('Contact form data:', data);
     
-    // Show success message
-    const submitBtn = event.target.querySelector('.submit-btn');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Message Sent!';
-    submitBtn.disabled = true;
+//     // Show success message
+//     const submitBtn = event.target.querySelector('.submit-btn');
+//     const originalText = submitBtn.textContent;
+//     submitBtn.textContent = 'Message Sent!';
+//     submitBtn.disabled = true;
     
-    setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        event.target.reset();
-    }, 2000);
-}
+//     setTimeout(() => {
+//         submitBtn.textContent = originalText;
+//         submitBtn.disabled = false;
+//         event.target.reset();
+//     }, 2000);
+// }
 
 // Function to handle scroll spy for sidebar navigation
 function handleScrollSpy() {
@@ -580,9 +546,9 @@ function handleScrollSpy() {
 function initJoinPage() {
     // Load all content sections
     renderHero();
-    renderGraduateStudents();
-    renderUndergraduateStudents();
-    renderMailingList();
+    // renderGraduateStudents();
+    // renderUndergraduateStudents();
+    // renderMailingList();
     renderContactUs();
 
     // Set up sidebar item click handlers

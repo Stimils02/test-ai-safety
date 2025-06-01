@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What's Happening | UMass Amherst AI Safety Initiative</title>
+    <title>Join Us | UMass Amherst AI Safety Initiative</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/whats-happening.css">
+    <link rel="stylesheet" href="css/join.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
@@ -27,9 +27,10 @@
                 <li class="dropdown">
                     <a href="whats-happening.html">WHAT'S HAPPENING</a>
                     <div class="dropdown-content">
-                        <a href="whats-happening.html#news">NEWS</a>
-                        <a href="whats-happening.html#seminars">SEMINARS</a>
-                        <a href="whats-happening.html#events">EVENTS</a>
+                        <a href="whats-happening.html#news" onclick="activateTab('news'); return true;">NEWS</a>
+                        <a href="whats-happening.html#seminars"
+                            onclick="activateTab('seminars'); return true;">SEMINARS</a>
+                        <a href="whats-happening.html#events" onclick="activateTab('events'); return true;">EVENTS</a>
                     </div>
                 </li>
                 <li class="dropdown">
@@ -57,73 +58,92 @@
                 <li class="dropdown">
                     <a href="join.html">JOIN US</a>
                     <div class="dropdown-content wider-dropdown">
-                        <a href="join.html#grad-students" onclick="activateTab('grad-students'); return true;">INFO FOR
-                            GRADUATE STUDENTS</a>
-                        <a href="join.html#undergrad-students"
-                            onclick="activateTab('undergrad-students'); return true;">INFO FOR UNDERGRADUATE
-                            STUDENTS</a>
-                        <a href="join.html#mailing-list" onclick="activateTab('mailing-list'); return true;">MAILING
-                            LIST</a>
-                        <a href="join.html#contact-us" onclick="activateTab('contact-us'); return true;">CONTACT US</a>
+                        <a href="join.html#grad-students">INFO FOR GRADUATE STUDENTS</a>
+                        <a href="join.html#undergrad-students">INFO FOR UNDERGRADUATE STUDENTS</a>
+                        <a href="join.html#mailing-list">MAILING LIST</a>
+                        <a href="join.html#contact-us">CONTACT US</a>
                     </div>
                 </li>
             </ul>
         </nav>
     </header>
-    <div class="page-banner">
-        <div class="banner-content">
-            <h1>What's Happening</h1>
-            <p>Stay updated with the latest news, events, and seminars from the AI Safety Initiative</p>
-        </div>
-    </div>
 
-    <div class="page-container">
+    <!-- Hero Section -->
+    <section class="hero" id="hero-content">
+        <!-- Hero content will be dynamically loaded from join.yaml -->
+    </section>
+
+    <!-- <div class="page-container">
         <div class="sidebar">
             <ul class="sidebar-nav">
-                <li class="sidebar-item active" data-section="news">
-                    <a href="#news">News</a>
+                <li class="sidebar-item active" data-section="grad-students">
+                    <a href="#grad-students">Graduate Students</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
                 </li>
-                <!-- <li class="sidebar-item" data-section="seminars">
-                    <a href="#seminars">Seminars</a>
+                <li class="sidebar-item" data-section="undergrad-students">
+                    <a href="#undergrad-students">Undergraduate Students</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
-                </li> -->
-                <li class="sidebar-item" data-section="events">
-                    <a href="#events">Events</a>
+                </li>
+                <li class="sidebar-item" data-section="mailing-list">
+                    <a href="#mailing-list">Mailing List</a>
+                    <i class="fas fa-arrow-right sidebar-indicator"></i>
+                </li>
+                <li class="sidebar-item" data-section="contact-us">
+                    <a href="#contact-us">Contact Us</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
                 </li>
             </ul>
-        </div>
+        </div> -->
 
         <div class="main-content">
-            <!-- News Section -->
-            <section id="news" class="content-section">
+            <!-- Graduate Students Section -->
+            <section id="grad-students" class="content-section">
                 <div class="container">
-                    <h2 class="section-title">Latest News</h2>
-
-                    <!-- News will be dynamically loaded from whats-happening.yaml -->
-                    <div id="news-container">
-                        <!-- Loading animation will be inserted by JS -->
+                    <div class="section-header">
+                        <h2>Graduate Students</h2>
+                        <div class="section-line"></div>
                     </div>
-
-                    <div class="view-more-container">
-                        <button class="view-more-btn" id="news-view-more-btn">View All News</button>
+                    <div id="grad-students-content">
+                        <!-- Graduate students content will be dynamically loaded from join.yaml -->
                     </div>
                 </div>
             </section>
 
-            <!-- Events Section -->
-            <section id="events" class="content-section">
+            <!-- Undergraduate Students Section -->
+            <section id="undergrad-students" class="content-section">
                 <div class="container">
-                    <h2 class="section-title">Events</h2>
-
-                    <!-- Events will be dynamically loaded from whats-happening.yaml -->
-                    <div id="events-container">
-                        <!-- Loading animation will be inserted by JS -->
+                    <div class="section-header">
+                        <h2>Undergraduate Students</h2>
+                        <div class="section-line"></div>
                     </div>
+                    <div id="undergrad-students-content">
+                        <!-- Undergraduate students content will be dynamically loaded from join.yaml -->
+                    </div>
+                </div>
+            </section>
 
-                    <div class="view-more-container">
-                        <button class="view-more-btn" id="events-view-more-btn">View All Events</button>
+            <!-- Mailing List Section -->
+            <!-- <section id="mailing-list" class="content-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Join Our Mailing List</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <div id="mailing-list-content">
+                        Mailing list content will be dynamically loaded from join.yaml
+                    </div>
+                </div>
+            </section> -->
+
+            <!-- Contact Us Section -->
+            <section id="contact-us" class="content-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Contact Us</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <div id="contact-us-content">
+                        <!-- Contact us content will be dynamically loaded from join.yaml -->
                     </div>
                 </div>
             </section>
@@ -143,9 +163,9 @@
                 <div class="footer-column">
                     <h4>About</h4>
                     <ul>
-                        <li><a href="mission.html">Mission</a></li>
-                        <li><a href="community.html">Our Community</a></li>
-                        <li><a href="funding.html">Funding</a></li>
+                        <li><a href="what-we-do.html#mission">Mission</a></li>
+                        <li><a href="who-we-are.html#community">Our Community</a></li>
+                        <li><a href="who-we-are.html#funding">Funding</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -160,8 +180,8 @@
                     <h4>Connect</h4>
                     <ul>
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="mailing-list.html">Join Mailing List</a></li>
-                        <li><a href="donate.html">Support Our Work</a></li>
+                        <li><a href="#mailing-list">Join Mailing List</a></li>
+                        <li><a href="#donate">Support Our Work</a></li>
                     </ul>
                 </div>
             </div>
@@ -181,9 +201,10 @@
             </div>
         </div>
     </footer>
+
     <script src="javascript/scripts.js"></script>
     <script src="javascript/dynamic.js"></script>
-    <script src="javascript/whats-happening.js"></script>
+    <script src="javascript/join.js"></script>
 </body>
 
 </html>
