@@ -1,15 +1,14 @@
+
 // Load YAML data and store cache
 const dataCache = {
     people: null,
-    artifacts: null,
-    whatsHappening: null,
-    whoWeAre: null
+    artifacts: null
 };
 
 // Function to fetch and parse YAML data with caching
 async function loadYamlData(fileName) {
     const cacheKey = fileName.replace('.yaml', '').replace('content/', '');
-    console.log(cacheKey);
+    
     // Return cached data if available
     if (dataCache[cacheKey]) {
         return dataCache[cacheKey];
@@ -61,433 +60,432 @@ function getImagePath(imagePath, defaultImage = 'content/people/images/pic_place
 }
 
 // Function to render researchers for various pages
-// async function renderPeople(containerId, filter = {}, limit = null) {
-//     const container = document.getElementById(containerId);
-//     if (!container) return;
+async function renderPeople(containerId, filter = {}, limit = null) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-//     const peopleData = await loadYamlData('people.yaml');
-//     if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
-//         console.error('People data not found or empty');
-//         return;
-//     }
+    const peopleData = await loadYamlData('people.yaml');
+    if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
+        console.error('People data not found or empty');
+        return;
+    }
 
-//     // Clear existing content
-//     container.innerHTML = '';
+    // Clear existing content
+    container.innerHTML = '';
 
-//     // Filter people based on provided criteria
-//     let filteredPeople = [...peopleData.people];
+    // Filter people based on provided criteria
+    let filteredPeople = [...peopleData.people];
     
-//     if (filter.categories) {
-//         filteredPeople = filteredPeople.filter(person => {
-//             return person.categories && 
-//                     person.categories.some(cat => filter.categories.includes(cat));
-//         });
-//     }
+    if (filter.categories) {
+        filteredPeople = filteredPeople.filter(person => {
+            return person.categories && 
+                    person.categories.some(cat => filter.categories.includes(cat));
+        });
+    }
 
-//     if (filter.id) {
-//         filteredPeople = filteredPeople.filter(person => person.id === filter.id);
-//     }
+    if (filter.id) {
+        filteredPeople = filteredPeople.filter(person => person.id === filter.id);
+    }
 
-//     // Apply limit if specified
-//     if (limit && limit > 0) {
-//         filteredPeople = filteredPeople.slice(0, limit);
-//     }
+    // Apply limit if specified
+    if (limit && limit > 0) {
+        filteredPeople = filteredPeople.slice(0, limit);
+    }
 
-//     // Render each person
-//     filteredPeople.forEach(person => {
-//         const personCard = document.createElement('div');
-//         personCard.className = 'researcher-card';
+    // Render each person
+    filteredPeople.forEach(person => {
+        const personCard = document.createElement('div');
+        personCard.className = 'researcher-card';
 
-//         const imagePath = getImagePath(person.image);
+        const imagePath = getImagePath(person.image);
 
-//         personCard.innerHTML = `
-//             <div class="researcher-photo">
-//                 <img src="${imagePath}" alt="${person.name}" class="researcher-image">
-//             </div>
-//             <h3>${person.name}</h3>
-//             <p class="researcher-title">${person.ais_title || person.position}</p>
-//             <p class="researcher-bio">${person.description.substring(0, 100)}${person.description.length > 100 ? '...' : ''}</p>
-//             ${person.website ? `<a href="${person.website}" class="researcher-link" target="_blank">Profile</a>` : ''}
-//         `;
-//         container.appendChild(personCard);
-//     });
-// }
+        personCard.innerHTML = `
+            <div class="researcher-photo">
+                <img src="${imagePath}" alt="${person.name}" class="researcher-image">
+            </div>
+            <h3>${person.name}</h3>
+            <p class="researcher-title">${person.ais_title || person.position}</p>
+            <p class="researcher-bio">${person.description.substring(0, 100)}${person.description.length > 100 ? '...' : ''}</p>
+            ${person.website ? `<a href="${person.website}" class="researcher-link" target="_blank">Profile</a>` : ''}
+        `;
+        container.appendChild(personCard);
+    });
+}
 
-// // Function to render team members with more detailed information
-// async function renderTeamMembers(containerId, categorySection) {
-//     const container = document.getElementById(containerId);
-//     if (!container) return;
+// Function to render team members with more detailed information
+async function renderTeamMembers(containerId, categorySection) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-//     // const peopleData = await loadYamlData('people.yaml');
-//     const peopleData = await loadYamlData('who-we-are.yaml');
-//     if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
-//         console.error('People data not found or empty');
-//         return;
-//     }
+    const peopleData = await loadYamlData('people.yaml');
+    if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
+        console.error('People data not found or empty');
+        return;
+    }
 
-//     // Clear existing content
-//     container.innerHTML = '';
+    // Clear existing content
+    container.innerHTML = '';
 
-//     // Get unique categories and sort them by importance
-//     const categoryOrder = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student", "Research Fellow", "Staff", "Undergraduate Student"]; // "Advisory Board"
-//     let categories = [];
+    // Get unique categories and sort them by importance
+    const categoryOrder = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student", "Research Fellow", "Staff", "Undergraduate Student"]; // "Advisory Board"
+    let categories = [];
     
-//     if (categorySection) {
-//         // If a specific category section is requested
-//         categories = [categorySection];
-//     } else {
-//         // Otherwise build all categories
-//         peopleData.people.forEach(person => {
-//             if (person.categories) {
-//                 person.categories.forEach(cat => {
-//                     if (!categories.includes(cat)) {
-//                         categories.push(cat);
-//                     }
-//                 });
-//             }
-//         });
+    if (categorySection) {
+        // If a specific category section is requested
+        categories = [categorySection];
+    } else {
+        // Otherwise build all categories
+        peopleData.people.forEach(person => {
+            if (person.categories) {
+                person.categories.forEach(cat => {
+                    if (!categories.includes(cat)) {
+                        categories.push(cat);
+                    }
+                });
+            }
+        });
         
-//         // Sort categories according to preferred order
-//         categories.sort((a, b) => {
-//             return categoryOrder.indexOf(a) - categoryOrder.indexOf(b);
-//         });
-//     }
+        // Sort categories according to preferred order
+        categories.sort((a, b) => {
+            return categoryOrder.indexOf(a) - categoryOrder.indexOf(b);
+        });
+    }
 
-//     // Render each category section
-//     categories.forEach(category => {
-//         // Filter people in this category
-//         const categoryPeople = peopleData.people.filter(person => {
-//             return person.categories && person.categories.includes(category);
-//         });
+    // Render each category section
+    categories.forEach(category => {
+        // Filter people in this category
+        const categoryPeople = peopleData.people.filter(person => {
+            return person.categories && person.categories.includes(category);
+        });
 
-//         if (categoryPeople.length === 0) return;
+        if (categoryPeople.length === 0) return;
 
-//         // Create category section heading if showing all categories
-//         if (!categorySection) {
-//             const categoryHeading = document.createElement('h3');
-//             categoryHeading.className = 'team-category';
-//             categoryHeading.textContent = category;
-//             container.appendChild(categoryHeading);
-//         }
+        // Create category section heading if showing all categories
+        if (!categorySection) {
+            const categoryHeading = document.createElement('h3');
+            categoryHeading.className = 'team-category';
+            categoryHeading.textContent = category;
+            container.appendChild(categoryHeading);
+        }
 
-//         // Create grid for this category
-//         const categoryGrid = document.createElement('div');
-//         categoryGrid.className = 'team-grid';
+        // Create grid for this category
+        const categoryGrid = document.createElement('div');
+        categoryGrid.className = 'team-grid';
 
-//         // Render each person in this category
-//         categoryPeople.forEach(person => {
-//             const personCard = document.createElement('div');
-//             personCard.className = 'team-member';
+        // Render each person in this category
+        categoryPeople.forEach(person => {
+            const personCard = document.createElement('div');
+            personCard.className = 'team-member';
 
-//             const imagePath = getImagePath(person.image);
+            const imagePath = getImagePath(person.image);
 
-//             personCard.innerHTML = `
-//                 <div class="member-photo">
-//                     <img src="${imagePath}" alt="${person.name}">
-//                 </div>
-//                 <div class="member-info">
-//                     <h4>${person.name}</h4>
-//                     <p class="member-title">${person.ais_title || person.position}</p>
-//                     <p class="member-bio">${person.description}</p>
-//                     <div class="member-links">
-//                         ${person.email ? `<a href="mailto:${person.email}" class="member-link"><i class="fas fa-envelope"></i> Email</a>` : ''}
-//                         ${person.website ? `<a href="${person.website}" class="member-link" target="_blank"><i class="fas fa-globe"></i> Website</a>` : ''}
-//                     </div>
-//                     ${person.interests && person.interests.length > 0 ? 
-//                         `<div class="member-interests">
-//                             <span class="interests-label">Research Interests: </span>
-//                             ${person.interests.map(interest => `<span class="interest-tag">${interest}</span>`).join(' ')}
-//                         </div>` : ''}
-//                 </div>
-//             `;
-//             categoryGrid.appendChild(personCard);
-//         });
+            personCard.innerHTML = `
+                <div class="member-photo">
+                    <img src="${imagePath}" alt="${person.name}">
+                </div>
+                <div class="member-info">
+                    <h4>${person.name}</h4>
+                    <p class="member-title">${person.ais_title || person.position}</p>
+                    <p class="member-bio">${person.description}</p>
+                    <div class="member-links">
+                        ${person.email ? `<a href="mailto:${person.email}" class="member-link"><i class="fas fa-envelope"></i> Email</a>` : ''}
+                        ${person.website ? `<a href="${person.website}" class="member-link" target="_blank"><i class="fas fa-globe"></i> Website</a>` : ''}
+                    </div>
+                    ${person.interests && person.interests.length > 0 ? 
+                        `<div class="member-interests">
+                            <span class="interests-label">Research Interests: </span>
+                            ${person.interests.map(interest => `<span class="interest-tag">${interest}</span>`).join(' ')}
+                        </div>` : ''}
+                </div>
+            `;
+            categoryGrid.appendChild(personCard);
+        });
 
-//         container.appendChild(categoryGrid);
-//     });
-// }
+        container.appendChild(categoryGrid);
+    });
+}
 
 // Function to render artifacts (news, events, etc.)
-// async function renderArtifacts(containerId, filter = {}, limit = null) {
-//     const container = document.getElementById(containerId);
-//     if (!container) return;
+async function renderArtifacts(containerId, filter = {}, limit = null) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-//     const artifactsData = await loadYamlData('artifacts.yaml');
-//     if (!artifactsData || !artifactsData.artifacts || artifactsData.artifacts.length === 0) {
-//         console.error('Artifacts data not found or empty');
-//         return;
-//     }
+    const artifactsData = await loadYamlData('artifacts.yaml');
+    if (!artifactsData || !artifactsData.artifacts || artifactsData.artifacts.length === 0) {
+        console.error('Artifacts data not found or empty');
+        return;
+    }
 
-//     // Clear existing content
-//     container.innerHTML = '';
+    // Clear existing content
+    container.innerHTML = '';
 
-//     // Filter artifacts based on provided criteria
-//     let filteredArtifacts = [...artifactsData.artifacts];
+    // Filter artifacts based on provided criteria
+    let filteredArtifacts = [...artifactsData.artifacts];
     
-//     if (filter.category) {
-//         filteredArtifacts = filteredArtifacts.filter(item => 
-//             item.category === filter.category);
-//     }
+    if (filter.category) {
+        filteredArtifacts = filteredArtifacts.filter(item => 
+            item.category === filter.category);
+    }
 
-//     if (filter.status) {
-//         filteredArtifacts = filteredArtifacts.filter(item => 
-//             item.status === filter.status);
-//     }
+    if (filter.status) {
+        filteredArtifacts = filteredArtifacts.filter(item => 
+            item.status === filter.status);
+    }
 
-//     if (filter.id) {
-//         filteredArtifacts = filteredArtifacts.filter(item => 
-//             item.id === filter.id);
-//     }
+    if (filter.id) {
+        filteredArtifacts = filteredArtifacts.filter(item => 
+            item.id === filter.id);
+    }
 
-//     // Sort artifacts by start_datetime, newest first
-//     filteredArtifacts.sort((a, b) => {
-//         // Handle missing dates
-//         if (!a.start_datetime) return 1;
-//         if (!b.start_datetime) return -1;
-//         return new Date(b.start_datetime) - new Date(a.start_datetime);
-//     });
+    // Sort artifacts by start_datetime, newest first
+    filteredArtifacts.sort((a, b) => {
+        // Handle missing dates
+        if (!a.start_datetime) return 1;
+        if (!b.start_datetime) return -1;
+        return new Date(b.start_datetime) - new Date(a.start_datetime);
+    });
 
-//     // Apply limit if specified
-//     if (limit && limit > 0) {
-//         filteredArtifacts = filteredArtifacts.slice(0, limit);
-//     }
+    // Apply limit if specified
+    if (limit && limit > 0) {
+        filteredArtifacts = filteredArtifacts.slice(0, limit);
+    }
 
-//     // Determine if we're on the landing page
-//     const isLandingPage = container.classList.contains('news-grid');
+    // Determine if we're on the landing page
+    const isLandingPage = container.classList.contains('news-grid');
 
-//     // Render each artifact
-//     filteredArtifacts.forEach(item => {
-//         const itemCard = document.createElement('div');
-//         itemCard.className = isLandingPage ? 'news-card' : 'artifact-card';
-//         itemCard.dataset.id = item.id || '';
-//         itemCard.dataset.category = item.category || '';
+    // Render each artifact
+    filteredArtifacts.forEach(item => {
+        const itemCard = document.createElement('div');
+        itemCard.className = isLandingPage ? 'news-card' : 'artifact-card';
+        itemCard.dataset.id = item.id || '';
+        itemCard.dataset.category = item.category || '';
 
-//         const imagePath = getImagePath(item.image, 'content/pic_placeholder.jpg');
+        const imagePath = getImagePath(item.image, 'content/pic_placeholder.jpg');
         
-//         // Format date nicely
-//         let formattedDate = '';
-//         if (item.start_datetime) {
-//             const startDate = new Date(item.start_datetime);
-//             formattedDate = startDate.toLocaleDateString('en-US', { 
-//                 year: 'numeric', 
-//                 month: 'long', 
-//                 day: 'numeric' 
-//             });
-//         }
+        // Format date nicely
+        let formattedDate = '';
+        if (item.start_datetime) {
+            const startDate = new Date(item.start_datetime);
+            formattedDate = startDate.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
 
-//         if (isLandingPage) {
-//             // Landing page style
-//             itemCard.innerHTML = `
-//                 <img src="${imagePath}" alt="${item.name}" class="news-image">
-//                 <div class="news-content">
-//                     <h3 class="news-title">${item.name}</h3>
-//                     <p class="news-date">${formattedDate}</p>
-//                     <p class="news-description">${item.description.substring(0, 100)}...</p>
-//                     <a href="${item.website || `whats-happening.html#${item.category === 'news' ? 'news' : item.category === 'event' ? 'events' : 'seminars'}`}" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
-//                 </div>
-//             `;
-//         } else {
-//             // Whats-happening page style
-//             itemCard.innerHTML = `
-//                 <div class="artifact-image">
-//                     <img src="${imagePath}" alt="${item.name}">
-//                     ${formattedDate ? `<div class="artifact-date">${formattedDate}</div>` : ''}
-//                 </div>
-//                 <div class="artifact-content">
-//                     <span class="artifact-tag">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
-//                     <h3>${item.name}</h3>
-//                     <p>${item.description}</p>
-//                     ${item.location ? `<p class="artifact-location"><i class="fas fa-map-marker-alt"></i> ${item.location}</p>` : ''}
-//                     ${item.website ? `<a href="${item.website}" class="artifact-link">Learn More</a>` : ''}
-//                 </div>
-//             `;
-//         }
+        if (isLandingPage) {
+            // Landing page style
+            itemCard.innerHTML = `
+                <img src="${imagePath}" alt="${item.name}" class="news-image">
+                <div class="news-content">
+                    <h3 class="news-title">${item.name}</h3>
+                    <p class="news-date">${formattedDate}</p>
+                    <p class="news-description">${item.description.substring(0, 100)}...</p>
+                    <a href="${item.website || `whats-happening.html#${item.category === 'news' ? 'news' : item.category === 'event' ? 'events' : 'seminars'}`}" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            `;
+        } else {
+            // Whats-happening page style
+            itemCard.innerHTML = `
+                <div class="artifact-image">
+                    <img src="${imagePath}" alt="${item.name}">
+                    ${formattedDate ? `<div class="artifact-date">${formattedDate}</div>` : ''}
+                </div>
+                <div class="artifact-content">
+                    <span class="artifact-tag">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    ${item.location ? `<p class="artifact-location"><i class="fas fa-map-marker-alt"></i> ${item.location}</p>` : ''}
+                    ${item.website ? `<a href="${item.website}" class="artifact-link">Learn More</a>` : ''}
+                </div>
+            `;
+        }
 
-//         container.appendChild(itemCard);
-//     });
-// }
+        container.appendChild(itemCard);
+    });
+}
 
 // Function to render courses
-// async function renderCourses(containerId) {
-//     const container = document.getElementById(containerId);
-//     if (!container) return;
+async function renderCourses(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-//     const artifactsData = await loadYamlData('artifacts.yaml');
-//     if (!artifactsData || !artifactsData.artifacts || artifactsData.artifacts.length === 0) {
-//         console.error('Artifacts data not found or empty');
-//         return;
-//     }
+    const artifactsData = await loadYamlData('artifacts.yaml');
+    if (!artifactsData || !artifactsData.artifacts || artifactsData.artifacts.length === 0) {
+        console.error('Artifacts data not found or empty');
+        return;
+    }
 
-//     // Filter for courses
-//     const courses = artifactsData.artifacts.filter(item => item.category === 'course');
-//     if (courses.length === 0) {
-//         console.error('No courses found in artifacts data');
-//         return;
-//     }
+    // Filter for courses
+    const courses = artifactsData.artifacts.filter(item => item.category === 'course');
+    if (courses.length === 0) {
+        console.error('No courses found in artifacts data');
+        return;
+    }
 
-//     // Clear existing content
-//     container.innerHTML = '';
+    // Clear existing content
+    container.innerHTML = '';
 
-//     // Create a list for courses
-//     const coursesList = document.createElement('ul');
-//     coursesList.className = 'program-list';
+    // Create a list for courses
+    const coursesList = document.createElement('ul');
+    coursesList.className = 'program-list';
 
-//     // Add each course to the list
-//     courses.forEach(course => {
-//         const courseItem = document.createElement('li');
-//         courseItem.textContent = course.name;
-//         coursesList.appendChild(courseItem);
-//     });
+    // Add each course to the list
+    courses.forEach(course => {
+        const courseItem = document.createElement('li');
+        courseItem.textContent = course.name;
+        coursesList.appendChild(courseItem);
+    });
 
-//     container.appendChild(coursesList);
-// }
+    container.appendChild(coursesList);
+}
 
 // Function to render graduate program director for the join page
-// async function renderGradProgramDirector(containerId) {
-//     const container = document.getElementById(containerId);
-//     if (!container) return;
+async function renderGradProgramDirector(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-//     const peopleData = await loadYamlData('people.yaml');
-//     if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
-//         console.error('People data not found or empty');
-//         return;
-//     }
+    const peopleData = await loadYamlData('people.yaml');
+    if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
+        console.error('People data not found or empty');
+        return;
+    }
 
-//     // Find Michael Chen or any person with Associate Director title
-//     const director = peopleData.people.find(person =>
-//         person.id === 'mchen' || person.ais_title === 'Associate Director');
+    // Find Michael Chen or any person with Associate Director title
+    const director = peopleData.people.find(person =>
+        person.id === 'mchen' || person.ais_title === 'Associate Director');
 
-//     if (!director) {
-//         console.error('Graduate Program Director not found in people data');
-//         return;
-//     }
+    if (!director) {
+        console.error('Graduate Program Director not found in people data');
+        return;
+    }
 
-//     // Clear existing content
-//     container.innerHTML = '';
+    // Clear existing content
+    container.innerHTML = '';
 
-//     // Create the advisor info structure
-//     const advisorContent = document.createElement('div');
-//     advisorContent.className = 'contact-advisor';
+    // Create the advisor info structure
+    const advisorContent = document.createElement('div');
+    advisorContent.className = 'contact-advisor';
 
-//     const imagePath = getImagePath(director.image);
+    const imagePath = getImagePath(director.image);
 
-//     advisorContent.innerHTML = `
-//         <div class="advisor-photo">
-//             <img src="${imagePath}" alt="${director.name}">
-//         </div>
-//         <div class="advisor-info">
-//             <h3>Questions About Graduate Programs?</h3>
-//             <p>Contact our Graduate Program Director:</p>
-//             <h4>${director.name}</h4>
-//             <p><i class="fas fa-envelope"></i> ${director.email}</p>
-//             <p><i class="fas fa-map-marker-alt"></i> ${director.office || 'CS Building'}</p>
-//             <p><i class="fas fa-clock"></i> Office Hours: Tuesdays and Thursdays, 2-4 PM</p>
-//         </div>
-//     `;
+    advisorContent.innerHTML = `
+        <div class="advisor-photo">
+            <img src="${imagePath}" alt="${director.name}">
+        </div>
+        <div class="advisor-info">
+            <h3>Questions About Graduate Programs?</h3>
+            <p>Contact our Graduate Program Director:</p>
+            <h4>${director.name}</h4>
+            <p><i class="fas fa-envelope"></i> ${director.email}</p>
+            <p><i class="fas fa-map-marker-alt"></i> ${director.office || 'CS Building'}</p>
+            <p><i class="fas fa-clock"></i> Office Hours: Tuesdays and Thursdays, 2-4 PM</p>
+        </div>
+    `;
 
-//     container.appendChild(advisorContent);
-// }
+    container.appendChild(advisorContent);
+}
 
 // Function to render undergraduate program coordinator for the join page
-// async function renderUndergradProgramCoordinator(containerId) {
-//     const container = document.getElementById(containerId);
-//     if (!container) return;
+async function renderUndergradProgramCoordinator(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-//     const peopleData = await loadYamlData('people.yaml');
-//     if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
-//         console.error('People data not found or empty');
-//         return;
-//     }
+    const peopleData = await loadYamlData('people.yaml');
+    if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
+        console.error('People data not found or empty');
+        return;
+    }
 
-//     // Find Emily Rodriguez or any person with Education Director title
-//     const coordinator = peopleData.people.find(person =>
-//         person.ais_title === 'Education Director');
+    // Find Emily Rodriguez or any person with Education Director title
+    const coordinator = peopleData.people.find(person =>
+        person.ais_title === 'Education Director');
 
-//     if (!coordinator) {
-//         console.error('Undergraduate Program Coordinator not found in people data');
-//         return;
-//     }
+    if (!coordinator) {
+        console.error('Undergraduate Program Coordinator not found in people data');
+        return;
+    }
 
-//     // Clear existing content
-//     container.innerHTML = '';
+    // Clear existing content
+    container.innerHTML = '';
 
-//     // Create the advisor info structure
-//     const advisorContent = document.createElement('div');
-//     advisorContent.className = 'contact-advisor';
+    // Create the advisor info structure
+    const advisorContent = document.createElement('div');
+    advisorContent.className = 'contact-advisor';
 
-//     const imagePath = getImagePath(coordinator.image);
+    const imagePath = getImagePath(coordinator.image);
 
-//     advisorContent.innerHTML = `
-//         <div class="advisor-photo">
-//             <img src="${imagePath}" alt="${coordinator.name}">
-//         </div>
-//         <div class="advisor-info">
-//             <h3>Questions About Undergraduate Opportunities?</h3>
-//             <p>Contact our Undergraduate Program Coordinator:</p>
-//             <h4>${coordinator.name}</h4>
-//             <p><i class="fas fa-envelope"></i> ${coordinator.email}</p>
-//             <p><i class="fas fa-map-marker-alt"></i> ${coordinator.office || 'CS Building'}</p>
-//             <p><i class="fas fa-clock"></i> Office Hours: Mondays and Wednesdays, 1-3 PM</p>
-//         </div>
-//     `;
+    advisorContent.innerHTML = `
+        <div class="advisor-photo">
+            <img src="${imagePath}" alt="${coordinator.name}">
+        </div>
+        <div class="advisor-info">
+            <h3>Questions About Undergraduate Opportunities?</h3>
+            <p>Contact our Undergraduate Program Coordinator:</p>
+            <h4>${coordinator.name}</h4>
+            <p><i class="fas fa-envelope"></i> ${coordinator.email}</p>
+            <p><i class="fas fa-map-marker-alt"></i> ${coordinator.office || 'CS Building'}</p>
+            <p><i class="fas fa-clock"></i> Office Hours: Mondays and Wednesdays, 1-3 PM</p>
+        </div>
+    `;
 
-//     container.appendChild(advisorContent);
-// }
+    container.appendChild(advisorContent);
+}
 
 // Function to render advisory board members
-// async function renderAdvisoryBoard(containerId) {
-//     const container = document.getElementById(containerId);
-//     if (!container) return;
+async function renderAdvisoryBoard(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-//     const peopleData = await loadYamlData('people.yaml');
-//     if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
-//         console.error('People data not found or empty');
-//         return;
-//     }
+    const peopleData = await loadYamlData('people.yaml');
+    if (!peopleData || !peopleData.people || peopleData.people.length === 0) {
+        console.error('People data not found or empty');
+        return;
+    }
 
-//     // Filter for advisory board members
-//     const advisoryMembers = peopleData.people.filter(person =>
-//         person.categories && person.categories.includes('Advisory Board'));
+    // Filter for advisory board members
+    const advisoryMembers = peopleData.people.filter(person =>
+        person.categories && person.categories.includes('Advisory Board'));
 
-//     if (advisoryMembers.length === 0) {
-//         console.error('No advisory board members found in people data');
-//         return;
-//     }
+    if (advisoryMembers.length === 0) {
+        console.error('No advisory board members found in people data');
+        return;
+    }
 
-//     // Clear existing content
-//     container.innerHTML = '';
+    // Clear existing content
+    container.innerHTML = '';
 
-//     // Create the advisors grid
-//     const advisorsGrid = document.createElement('div');
-//     advisorsGrid.className = 'advisors-grid';
+    // Create the advisors grid
+    const advisorsGrid = document.createElement('div');
+    advisorsGrid.className = 'advisors-grid';
 
-//     // Render each advisory board member
-//     advisoryMembers.forEach(advisor => {
-//         const advisorCard = document.createElement('div');
-//         advisorCard.className = 'advisor';
+    // Render each advisory board member
+    advisoryMembers.forEach(advisor => {
+        const advisorCard = document.createElement('div');
+        advisorCard.className = 'advisor';
 
-//         const imagePath = getImagePath(advisor.image);
+        const imagePath = getImagePath(advisor.image);
 
-//         advisorCard.innerHTML = `
-//             <div class="advisor-photo">
-//                 <img src="${imagePath}" alt="${advisor.name}">
-//             </div>
-//             <div class="advisor-info">
-//                 <h4>${advisor.name}</h4>
-//                 <p class="advisor-title">${advisor.position}</p>
-//                 <p class="advisor-bio">${advisor.description}</p>
-//                 ${advisor.interests && advisor.interests.length > 0 ?
-//                     `<div class="advisor-interests">
-//                         ${advisor.interests.map(interest => `<span class="interest-tag">${interest}</span>`).join(' ')}
-//                     </div>` : ''}
-//             </div>
-//         `;
+        advisorCard.innerHTML = `
+            <div class="advisor-photo">
+                <img src="${imagePath}" alt="${advisor.name}">
+            </div>
+            <div class="advisor-info">
+                <h4>${advisor.name}</h4>
+                <p class="advisor-title">${advisor.position}</p>
+                <p class="advisor-bio">${advisor.description}</p>
+                ${advisor.interests && advisor.interests.length > 0 ?
+                    `<div class="advisor-interests">
+                        ${advisor.interests.map(interest => `<span class="interest-tag">${interest}</span>`).join(' ')}
+                    </div>` : ''}
+            </div>
+        `;
 
-//         advisorsGrid.appendChild(advisorCard);
-//     });
+        advisorsGrid.appendChild(advisorCard);
+    });
 
-//     container.appendChild(advisorsGrid);
-// }
+    container.appendChild(advisorsGrid);
+}
 
 // Function to parse BibTeX files
 async function parseBibTeX(bibText) {
@@ -943,136 +941,136 @@ async function exportBibTeX() {
 }
 
 // Function to initialize all dynamic content based on current page
-// async function initDynamicContent() {
-//     // Load YAML data
-//     await Promise.all([
-//         loadYamlData('people.yaml'),
-//         loadYamlData('artifacts.yaml')
-//     ]);
+async function initDynamicContent() {
+    // Load YAML data
+    await Promise.all([
+        loadYamlData('people.yaml'),
+        loadYamlData('artifacts.yaml')
+    ]);
 
-//     // Detect current page
-//     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    // Detect current page
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
-//     // Handle different pages
-//     if (currentPath === 'index.html' || currentPath === '') {
-//         // Landing page
-//         if (document.getElementById('researchers-grid-container')) {
-//             // Get a mix of Leadership, Faculty, Postdocs, and PhD Students for featured researchers
-//             const peopleData = await loadYamlData('people.yaml');
-//             if (peopleData && peopleData.people) {
-//                 // Order people according to our priorities
-//                 const orderedCategories = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student"];
-//                 const orderedPeople = [];
+    // Handle different pages
+    if (currentPath === 'index.html' || currentPath === '') {
+        // Landing page
+        if (document.getElementById('researchers-grid-container')) {
+            // Get a mix of Leadership, Faculty, Postdocs, and PhD Students for featured researchers
+            const peopleData = await loadYamlData('people.yaml');
+            if (peopleData && peopleData.people) {
+                // Order people according to our priorities
+                const orderedCategories = ["Leadership", "Faculty", "Postdoctoral Researcher", "Graduate Student"];
+                const orderedPeople = [];
 
-//                 // Add people in the specified order of categories
-//                 orderedCategories.forEach(category => {
-//                     const categoryPeople = peopleData.people.filter(person =>
-//                         person.categories && person.categories.includes(category));
-//                     orderedPeople.push(...categoryPeople);
-//                 });
+                // Add people in the specified order of categories
+                orderedCategories.forEach(category => {
+                    const categoryPeople = peopleData.people.filter(person =>
+                        person.categories && person.categories.includes(category));
+                    orderedPeople.push(...categoryPeople);
+                });
 
-//                 // Replace the people array with our ordered version
-//                 peopleData.people = orderedPeople;
+                // Replace the people array with our ordered version
+                peopleData.people = orderedPeople;
 
-//                 // Store back in cache to ensure renderPeople uses this ordered data
-//                 dataCache.people = peopleData;
-//             }
+                // Store back in cache to ensure renderPeople uses this ordered data
+                dataCache.people = peopleData;
+            }
 
-//             // Now render the top 4 people from our ordered list
-//             renderPeople('researchers-grid-container', {}, 4);
-//         }
+            // Now render the top 4 people from our ordered list
+            renderPeople('researchers-grid-container', {}, 4);
+        }
 
-//         if (document.getElementById('news-grid-container')) {
-//             renderArtifacts('news-grid-container', {}, 3);
-//         }
-//     }
-//     else if (currentPath === 'who-we-are.html') {
-//         // Who We Are page
-//         if (document.getElementById('team-container')) {
-//             renderTeamMembers('team-container');
-//         }
+        if (document.getElementById('news-grid-container')) {
+            renderArtifacts('news-grid-container', {}, 3);
+        }
+    }
+    else if (currentPath === 'who-we-are.html') {
+        // Who We Are page
+        if (document.getElementById('team-container')) {
+            renderTeamMembers('team-container');
+        }
 
-//         // Render the advisory board section
-//         const advisoryContainer = document.querySelector('#advisory .advisors-grid');
-//         if (advisoryContainer) {
-//             renderAdvisoryBoard('advisory .advisors-grid');
-//         }
-//     }
-//     else if (currentPath === 'whats-happening.html') {
-//         // What's Happening page
-//         if (document.getElementById('news-container')) {
-//             renderArtifacts('news-container', { category: 'news' });
-//         }
+        // Render the advisory board section
+        const advisoryContainer = document.querySelector('#advisory .advisors-grid');
+        if (advisoryContainer) {
+            renderAdvisoryBoard('advisory .advisors-grid');
+        }
+    }
+    else if (currentPath === 'whats-happening.html') {
+        // What's Happening page
+        if (document.getElementById('news-container')) {
+            renderArtifacts('news-container', { category: 'news' });
+        }
 
-//         if (document.getElementById('events-container')) {
-//             renderArtifacts('events-container', { category: 'event' });
-//         }
+        if (document.getElementById('events-container')) {
+            renderArtifacts('events-container', { category: 'event' });
+        }
 
-//         if (document.getElementById('seminars-container')) {
-//             renderArtifacts('seminars-container', { category: 'seminar' });
-//         }
-//     }
-//     else if (currentPath === 'what-we-do.html') {
-//         // What We Do page
-//         if (document.getElementById('projects-container')) {
-//             renderArtifacts('projects-container', { category: 'project' });
-//         }
+        if (document.getElementById('seminars-container')) {
+            renderArtifacts('seminars-container', { category: 'seminar' });
+        }
+    }
+    else if (currentPath === 'what-we-do.html') {
+        // What We Do page
+        if (document.getElementById('projects-container')) {
+            renderArtifacts('projects-container', { category: 'project' });
+        }
 
-//         if (document.getElementById('courses-container')) {
-//             renderCourses('courses-container');
-//         }
-//     }
-//     else if (currentPath === 'join.html') {
-//         // Join Us page
-//         if (document.getElementById('grad-program-director-container')) {
-//             renderGradProgramDirector('grad-program-director-container');
-//         }
+        if (document.getElementById('courses-container')) {
+            renderCourses('courses-container');
+        }
+    }
+    else if (currentPath === 'join.html') {
+        // Join Us page
+        if (document.getElementById('grad-program-director-container')) {
+            renderGradProgramDirector('grad-program-director-container');
+        }
 
-//         if (document.getElementById('undergrad-program-coordinator-container')) {
-//             renderUndergradProgramCoordinator('undergrad-program-coordinator-container');
-//         }
-//     }
-//     else if (currentPath === 'publications.html') {
-//         // Publications page
-//         if (document.getElementById('all-publications-container')) {
-//             // Load Eugene's publications as default
-//             await renderPublications('all-publications-container', 'Eugene Bagdasarian');
+        if (document.getElementById('undergrad-program-coordinator-container')) {
+            renderUndergradProgramCoordinator('undergrad-program-coordinator-container');
+        }
+    }
+    else if (currentPath === 'publications.html') {
+        // Publications page
+        if (document.getElementById('all-publications-container')) {
+            // Load Eugene's publications as default
+            await renderPublications('all-publications-container', 'Eugene Bagdasarian');
             
-//             // Populate topic filter options after publications are loaded
-//             populateTopicFilterOptions();
+            // Populate topic filter options after publications are loaded
+            populateTopicFilterOptions();
             
-//             // Set up search functionality
-//             const searchInput = document.getElementById('publication-search');
-//             const yearFilter = document.getElementById('year-filter');
-//             const topicFilter = document.getElementById('topic-filter');
+            // Set up search functionality
+            const searchInput = document.getElementById('publication-search');
+            const yearFilter = document.getElementById('year-filter');
+            const topicFilter = document.getElementById('topic-filter');
             
-//             if (searchInput) {
-//                 searchInput.addEventListener('input', searchPublications);
-//             }
+            if (searchInput) {
+                searchInput.addEventListener('input', searchPublications);
+            }
             
-//             if (yearFilter) {
-//                 yearFilter.addEventListener('change', searchPublications);
-//             }
+            if (yearFilter) {
+                yearFilter.addEventListener('change', searchPublications);
+            }
             
-//             if (topicFilter) {
-//                 topicFilter.addEventListener('change', searchPublications);
-//             }
-//         }
+            if (topicFilter) {
+                topicFilter.addEventListener('change', searchPublications);
+            }
+        }
 
-//         if (document.getElementById('featured-publications-container')) {
-//             // For featured publications section, only display those marked with featured=true
-//             renderPublications('featured-publications-container', 'Eugene Bagdasarian', true);
-//         }
+        if (document.getElementById('featured-publications-container')) {
+            // For featured publications section, only display those marked with featured=true
+            renderPublications('featured-publications-container', 'Eugene Bagdasarian', true);
+        }
 
-//         // Set up export button
-//         const exportButton = document.getElementById('export-bibtex');
-//         if (exportButton) {
-//             exportButton.addEventListener('click', exportBibTeX);
-//         }
-//     }
-// }
+        // Set up export button
+        const exportButton = document.getElementById('export-bibtex');
+        if (exportButton) {
+            exportButton.addEventListener('click', exportBibTeX);
+        }
+    }
+}
 
-// // Initialize all dynamic content
-// initDynamicContent().catch(err => {
-//     console.error('Error initializing dynamic content:', err);
-// });
+// Initialize all dynamic content
+initDynamicContent().catch(err => {
+    console.error('Error initializing dynamic content:', err);
+});

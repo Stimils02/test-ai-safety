@@ -90,6 +90,35 @@
     display: block;
 }
 
+/* Section Intro */
+.section-intro {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--secondary-color);
+}
+
+/* Section Title */
+.section-title {
+    font-size: 2rem;
+    margin: 2rem 0;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
 /* Community Section */
 .community-intro {
     max-width: 800px;
@@ -126,19 +155,23 @@
 
 .team-member {
     display: flex;
+    background-color: white;
     border: 1px solid var(--medium-gray);
-    padding: 1.5rem;
-    transition: transform var(--transition-speed);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .team-member:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .member-photo {
     width: 150px;
     height: 150px;
-    margin-right: 1.5rem;
+    margin-right: 2rem;
     flex-shrink: 0;
 }
 
@@ -156,100 +189,135 @@
 
 .member-info h4 {
     font-size: 1.3rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
 .member-title {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--accent-color);
     margin-bottom: 1rem;
+    font-size: 1rem;
 }
 
 .member-bio {
     margin-bottom: 1.5rem;
     line-height: 1.6;
+    color: var(--text-color);
 }
 
 .member-links {
     display: flex;
     gap: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .member-link {
     font-size: 0.9rem;
     color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.member-link:hover {
+    color: var(--secondary-color);
 }
 
 .member-link i {
-    margin-right: 0.3rem;
+    margin-right: 0.5rem;
 }
 
-/* Profile Grid - Faculty, Postdocs, Students */
-.profile-grid {
+.member-interests {
+    margin-top: 1rem;
+}
+
+.interests-label {
+    font-weight: 600;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.interest-tag {
+    display: inline-block;
+    background-color: var(--light-gray);
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Community Section - Research */
+.research-category {
+    font-size: 1.8rem;
+    margin: 3rem 0 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.research-category:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.research-grid {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
 
-.profile {
-    text-align: center;
-    transition: transform var(--transition-speed);
-}
-
-.profile:hover {
-    transform: translateY(-5px);
-}
-
-.profile-photo {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 1rem;
-}
-
-.profile-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid var(--primary-color);
-}
-
-.profile h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-}
-
-.profile p {
-    color: var(--accent-color);
-    font-size: 0.9rem;
-}
-
-/* Affiliated Organizations */
-.affiliated-orgs {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.org {
-    text-align: center;
-    padding: 1.5rem;
+.research-item {
+    background-color: white;
     border: 1px solid var(--medium-gray);
-    transition: transform var(--transition-speed);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.org:hover {
+.research-item:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-.org img {
-    height: 80px;
+.research-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.research-desc {
     margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
 }
 
-.org h4 {
-    font-size: 1rem;
+.research-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.research-link {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.research-link:hover {
+    color: var(--secondary-color);
 }
 
 /* Funding Section */
@@ -262,71 +330,72 @@
 }
 
 .funding-category {
-    font-size: 1.8rem;
-    margin: 3rem 0 2rem;
+    margin-bottom: 3rem;
+}
+
+.funding-category h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
     position: relative;
     padding-bottom: 0.5rem;
 }
 
-.funding-category:after {
+.funding-category h3::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 60px;
-    height: 3px;
+    width: 40px;
+    height: 2px;
     background-color: var(--primary-color);
 }
 
-/* Grants */
-.grants-list {
+.funding-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.funding-item {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-.grant {
-    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background-color: white;
     border: 1px solid var(--medium-gray);
-    padding: 1.5rem;
-    transition: transform var(--transition-speed);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.grant:hover {
-    transform: translateY(-5px);
+.funding-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.grant-logo {
-    width: 120px;
-    margin-right: 1.5rem;
-    flex-shrink: 0;
+.funding-logo {
+    height: 80px;
+    width: 100%;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-.grant-logo img {
-    width: 100%;
+.funding-logo img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
 }
 
-.grant-info {
-    flex: 1;
-}
-
-.grant-title {
-    font-size: 1.2rem;
+.funding-item h4 {
+    font-size: 1rem;
+    color: var(--primary-color);
     font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.grant-amount {
-    font-weight: 500;
-    color: var(--accent-color);
-    margin-bottom: 0.5rem;
-}
-
-.grant-desc {
-    line-height: 1.6;
+    margin: 0;
 }
 
 /* Industry Partners */
@@ -488,29 +557,33 @@
     line-height: 1.6;
 }
 
+/* Loading indicator */
+.loading-indicator {
+    text-align: center;
+    padding: 3rem;
+    color: var(--secondary-color);
+}
+
+.loading-indicator i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+    animation: fa-spin 2s infinite linear;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .team-grid {
         grid-template-columns: 1fr;
     }
 
-    .profile-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-
-    .advisors-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .team-member,
-    .advisor {
+    .team-member {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
-    .member-photo,
-    .advisor-photo {
+    .member-photo {
         margin-right: 0;
         margin-bottom: 1.5rem;
     }
@@ -519,65 +592,38 @@
         justify-content: center;
     }
 
-    .grant {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    .funding-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1.5rem;
     }
 
-    .grant-logo {
-        margin-right: 0;
-        margin-bottom: 1.5rem;
+    .funding-item {
+        padding: 1.5rem;
+    }
+
+    .funding-logo {
+        height: 60px;
     }
 }
 
 @media (max-width: 480px) {
-    .profile-photo {
-        width: 150px;
-        height: 150px;
+    .member-photo {
+        width: 120px;
+        height: 120px;
     }
 
-    .profile-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    .funding-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
     }
 
-    .foundations-list {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    .funding-item {
+        padding: 1rem;
     }
 
-    .page-tabs .container {
-        flex-direction: column;
+    .funding-logo {
+        height: 50px;
     }
-
-    .tab-link {
-        padding: 0.8rem 1rem;
-        text-align: center;
-    }
-}
-
-.three-column {
-    grid-template-columns: repeat(3, 1fr) !important;
-}
-
-.profile-grid {
-    display: grid;
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-.partners-grid,
-.foundations-list {
-    display: grid;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    text-align: center;
-}
-
-.partner img,
-.foundation img {
-    height: 100px;
-    margin-bottom: 1rem;
-    object-fit: contain;
 }
 
 /* Responsive adjustments */
@@ -665,19 +711,16 @@
 .main-content {
     flex-grow: 1;
     max-width: 1200px;
-    /* Limit content width for readability */
     padding: 0;
 }
 
 .content-section {
     padding: 0 0 60px 0;
-    /* Remove top padding to fix spacing */
     scroll-margin-top: 100px;
 }
 
 .content-section:first-child h2 {
     margin-top: 0;
-    /* Remove space above first heading */
 }
 
 /* Remove the old content-with-sidebar class */

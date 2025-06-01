@@ -81,8 +81,20 @@
     <div class="page-container">
         <div class="sidebar">
             <ul class="sidebar-nav">
-                <li class="sidebar-item active" data-section="community">
-                    <a href="#community">Our Community</a>
+                <li class="sidebar-item active" data-section="leadership">
+                    <a href="#leadership">Leadership</a>
+                    <i class="fas fa-arrow-right sidebar-indicator"></i>
+                </li>
+                <li class="sidebar-item" data-section="faculty">
+                    <a href="#faculty">Faculty</a>
+                    <i class="fas fa-arrow-right sidebar-indicator"></i>
+                </li>
+                <li class="sidebar-item" data-section="research-fellows">
+                    <a href="#research-fellows">Research Fellows</a>
+                    <i class="fas fa-arrow-right sidebar-indicator"></i>
+                </li>
+                <li class="sidebar-item" data-section="students">
+                    <a href="#students">Students</a>
                     <i class="fas fa-arrow-right sidebar-indicator"></i>
                 </li>
                 <li class="sidebar-item" data-section="funding">
@@ -93,60 +105,79 @@
         </div>
 
         <div class="main-content">
-            <!-- Community Section -->
-            <section id="community" class="content-section">
+            <!-- Leadership Section -->
+            <section id="leadership" class="content-section">
                 <div class="container">
-                    <h2>Our Community</h2>
-                    <div class="community-intro">
-                        <p>The UMass Amherst AI Safety Initiative brings together a diverse group of researchers,
-                            faculty,
-                            students, and staff committed to ensuring that artificial intelligence systems are developed
-                            and
-                            deployed safely, ethically, and for the benefit of humanity.</p>
-                    </div>
-                    <!-- Team Members will be dynamically loaded from who-we-are.yaml -->
-                    <div id="team-container" class="team-container">
-                        <!-- Loading animation will be inserted by JS -->
+                    <h2 class="section-title">Leadership</h2>
+                    <p class="section-intro">Meet the leadership team guiding the AI Safety Initiative's mission and strategic direction.</p>
+                    
+                    <div id="leadership-container" class="team-grid">
+                        <!-- Leadership members will be dynamically loaded -->
                     </div>
                 </div>
             </section>
-            <!-- Funding Section -->
-            <section id="funding" class="content-section alt-bg">
+
+            <!-- Faculty Section -->
+            <section id="faculty" class="content-section">
                 <div class="container">
-                    <h2>Our Funding</h2>
+                    <h2 class="section-title">Faculty</h2>
+                    <p class="section-intro">Our faculty members bring diverse expertise in AI safety, machine learning, and related fields.</p>
+                    
+                    <div id="faculty-container" class="team-grid">
+                        <!-- Faculty members will be dynamically loaded -->
+                    </div>
+                </div>
+            </section>
 
-                    <!-- <div class="funding-intro">
-                        <p>The UMass Amherst AI Safety Initiative is supported by a diverse range of funding sources,
-                            including
-                            federal grants, industry partnerships, and philanthropic foundations. We are grateful for
-                            their
-                            support in advancing our mission.</p>
-                    </div> -->
+            <!-- Research Fellows Section -->
+            <section id="research-fellows" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Research Fellows</h2>
+                    <p class="section-intro">Our research fellows conduct cutting-edge research in AI safety and contribute to advancing the field.</p>
+                    
+                    <div id="research-fellows-container" class="team-grid">
+                        <!-- Research fellows will be dynamically loaded -->
+                    </div>
+                </div>
+            </section>
 
-                    <h3 class="funding-category">Major Grants</h3>
+            <!-- Students Section -->
+            <section id="students" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Students</h2>
+                    <p class="section-intro">Our graduate and undergraduate students are the next generation of AI safety researchers.</p>
+                    
+                    <div id="students-container" class="team-grid">
+                        <!-- Students will be dynamically loaded -->
+                    </div>
+                </div>
+            </section>
 
-                    <div class="grants-list">
-                        <!-- Major grants will be dynamically loaded from who-we-are.yaml -->
+            <!-- Funding Section -->
+            <section id="funding" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Our Funding</h2>
+                    <p class="section-intro">We are grateful for the support from government agencies, industry partners, and foundations that make our research possible.</p>
+                    
+                    <div class="funding-category">
+                        <h3>Government</h3>
+                        <div id="government-funding-container" class="funding-grid">
+                            <!-- Government funding will be dynamically loaded -->
+                        </div>
                     </div>
 
-                    <h3 class="funding-category">Industry Partners</h3>
-
-                    <div class="partners-grid three-column">
-                        <!-- Industry partners will be dynamically loaded from who-we-are.yaml -->
+                    <div class="funding-category">
+                        <h3>Industry</h3>
+                        <div id="industry-funding-container" class="funding-grid">
+                            <!-- Industry funding will be dynamically loaded -->
+                        </div>
                     </div>
 
-                    <h3 class="funding-category">Philanthropic Foundations</h3>
-
-                    <div class="foundations-list three-column">
-                        <!-- Foundations will be dynamically loaded from who-we-are.yaml -->
-                    </div>
-
-                    <div class="support-cta">
-                        <h3>Support Our Work</h3>
-                        <p>Your contribution helps us advance research and education in AI safety. Together, we can
-                            ensure that
-                            AI technologies benefit humanity and are developed responsibly.</p>
-                        <a href="donate.html" class="donate-btn">Make a Donation</a>
+                    <div class="funding-category">
+                        <h3>Foundations</h3>
+                        <div id="foundation-funding-container" class="funding-grid">
+                            <!-- Foundation funding will be dynamically loaded -->
+                        </div>
                     </div>
                 </div>
             </section>
