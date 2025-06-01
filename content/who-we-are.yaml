@@ -1,6 +1,50 @@
 people:
+  # ------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------- LEADERSHIP -------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------
+  - name: "Eugene Bagdasarian"
+    email: "eugene@umass.edu"
+    categories:
+      - "Faculty"
+      - "Leadership"
+    position: "Assistant Professor"
+    ais_title: "Lead"
+    description: "Eugene Bagdasarian is an Assistant Professor at UMass Amherst and a Director of the AI Safety Initiative. His research focuses on trustworthy machine learning, with an emphasis on robustness, interpretability, and alignment of AI systems."
+    website: "https://people.cs.umass.edu/~eugene/"
+    image: "content/people/images/Eugene Bagdasarian.jpg"
+    office: "CS 3XX"
+    interests: ["Trustworthy ML", "AI Alignment", "Robustness", "Interpretability"]
 
-  # Advisory Board
+  - name: "Shlomo Zilberstein"
+    email: "shlomo@cs.umass.edu"
+    categories:
+      - "Faculty"
+      - "Leadership"
+    position: "Professor"
+    ais_title: "Lead"
+    description: "Shlomo Zilberstein is a Professor of Computer Science and former Associate Dean of Research and Engagement. Zilberstein’s research focuses on the foundations and applications of resource-bounded reasoning techniques, which allow complex systems to make decisions while coping with uncertainty, missing information, and limited computational resources. His research interests include automated reasoning, planning and learning under uncertainty, multi-agent systems, Markov decision processes, design of autonomous agents, meta-reasoning and meta-level control, self-driving vehicles, human-centered AI, safe and ethical AI."
+    website: "https://groups.cs.umass.edu/shlomo/"
+    image: "content/people/images/Shlomo Zilberstein.jpg"
+    office: "A359 LGRC"
+    interests: ["Artificial Intelligence", "Automated Planning", "Multiagent Systems", "Autonomous Agents", "Bounded Rationality"]
+
+  - name: "Kyle Hollins Wray"
+    email: "kwray@umass.edu"
+    categories:
+      - "Research Fellow"
+      - "Leadership"
+    position: "Research Fellow"
+    ais_title: "Lead"
+    description: "Kyle Hollins Wray is an Research Fellow at UMass Amherst and the Executive Director of the AI Safety Initiative. He leads the creation of autonomous robots that can plan, make decisions, navigate, and coordinate in the real world. He also researches theoretical models and practical algorithms for decision-making under uncertainty in real robots. AI Safety is a top priority among all his work."
+    website: "https://wray.ai"
+    image: "content/people/images/Kyle Hollins Wray.jpg"
+    office: "N/A"
+    interests: ["AI Safety", "Decision Making", "Autonomous Robotics", "Multi-Objective Models"]
+
+  # ------------------------------------------------------------------------------------------------------------
+  # --------------------------------------------- ADVISORY BOARD -----------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------
+  # Fake
   - name: "Dr. Elizabeth Chen"
     email: "echen@stanford.edu"
     categories:
@@ -12,48 +56,10 @@ people:
     image: "content/people/images/pic_placeholder.jpg"
     interests: ["AI Ethics", "Governance", "Responsible Innovation"]
     
-  # Added Eugene Bagdasarian as the actual real person
-  - name: "Eugene Bagdasarian"
-    email: "eugene@umass.edu"
-    categories:
-      - "Faculty"
-      - "Leadership"
-    position: "Assistant Professor"
-    ais_title: "Lead"
-    description: "Eugene Bagdasarian is an Assistant Professor at UMass Amherst and the Director of the AI Safety Initiative. His research focuses on trustworthy machine learning, with an emphasis on robustness, interpretability, and alignment of AI systems."
-    website: "https://people.cs.umass.edu/~eugene/"
-    image: "content/people/images/Eugene Bagdasarian.jpg"
-    office: "CS 3XX"
-    interests: ["Trustworthy ML", "AI Alignment", "Robustness", "Interpretability"]
-    
-    
-  # Fake people: Leadership
-  - name: "Dr. Sarah Johnson"
-    email: "sjohnson@umass.edu"
-    categories:
-      - "Leadership"
-      - "Faculty"
-    position: "Professor of Computer Science"
-    ais_title: "Director"
-    description: "Dr. Johnson is a Professor of Computer Science specializing in machine learning interpretability and AI alignment. She previously led research teams at DeepMind and has published extensively on AI safety."
-    website: "https://people.cs.umass.edu/~sjohnson/"
-    image: "content/people/images/pic_placeholder.jpg"
-    office: "CS Building, Room 301"
-    interests: ["Machine Learning Interpretability", "AI Alignment", "AI Safety"]
-
-  - name: "Dr. Marcus Johnson"
-    email: "mjohnson@umass.edu"
-    categories:
-      - "Research Fellow"
-    position: "Research Fellow"
-    ais_title: "Research Fellow"
-    description: "Dr. Johnson specializes in AI governance and policy frameworks for safe innovation."
-    website: "https://people.cs.umass.edu/~mjohnson/"
-    image: "content/people/images/pic_placeholder.jpg"
-    office: "CS Building, Room 403"
-    interests: ["AI Governance", "Policy", "Regulation"]
-
-  # Postdoctoral Researchers
+  # ------------------------------------------------------------------------------------------------------------
+  # ---------------------------------------- POSTDOCTORAL SCHOLARS ---------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------
+  # Fake
   - name: "Dr. Lisa Chen"
     email: "lchen@umass.edu"
     categories:
@@ -66,6 +72,7 @@ people:
     office: "CS Building, Room 501"
     interests: ["LLM Interpretability", "NLP", "AI Safety"]
 
+  # Fake
   - name: "Dr. David Kim"
     email: "dkim@umass.edu"
     categories:
@@ -78,7 +85,10 @@ people:
     office: "CS Building, Room 502"
     interests: ["Reinforcement Learning", "Robustness", "Safety"]
 
-  # Graduate Students
+  # ------------------------------------------------------------------------------------------------------------
+  # ---------------------------------------- GRADUATE STUDENTS -------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------
+  # Fake
   - name: "Alex Johnson"
     email: "ajohnson@umass.edu"
     categories:
@@ -91,6 +101,7 @@ people:
     office: "CS Building, Room 601"
     interests: ["Scalable Oversight", "AI Safety", "Alignment"]
 
+  # Fake
   - name: "Maya Patel"
     email: "mpatel@umass.edu"
     categories:
@@ -103,8 +114,11 @@ people:
     office: "CS Building, Room 602"
     interests: ["Explainable AI", "Interpretability", "Human-AI Interaction"]
 
-# Funding information
+# ------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------- FUNDING -------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
 major_grants:
+  # Fake
   - organization: "National Science Foundation"
     title: "Robust and Interpretable AI Systems"
     amount: "$3.5 Million"
@@ -112,6 +126,7 @@ major_grants:
     description: "This grant supports research on developing interpretable AI systems that maintain robust performance across diverse and challenging environments."
     logo: "content/artifacts/images/aisec_generic.svg"
 
+  # Fake
   - organization: "Department of Energy"
     title: "AI Safety for Critical Infrastructure"
     amount: "$2.8 Million"
@@ -119,6 +134,7 @@ major_grants:
     description: "This project focuses on ensuring the safety and security of AI systems deployed in critical energy infrastructure applications."
     logo: "content/artifacts/images/aisec_generic.svg"
 
+  # Fake
   - organization: "DARPA"
     title: "Assured Autonomy Program"
     amount: "$1.9 Million"
@@ -126,6 +142,9 @@ major_grants:
     description: "This grant supports research on formal verification methods for autonomous AI systems to ensure they operate safely within specified parameters."
     logo: "content/artifacts/images/aisec_generic.svg"
 
+# ------------------------------------------------------------------------------------------------------------
+# -------------------------------------------- INDUSTRY PARTNERS ---------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
 industry_partners:
   - name: "Tech Company 1"
     logo: "content/artifacts/images/aisec_generic.svg"
@@ -145,6 +164,9 @@ industry_partners:
   - name: "Tech Company 6"
     logo: "content/artifacts/images/aisec_generic.svg"
 
+# ------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------- FOUNDATIONS -------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
 foundations:
   - name: "Foundation 1"
     logo: "content/artifacts/images/aisec_generic.svg"
