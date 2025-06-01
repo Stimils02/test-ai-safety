@@ -413,24 +413,23 @@ async function renderContactUs() {
                     </div>
                 `).join('')}
             </div>
-
-            <h3 class="section-subheader">${contactData.office_info.title}</h3>
-            <div class="office-info">
-                <div class="office-details">
-                    <h4>Address</h4>
-                    <p>${contactData.office_info.full_address}</p>
-                    
-                    <h4>Hours</h4>
-                    <p>${contactData.office_info.hours}</p>
-                    
-                    <h4>Parking</h4>
-                    <p>${contactData.office_info.parking}</p>
-                    
-                    <h4>Directions</h4>
-                    <p>${contactData.office_info.directions}</p>
-                </div>
-            </div>
         `;
+            // <h3 class="section-subheader">${contactData.office_info.title}</h3>
+            // <div class="office-info">
+            //     <div class="office-details">
+            //         <h4>Address</h4>
+            //         <p>${contactData.office_info.full_address}</p>
+                    
+            //         <h4>Hours</h4>
+            //         <p>${contactData.office_info.hours}</p>
+                    
+            //         <h4>Parking</h4>
+            //         <p>${contactData.office_info.parking}</p>
+                    
+            //         <h4>Directions</h4>
+            //         <p>${contactData.office_info.directions}</p>
+            //     </div>
+            // </div>
 
         // Add form submission handler
     } catch (error) {

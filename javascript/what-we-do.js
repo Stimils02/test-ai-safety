@@ -336,8 +336,8 @@ function initWhatWeDoPage() {
     renderMission();
     renderResearch();
     renderFeaturedPublications();
-    renderOutreach();
-    renderResources();
+    // renderOutreach();
+    // renderResources();
 
     // Set up sidebar item click handlers
     const sidebarItems = document.querySelectorAll('.sidebar-item');

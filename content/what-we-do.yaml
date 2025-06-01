@@ -143,8 +143,3 @@ resources:
       link: "videos.html"
       link_text: "Watch Videos"
     
-    - title: "Newsletter"
-      description: "Monthly updates on AI safety research, events, and opportunities from our initiative and the broader community."
-      icon: "fas fa-newspaper"
-      link: "newsletter.html"
-      link_text: "Subscribe"
