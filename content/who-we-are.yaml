@@ -1,5 +1,7 @@
 people:
-  # Leadership
+  # ------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------- LEADERSHIP -------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------
   - name: "Eugene Bagdasarian"
     email: "eugene@umass.edu"
     categories:
@@ -10,19 +12,34 @@ people:
     image: "content/people/images/Eugene Bagdasarian.jpg"
     office: "CS 3XX"
     interests: ["Trustworthy ML", "AI Alignment", "Robustness", "Interpretability"]
-    
-  - name: "Dr. Sarah Johnson"
-    email: "sjohnson@umass.edu"
+  
+  - name: "Shlomo Zilberstein"
+    email: "shlomo@cs.umass.edu"
     categories:
+      - "Faculty"
       - "Leadership"
-    title: "Professor & Co-Director"
-    description: "Dr. Johnson is a Professor of Computer Science specializing in machine learning interpretability and AI alignment. She previously led research teams at DeepMind and has published extensively on AI safety."
-    website: "https://people.cs.umass.edu/~sjohnson/"
-    image: "content/people/images/pic_placeholder.jpg"
-    office: "CS Building, Room 301"
-    interests: ["Machine Learning Interpretability", "AI Alignment", "AI Safety"]
+    title: "Professor"
+    description: "Shlomo Zilberstein is a Professor of Computer Science and former Associate Dean of Research and Engagement. Zilberstein’s research focuses on the foundations and applications of resource-bounded reasoning techniques, which allow complex systems to make decisions while coping with uncertainty, missing information, and limited computational resources. His research interests include automated reasoning, planning and learning under uncertainty, multi-agent systems, Markov decision processes, design of autonomous agents, meta-reasoning and meta-level control, self-driving vehicles, human-centered AI, safe and ethical AI."
+    website: "https://groups.cs.umass.edu/shlomo/"
+    image: "content/people/images/Shlomo Zilberstein.jpg"
+    office: "A359 LGRC"
+    interests: ["Artificial Intelligence", "Automated Planning", "Multiagent Systems", "Autonomous Agents", "Bounded Rationality"]
 
-  # Faculty
+  - name: "Kyle Hollins Wray"
+    email: "kwray@umass.edu"
+    categories:
+      - "Research Fellow"
+      - "Leadership"
+    position: "Research Fellow"
+    description: "Kyle Hollins Wray is an Research Fellow at UMass Amherst and the Executive Director of the AI Safety Initiative. He leads the creation of autonomous robots that can plan, make decisions, navigate, and coordinate in the real world. He also researches theoretical models and practical algorithms for decision-making under uncertainty in real robots. AI Safety is a top priority among all his work."
+    website: "https://wray.ai"
+    image: "content/people/images/Kyle Hollins Wray.jpg"
+    office: "N/A"
+    interests: ["AI Safety", "Decision Making", "Autonomous Robotics", "Multi-Objective Models"]
+
+  # ------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------- FACULTY ----------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------
   - name: "Dr. Michael Chen"
     email: "mchen@umass.edu"
     categories:
@@ -45,7 +62,9 @@ people:
     office: "CS Building, Room 303"
     interests: ["AI Ethics", "Responsible Innovation", "AI Education"]
 
-  # Research Fellows
+  # ------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------- RESEARCH FELLOWS -------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------
   - name: "Dr. Marcus Johnson"
     email: "mjohnson@umass.edu"
     categories:
@@ -79,7 +98,9 @@ people:
     office: "CS Building, Room 502"
     interests: ["Reinforcement Learning", "Robustness", "Safety"]
 
-  # Students
+  # ------------------------------------------------------------------------------------------------------------
+  # ----------------------------------------------- STUDENTS ---------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------
   - name: "Alex Johnson"
     email: "ajohnson@umass.edu"
     categories:
@@ -124,7 +145,9 @@ people:
     office: "CS Building, Room 604"
     interests: ["Adversarial Testing", "AI Safety", "Robustness"]
 
-# Funding Information
+# ------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------- FUNDING ----------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------
 funding:
   government:
     - name: "National Science Foundation"
