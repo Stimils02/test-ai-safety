@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "csslint": "^1.0.5",
-    "eslint": "^9.26.0",
-    "html-validator": "^6.0.1"
-  }
-}
