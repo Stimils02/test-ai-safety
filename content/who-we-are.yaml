@@ -30,12 +30,23 @@ people:
     categories:
       - "Research Fellow"
       - "Leadership"
-    position: "Research Fellow"
+    title: "Research Fellow"
     description: "Kyle Hollins Wray is an Research Fellow at UMass Amherst and the Executive Director of the AI Safety Initiative. He leads the creation of autonomous robots that can plan, make decisions, navigate, and coordinate in the real world. He also researches theoretical models and practical algorithms for decision-making under uncertainty in real robots. AI Safety is a top priority among all his work."
     website: "https://wray.ai"
     image: "content/people/images/Kyle Hollins Wray.jpg"
     office: "N/A"
     interests: ["AI Safety", "Decision Making", "Autonomous Robotics", "Multi-Objective Models"]
+
+  - name: "Sujal Timilsina"
+    email: "stimilsina@umass.edu"
+    categories:
+      - "Leadership"
+    title: "Lead Engineer"
+    description: "Sujal Timilsina is the Lead Engineer at the AI Safety Initiative, overseeing technical operations and engineering projects. His expertise lies in developing robust AI systems and ensuring their safe deployment in real-world applications."
+    website: "https://sujaltimilsina.com/"
+    image: "content/people/images/Sujal_Timilsina.jpg"
+    office: "N/A"
+    interests: ["AI Safety", "Cloud Computing", "Robust AI Systems", "Engineering Management"]
 
   # ------------------------------------------------------------------------------------------------------------
   # ----------------------------------------------- FACULTY ----------------------------------------------------
@@ -87,6 +98,7 @@ people:
     office: "CS Building, Room 501"
     interests: ["LLM Interpretability", "NLP", "AI Safety"]
 
+  # Fake
   - name: "Dr. David Kim"
     email: "dkim@umass.edu"
     categories:
@@ -112,6 +124,7 @@ people:
     office: "CS Building, Room 601"
     interests: ["Scalable Oversight", "AI Safety", "Alignment"]
 
+  # Fake
   - name: "Maya Patel"
     email: "mpatel@umass.edu"
     categories:
