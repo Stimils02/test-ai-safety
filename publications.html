@@ -71,16 +71,6 @@
 
     <div class="page-container">
         <div class="container publications-container">
-            <section class="featured-section">
-                <div class="section-header">
-                    <h2>Featured Publications</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div id="featured-publications-container" class="publications-list">
-                    <!-- Featured publications will be rendered here by JavaScript -->
-                </div>
-            </section>
-
             <section class="all-publications-section">
                 <div class="section-header">
                     <h2>All Publications</h2>
@@ -104,10 +94,7 @@
 
                         <select id="topic-filter" onchange="searchPublications()">
                             <option value="all">All Topics</option>
-                            <option value="alignment">Alignment</option>
-                            <option value="robustness">Robustness</option>
-                            <option value="interpretability">Interpretability</option>
-                            <option value="governance">Governance</option>
+                            <!-- Topic options will be populated by JavaScript -->
                         </select>
                     </div>
 
@@ -118,6 +105,12 @@
 
                 <div id="all-publications-container" class="publications-list">
                     <!-- All publications will be rendered here by JavaScript -->
+                </div>
+                
+                <div class="view-more-container">
+                    <button id="view-more-publications" class="view-more-btn">
+                        View More Publications
+                    </button>
                 </div>
             </section>
         </div>
@@ -178,6 +171,7 @@
     <script src="javascript/latex.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
     <script src="javascript/scripts.js"></script>
+    <script src="javascript/publications.js"></script>
 </body>
 
 </html>

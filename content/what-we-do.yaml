@@ -40,33 +40,33 @@ research:
       icon: "fas fa-balance-scale"
       link: "research.html#governance"
 
-featured_publications:
-  title: "Featured Publications"
-  description: "Highlighting some of our most impactful research contributions to the field of AI safety."
-  publications:
-    - title: "Scalable Oversight for Large Language Models"
-      authors: "Eugene Bagdasarian, Sarah Johnson, et al."
-      venue: "Conference on Neural Information Processing Systems (NeurIPS)"
-      year: "2023"
-      description: "A novel approach to scaling human oversight of AI systems using constitutional AI methods."
-      link: "#"
-      featured: true
+# featured_publications:
+#   title: "Featured Publications"
+#   description: "Highlighting some of our most impactful research contributions to the field of AI safety."
+#   publications:
+#     - title: "Scalable Oversight for Large Language Models"
+#       authors: "Eugene Bagdasarian, Sarah Johnson, et al."
+#       venue: "Conference on Neural Information Processing Systems (NeurIPS)"
+#       year: "2023"
+#       description: "A novel approach to scaling human oversight of AI systems using constitutional AI methods."
+#       link: "#"
+#       featured: true
     
-    - title: "Robustness Evaluation Framework for Safety-Critical AI"
-      authors: "Lisa Chen, David Kim, Eugene Bagdasarian"
-      venue: "International Conference on Machine Learning (ICML)"
-      year: "2023"
-      description: "Comprehensive framework for evaluating AI system robustness in safety-critical applications."
-      link: "#"
-      featured: true
+#     - title: "Robustness Evaluation Framework for Safety-Critical AI"
+#       authors: "Lisa Chen, David Kim, Eugene Bagdasarian"
+#       venue: "International Conference on Machine Learning (ICML)"
+#       year: "2023"
+#       description: "Comprehensive framework for evaluating AI system robustness in safety-critical applications."
+#       link: "#"
+#       featured: true
     
-    - title: "Interpretability Methods for Neural Network Decision Boundaries"
-      authors: "Maya Patel, Alex Johnson, Sarah Johnson"
-      venue: "Journal of Artificial Intelligence Research"
-      year: "2022"
-      description: "Novel techniques for understanding and visualizing neural network decision-making processes."
-      link: "#"
-      featured: true
+#     - title: "Interpretability Methods for Neural Network Decision Boundaries"
+#       authors: "Maya Patel, Alex Johnson, Sarah Johnson"
+#       venue: "Journal of Artificial Intelligence Research"
+#       year: "2022"
+#       description: "Novel techniques for understanding and visualizing neural network decision-making processes."
+#       link: "#"
+#       featured: true
 
 outreach:
   title: "Outreach"

@@ -1,62 +1,7 @@
-// Load YAML data and store cache
-const dataCache = {
-    people: null,
-    artifacts: null
-};
-
-// Function to fetch and parse YAML data with caching
-async function loadYamlData(fileName) {
-    const cacheKey = fileName.replace('.yaml', '').replace('content/', '');
-    
-    // Return cached data if available
-    if (dataCache[cacheKey]) {
-        return dataCache[cacheKey];
-    }
-
-    try {
-        const response = await fetch(`content/${fileName}`);
-        if (!response.ok) {
-            console.error(`Failed to load YAML file: ${fileName}`, response.statusText);
-            return null;
-        }
-        
-        const yamlText = await response.text();
-        const data = jsyaml.load(yamlText);
-        
-        // Store in cache
-        dataCache[cacheKey] = data;
-        return data;
-    } catch (e) {
-        console.error(`Error loading or parsing YAML file: ${fileName}`, e);
-        return null;
-    }
-}
-
-// Function to process image paths
-function getImagePath(imagePath, defaultImage = 'content/people/images/pic_placeholder.jpg') {
-    if (!imagePath) return defaultImage;
-
-    if (imagePath.startsWith('http')) {
-        return imagePath;
-    }
-
-    // Handle various path formats
-    if (imagePath.startsWith('/')) {
-        return imagePath.substring(1);
-    } else if (imagePath.startsWith('content/')) {
-        return imagePath;
-    } else if (imagePath.startsWith('images/')) {
-        return imagePath;
-    } else if (imagePath.startsWith('researcher-')) {
-        // For featured faculty images that start with researcher-
-        return `images/${imagePath}`;
-    } else if (imagePath.startsWith('artifacts/')) {
-        return `content/images/${imagePath}`;
-    } else {
-        // For images that already include the images/ prefix in people.yaml
-        return imagePath;
-    }
-}
+// Global variables for pagination
+let allPublications = [];
+let currentlyDisplayed = 0;
+const publicationsPerPage = 8;
 
 // Function to parse BibTeX files
 async function parseBibTeX(bibText) {
@@ -65,7 +10,6 @@ async function parseBibTeX(bibText) {
     let currentField = null;
     let bracketCount = 0;
     let fieldContent = '';
-
 
     // Split the file into lines for easier processing
     const lines = bibText.split('\n');
@@ -254,8 +198,8 @@ async function loadBibTeXFile(personName) {
     }
 }
 
-// Function to render publications
-async function renderPublications(containerId, personName, featuredOnly = false) {
+// Function to render publications with pagination
+async function renderPublications(containerId, personName, featuredOnly = false, limit = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -296,9 +240,26 @@ async function renderPublications(containerId, personName, featuredOnly = false)
         return yearB - yearA;
     });
 
+    // Store all publications for pagination (only for publications page)
+    if (containerId === 'all-publications-container') {
+        allPublications = filteredEntries;
+        currentlyDisplayed = 0;
+        
+        // Apply limit for initial display
+        if (limit) {
+            filteredEntries = filteredEntries.slice(0, limit);
+            currentlyDisplayed = limit;
+        }
+    }
+
+    renderPublicationEntries(container, filteredEntries, personName);
+}
+
+// Function to render publication entries
+function renderPublicationEntries(container, entries, personName) {
     // Group entries by year
     const entriesByYear = {};
-    filteredEntries.forEach(entry => {
+    entries.forEach(entry => {
         const year = entry.fields.year || 'Unknown';
         if (!entriesByYear[year]) {
             entriesByYear[year] = [];
@@ -332,19 +293,16 @@ async function renderPublications(containerId, personName, featuredOnly = false)
                     item.dataset.topics = entry.tags.join(',');
                 }
 
-                // Format the publication based on its type
                 // Format authors
                 let authors = entry.fields.author || '';
                 authors = authors.replace(/\\myname{([^}]+)}/g, 'Bagdasarian, Eugene');
                 authors = authors.replace(/ and /g, ', ');
 
                 // Highlight the person's name
-                // Split the name into parts to look for first and last name
                 const nameParts = personName.split(' ');
                 const lastName = nameParts[nameParts.length - 1];
                 const firstName = nameParts[0];
 
-                // Highlight the author's name in the citation
                 authors = authors.replace(new RegExp(`${lastName}(,)?\\s*${firstName}`, 'i'),
                     `<strong>${lastName}$1 ${firstName}</strong>`);
 
@@ -403,6 +361,62 @@ ${Object.entries(entry.fields).map(([k, v]) => `  ${k} = {${v}}`).join(',\n')}
     container.appendChild(publicationList);
 
     // Add event listeners for showing/hiding BibTeX
+    setupBibTeXToggles();
+}
+
+// Function to load more publications
+function loadMorePublications() {
+    const container = document.getElementById('all-publications-container');
+    const viewMoreBtn = document.getElementById('view-more-publications');
+    
+    if (!container || !allPublications || !viewMoreBtn) return;
+
+    // Check if we're in expanded state (showing all publications)
+    if (currentlyDisplayed >= allPublications.length) {
+        // Switch to "View Less" mode
+        currentlyDisplayed = publicationsPerPage;
+        
+        // Re-render with only initial publications
+        const initialPublications = allPublications.slice(0, publicationsPerPage);
+        container.innerHTML = '';
+        renderPublicationEntries(container, initialPublications, 'Eugene Bagdasarian');
+        
+        // Update button text and functionality
+        viewMoreBtn.textContent = 'View More Publications';
+        viewMoreBtn.onclick = loadMorePublications;
+        
+        // Scroll back to top of publications section
+        document.getElementById('publications').scrollIntoView({ behavior: 'smooth' });
+        
+        return;
+    }
+
+    // Normal "View More" functionality
+    const nextBatch = allPublications.slice(currentlyDisplayed, currentlyDisplayed + publicationsPerPage);
+    
+    if (nextBatch.length === 0) {
+        // Hide the view more button if no more publications
+        viewMoreBtn.style.display = 'none';
+        return;
+    }
+
+    // Render additional publications
+    renderPublicationEntries(container, nextBatch, 'Eugene Bagdasarian');
+    currentlyDisplayed += nextBatch.length;
+
+    // Update button behavior when all publications are displayed
+    if (currentlyDisplayed >= allPublications.length) {
+        viewMoreBtn.textContent = 'View Less Publications';
+        // The onclick handler will handle the "View Less" functionality on next click
+    }
+
+    // Re-setup BibTeX toggles and search functionality
+    setupBibTeXToggles();
+    populateTopicFilterOptions();
+}
+
+// Function to setup BibTeX toggle functionality
+function setupBibTeXToggles() {
     document.querySelectorAll('.show-bibtex').forEach(button => {
         button.addEventListener('click', function() {
             const key = this.getAttribute('data-key');
@@ -511,14 +525,65 @@ async function exportBibTeX() {
     }
 }
 
-// Function to initialize all dynamic content based on current page
-async function initDynamicContent() {
-    if (document.getElementById('news-grid-container')) {
-        renderMixedNewsEvents('news-grid-container');
+// Initialize publications page
+async function initPublicationsPage() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+    if (currentPath === 'publications.html') {
+        // Publications page - load first 8 publications
+        if (document.getElementById('all-publications-container')) {
+            await renderPublications('all-publications-container', 'Eugene Bagdasarian', false, publicationsPerPage);
+            
+            // Populate topic filter options after publications are loaded
+            setTimeout(() => {
+                populateTopicFilterOptions();
+            }, 100);
+            
+            // Set up search functionality
+            const searchInput = document.getElementById('publication-search');
+            const yearFilter = document.getElementById('year-filter');
+            const topicFilter = document.getElementById('topic-filter');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', searchPublications);
+            }
+            
+            if (yearFilter) {
+                yearFilter.addEventListener('change', searchPublications);
+            }
+            
+            if (topicFilter) {
+                topicFilter.addEventListener('change', searchPublications);
+            }
+
+            // Set up view more button
+            const viewMoreBtn = document.getElementById('view-more-publications');
+            if (viewMoreBtn) {
+                viewMoreBtn.addEventListener('click', loadMorePublications);
+                
+                // Hide button if all publications are already displayed
+                setTimeout(() => {
+                    if (allPublications.length <= publicationsPerPage) {
+                        viewMoreBtn.style.display = 'none';
+                    }
+                }, 200);
+            }
+        }
+
+        // Set up export button
+        const exportButton = document.getElementById('export-bibtex');
+        if (exportButton) {
+            exportButton.addEventListener('click', exportBibTeX);
+        }
     }
 }
 
-// Initialize all dynamic content
-initDynamicContent().catch(err => {
-    console.error('Error initializing dynamic content:', err);
-});
+// Ensure initialization happens after DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPublicationsPage);
+} else {
+    // If DOM is already loaded, run immediately
+    initPublicationsPage();
+}
+
+
