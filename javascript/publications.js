@@ -2,6 +2,7 @@
 let allPublications = [];
 let currentlyDisplayed = 0;
 const publicationsPerPage = 8;
+let allPeople = []; // Store all people data
 
 // Function to parse BibTeX files
 async function parseBibTeX(bibText) {
@@ -179,9 +180,9 @@ async function parseBibTeX(bibText) {
 }
 
 // Function to fetch and parse a BibTeX file
-async function loadBibTeXFile(personName) {
+async function loadBibTeXFile(fileName) {
     // The personName is directly used as the filename
-    const fileName = `${personName}.bib`;
+    // const fileName = `${personName}.bib`;
 
     try {
         const response = await fetch(`content/people/bibs/${encodeURIComponent(fileName)}`);
@@ -198,8 +199,48 @@ async function loadBibTeXFile(personName) {
     }
 }
 
+// Function to load all people from people.yaml
+async function loadAllPeople() {
+    try {
+        const response = await fetch('content/people.yaml');
+        if (!response.ok) {
+            console.error('Failed to load people.yaml:', response.statusText);
+            return [];
+        }
+        const yamlText = await response.text();
+        const data = jsyaml.load(yamlText);
+        return data.people || [];
+    } catch (error) {
+        console.error('Error loading people data:', error);
+        return [];
+    }
+}
+
+// Function to load publications from all people
+async function loadAllPublications() {
+    if (allPeople.length === 0) {
+        allPeople = await loadAllPeople();
+    }
+
+    const allEntries = [];
+    
+    for (const person of allPeople) {
+        if (person.bib_file) {
+            const entries = await loadBibTeXFile(person.bib_file);
+            // Add person info to each entry for proper attribution
+            entries.forEach(entry => {
+                entry.personName = person.name;
+                entry.personRole = person.role;
+            });
+            allEntries.push(...entries);
+        }
+    }
+
+    return allEntries;
+}
+
 // Function to render publications with pagination
-async function renderPublications(containerId, personName, featuredOnly = false, limit = null) {
+async function renderPublications(containerId, personName = null, featuredOnly = false, limit = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -211,8 +252,14 @@ async function renderPublications(containerId, personName, featuredOnly = false,
         </div>
     `;
 
-    // Load BibTeX entries
-    const entries = await loadBibTeXFile(personName);
+    let entries;
+    if (personName) {
+        // Load publications for specific person (for backward compatibility)
+        entries = await loadBibTeXFile(personName);
+    } else {
+        // Load publications from all people
+        entries = await loadAllPublications();
+    }
 
     // Clear the container
     container.innerHTML = '';
@@ -298,13 +345,25 @@ function renderPublicationEntries(container, entries, personName) {
                 authors = authors.replace(/\\myname{([^}]+)}/g, 'Bagdasarian, Eugene');
                 authors = authors.replace(/ and /g, ', ');
 
-                // Highlight the person's name
-                const nameParts = personName.split(' ');
-                const lastName = nameParts[nameParts.length - 1];
-                const firstName = nameParts[0];
+                // Highlight names from our people list
+                if (allPeople.length > 0) {
+                    allPeople.forEach(person => {
+                        const nameParts = person.name.split(' ');
+                        const lastName = nameParts[nameParts.length - 1];
+                        const firstName = nameParts[0];
+                        
+                        authors = authors.replace(new RegExp(`${lastName}(,)?\\s*${firstName}`, 'gi'),
+                            `<strong>${lastName}$1 ${firstName}</strong>`);
+                    });
+                } else if (personName) {
+                    // Fallback to single person highlighting
+                    const nameParts = personName.split(' ');
+                    const lastName = nameParts[nameParts.length - 1];
+                    const firstName = nameParts[0];
 
-                authors = authors.replace(new RegExp(`${lastName}(,)?\\s*${firstName}`, 'i'),
-                    `<strong>${lastName}$1 ${firstName}</strong>`);
+                    authors = authors.replace(new RegExp(`${lastName}(,)?\\s*${firstName}`, 'i'),
+                        `<strong>${lastName}$1 ${firstName}</strong>`);
+                }
 
                 // Common publication info
                 const title = entry.fields.title || 'Unknown Title';
@@ -379,14 +438,13 @@ function loadMorePublications() {
         // Re-render with only initial publications
         const initialPublications = allPublications.slice(0, publicationsPerPage);
         container.innerHTML = '';
-        renderPublicationEntries(container, initialPublications, 'Eugene Bagdasarian');
+        renderPublicationEntries(container, initialPublications, null);
         
         // Update button text and functionality
         viewMoreBtn.textContent = 'View More Publications';
-        viewMoreBtn.onclick = loadMorePublications;
         
         // Scroll back to top of publications section
-        document.getElementById('publications').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('publications')?.scrollIntoView({ behavior: 'smooth' });
         
         return;
     }
@@ -400,8 +458,14 @@ function loadMorePublications() {
         return;
     }
 
-    // Render additional publications
-    renderPublicationEntries(container, nextBatch, 'Eugene Bagdasarian');
+    const tempContainer = document.createElement('div');
+    renderPublicationEntries(tempContainer, nextBatch, null);
+    
+    // Append the new publications to the existing container
+    while (tempContainer.firstChild) {
+        container.appendChild(tempContainer.firstChild);
+    }
+
     currentlyDisplayed += nextBatch.length;
 
     // Update button behavior when all publications are displayed
@@ -530,9 +594,9 @@ async function initPublicationsPage() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
     if (currentPath === 'publications.html') {
-        // Publications page - load first 8 publications
+        // Publications page - load publications from all people
         if (document.getElementById('all-publications-container')) {
-            await renderPublications('all-publications-container', 'Eugene Bagdasarian', false, publicationsPerPage);
+            await renderPublications('all-publications-container', null, false, publicationsPerPage);
             
             // Populate topic filter options after publications are loaded
             setTimeout(() => {
@@ -559,6 +623,7 @@ async function initPublicationsPage() {
             // Set up view more button
             const viewMoreBtn = document.getElementById('view-more-publications');
             if (viewMoreBtn) {
+                viewMoreBtn.removeEventListener('click', loadMorePublications); // Remove any existing listener
                 viewMoreBtn.addEventListener('click', loadMorePublications);
                 
                 // Hide button if all publications are already displayed
