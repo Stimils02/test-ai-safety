@@ -423,6 +423,113 @@ ${Object.entries(entry.fields).map(([k, v]) => `  ${k} = {${v}}`).join(',\n')}
     setupBibTeXToggles();
 }
 
+// Function to search publications
+function searchPublications() {
+    const searchText = document.getElementById('publication-search')?.value.toLowerCase() || '';
+    const yearFilter = document.getElementById('year-filter')?.value || 'all';
+    const topicFilter = document.getElementById('topic-filter')?.value || 'all';
+
+    const publicationItems = document.querySelectorAll('.publication-item');
+    const yearSections = document.querySelectorAll('.publication-year');
+
+    // Apply filters
+    publicationItems.forEach(item => {
+        const itemText = item.textContent.toLowerCase();
+        const itemYear = item.closest('.publication-year')?.querySelector('h3')?.textContent || '';
+        const itemTopics = item.dataset.topics ? item.dataset.topics.split(',').map(t => t.trim()) : [];
+
+        // Check if the item matches all filters
+        const matchesSearch = !searchText || itemText.includes(searchText);
+        const matchesYear = yearFilter === 'all' || itemYear === yearFilter;
+        const matchesTopic = topicFilter === 'all' || 
+                            (itemTopics.length > 0 && itemTopics.some(topic => topic.toLowerCase() === topicFilter.toLowerCase()));
+
+        // Show or hide based on filters
+        if (matchesSearch && matchesYear && matchesTopic) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    // Hide year sections with no visible items
+    yearSections.forEach(section => {
+        const visibleItems = section.querySelectorAll('.publication-item:not([style*="display: none"])');
+        if (visibleItems.length > 0) {
+            section.style.display = 'block';
+        } else {
+            section.style.display = 'none';
+        }
+    });
+}
+
+// Function to populate year filter options
+function populateYearFilterOptions() {
+    const yearFilter = document.getElementById('year-filter');
+    if (!yearFilter) return;
+    
+    // Get all unique years from publications
+    const years = new Set();
+    document.querySelectorAll('.publication-year h3').forEach(yearHeading => {
+        const year = yearHeading.textContent.trim();
+        if (year && year !== 'Unknown') {
+            years.add(year);
+        }
+    });
+    
+    // Sort years in descending order
+    const sortedYears = Array.from(years).sort((a, b) => parseInt(b) - parseInt(a));
+    
+    // Clear existing options except 'all'
+    while (yearFilter.options.length > 1) {
+        yearFilter.remove(1);
+    }
+    
+    // Add years as options
+    sortedYears.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearFilter.appendChild(option);
+    });
+}
+
+// Function to populate topic filter options from publication tags
+function populateTopicFilterOptions() {
+    const topicFilter = document.getElementById('topic-filter');
+    if (!topicFilter) return;
+    
+    // Get all unique tags from publications
+    const tags = new Set();
+    document.querySelectorAll('.publication-item').forEach(item => {
+        if (item.dataset.topics) {
+            const itemTopics = item.dataset.topics.split(',');
+            itemTopics.forEach(topic => {
+                const cleanTopic = topic.trim();
+                if (cleanTopic) {
+                    tags.add(cleanTopic);
+                }
+            });
+        }
+    });
+    
+    // Sort tags alphabetically
+    const sortedTags = Array.from(tags).sort();
+    
+    // Clear existing options except 'all'
+    while (topicFilter.options.length > 1) {
+        topicFilter.remove(1);
+    }
+    
+    // Add tags as options
+    sortedTags.forEach(tag => {
+        const option = document.createElement('option');
+        option.value = tag;
+        option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1); // Capitalize first letter
+        topicFilter.appendChild(option);
+    });
+}
+
 // Function to load more publications
 function loadMorePublications() {
     const container = document.getElementById('all-publications-container');
@@ -440,8 +547,14 @@ function loadMorePublications() {
         container.innerHTML = '';
         renderPublicationEntries(container, initialPublications, null);
         
-        // Update button text and functionality
+        // Update button text
         viewMoreBtn.textContent = 'View More Publications';
+        
+        // Re-populate filters after re-rendering
+        setTimeout(() => {
+            populateYearFilterOptions();
+            populateTopicFilterOptions();
+        }, 100);
         
         // Scroll back to top of publications section
         document.getElementById('publications')?.scrollIntoView({ behavior: 'smooth' });
@@ -471,12 +584,14 @@ function loadMorePublications() {
     // Update button behavior when all publications are displayed
     if (currentlyDisplayed >= allPublications.length) {
         viewMoreBtn.textContent = 'View Less Publications';
-        // The onclick handler will handle the "View Less" functionality on next click
     }
 
-    // Re-setup BibTeX toggles and search functionality
+    // Re-setup BibTeX toggles and update filters
     setupBibTeXToggles();
-    populateTopicFilterOptions();
+    setTimeout(() => {
+        populateYearFilterOptions();
+        populateTopicFilterOptions();
+    }, 100);
 }
 
 // Function to setup BibTeX toggle functionality
@@ -498,70 +613,7 @@ function setupBibTeXToggles() {
     });
 }
 
-// Function to search publications
-function searchPublications() {
-    const searchText = document.getElementById('publication-search')?.value.toLowerCase() || '';
-    const yearFilter = document.getElementById('year-filter')?.value || 'all';
-    const topicFilter = document.getElementById('topic-filter')?.value || 'all';
-
-    const publicationItems = document.querySelectorAll('.publication-item');
-    const yearSections = document.querySelectorAll('.publication-year');
-
-    // Apply filters
-    publicationItems.forEach(item => {
-        const itemText = item.textContent.toLowerCase();
-        const itemYear = item.closest('.publication-year')?.querySelector('h3')?.textContent || '';
-        const itemTopics = item.dataset.topics ? item.dataset.topics.split(',') : [];
-
-        // Check if the item matches all filters
-        const matchesSearch = !searchText || itemText.includes(searchText);
-        const matchesYear = yearFilter === 'all' || itemYear === yearFilter;
-        const matchesTopic = topicFilter === 'all' ||
-                            (itemTopics.length > 0 && itemTopics.includes(topicFilter));
-
-        // Show or hide based on filters
-        item.style.display = (matchesSearch && matchesYear && matchesTopic) ? 'block' : 'none';
-    });
-
-    // Hide year sections with no visible items
-    yearSections.forEach(section => {
-        const visibleItems = section.querySelectorAll('.publication-item[style="display: block"]');
-        section.style.display = visibleItems.length > 0 ? 'block' : 'none';
-    });
-}
-
-// Function to populate topic filter options from publication tags
-function populateTopicFilterOptions() {
-    const topicFilter = document.getElementById('topic-filter');
-    if (!topicFilter) return;
-    
-    // Get all unique tags from publications
-    const tags = new Set();
-    document.querySelectorAll('.publication-item').forEach(item => {
-        if (item.dataset.topics) {
-            const itemTopics = item.dataset.topics.split(',');
-            itemTopics.forEach(topic => tags.add(topic.trim()));
-        }
-    });
-    
-    // Sort tags alphabetically
-    const sortedTags = Array.from(tags).sort();
-    
-    // Clear existing options except 'all'
-    while (topicFilter.options.length > 1) {
-        topicFilter.remove(1);
-    }
-    
-    // Add tags as options
-    sortedTags.forEach(tag => {
-        const option = document.createElement('option');
-        option.value = tag;
-        option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1); // Capitalize first letter
-        topicFilter.appendChild(option);
-    });
-}
-
-// Export publications as BibTeX
+// Function to export publications as BibTeX
 async function exportBibTeX() {
     try {
         // Fetch the raw BibTeX file
@@ -598,10 +650,11 @@ async function initPublicationsPage() {
         if (document.getElementById('all-publications-container')) {
             await renderPublications('all-publications-container', null, false, publicationsPerPage);
             
-            // Populate topic filter options after publications are loaded
+            // Populate filter options after publications are loaded
             setTimeout(() => {
+                populateYearFilterOptions();
                 populateTopicFilterOptions();
-            }, 100);
+            }, 200);
             
             // Set up search functionality
             const searchInput = document.getElementById('publication-search');
@@ -623,7 +676,7 @@ async function initPublicationsPage() {
             // Set up view more button
             const viewMoreBtn = document.getElementById('view-more-publications');
             if (viewMoreBtn) {
-                viewMoreBtn.removeEventListener('click', loadMorePublications); // Remove any existing listener
+                viewMoreBtn.removeEventListener('click', loadMorePublications);
                 viewMoreBtn.addEventListener('click', loadMorePublications);
                 
                 // Hide button if all publications are already displayed
